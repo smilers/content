@@ -1,39 +1,48 @@
 ---
-title: Window.scrollByLines()
+title: "Window: scrollByLines() method"
+short-title: scrollByLines()
 slug: Web/API/Window/scrollByLines
-tags:
-  - API
-  - HTML DOM
-  - Method
-  - Non-standard
-  - Reference
-  - Window
+page-type: web-api-instance-method
+status:
+  - non-standard
 browser-compat: api.Window.scrollByLines
 ---
-{{ ApiRef() }} {{Non-standard_header}}
+
+{{APIRef}} {{Non-standard_header}}
 
 The **`Window.scrollByLines()`** method scrolls the document by
 the specified number of lines.
 
 ## Syntax
 
-```js
-window.scrollByLines(lines)
+```js-nolint
+scrollByLines(lines)
 ```
 
 ### Parameters
 
-- `lines` is the number of lines to scroll the document by. It may be a
-  positive or negative integer.
+- `lines`
+  - : The number of lines to scroll the document by. It may be a
+    positive or negative integer.
 
-## Example
+### Return value
+
+None ({{jsxref("undefined")}}).
+
+## Examples
 
 ```html
-<!-- Scroll up the document by 5 lines -->
-<button id="scroll-up" onclick="scrollByLines(-5);">Up 5 lines</button>
+<button id="scroll-up">Up 5 lines</button>
+<button id="scroll-down">Down 5 lines</button>
+```
 
-<!-- Scroll down the document by 5 lines -->
-<button id="scroll-down" onclick="scrollByLines(5);">Down 5 lines</button>
+```js
+document.getElementById("scroll-up").addEventListener("click", () => {
+  window.scrollByLines(-5);
+});
+document.getElementById("scroll-down").addEventListener("click", () => {
+  window.scrollByLines(5);
+});
 ```
 
 ## Specifications

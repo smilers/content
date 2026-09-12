@@ -1,42 +1,45 @@
 ---
-title: Range.isPointInRange()
+title: "Range: isPointInRange() method"
+short-title: isPointInRange()
 slug: Web/API/Range/isPointInRange
-tags:
-  - API
-  - DOM
-  - Experimental
-  - Method
-  - Range
-  - Reference
+page-type: web-api-instance-method
 browser-compat: api.Range.isPointInRange
 ---
-{{ApiRef("DOM")}}{{SeeCompatTable}}
 
-The **`Range.isPointInRange()`** method returns a boolean
-indicating whether the given point is in the {{domxref("Range")}}. It returns
-`true` if the point (cursor position) at `offset` within
-`ReferenceNode` is within this range.
+{{ApiRef("DOM")}}
+
+The **`isPointInRange()`** method of the {{domxref("Range")}} interface determines whether a specified point is within the {{domxref("Range")}}. The point is specified by a reference node and an offset within that node. It is equivalent to calling {{domxref("Range.comparePoint()")}} and checking if the result is `0`.
 
 ## Syntax
 
-```js
-bool = range.isPointInRange( referenceNode, offset )
+```js-nolint
+isPointInRange(referenceNode, offset)
 ```
 
 ### Parameters
 
-- _referenceNode_
-  - : The {{domxref("Node")}} to compare with the {{domxref("Range")}}.
-- _offset_
-  - : The offset into {{domxref("Node")}} of the point to compare with the
-    {{domxref("Range")}}.
+- `referenceNode`
+  - : The {{domxref("Node")}} that the `offset` is relative to.
+- `offset`
+  - : An integer greater than or equal to zero describing the position inside `referenceNode` of the point to be checked. If `referenceNode` is a {{domxref("Node")}} of type {{domxref("Text")}}, {{domxref("Comment")}}, or {{domxref("CDATASection")}}, then `offset` is the number of characters from the start of `referenceNode`. For other {{domxref("Node")}} types, `offset` is the number of child nodes from the start of the `referenceNode`.
 
-## Example
+### Return value
+
+A boolean.
+
+## Examples
 
 ```js
-range = document.createRange();
-range.selectNode(document.getElementsByTagName("div").item(0));
-bool = range.isPointInRange(document.getElementsByTagName("p").item(0),1);
+const text = new Text("0123456789");
+
+const thisRange = new Range();
+thisRange.setStart(text, 1);
+thisRange.setEnd(text, 6);
+
+thisRange.isPointInRange(text, 3); // true
+thisRange.isPointInRange(text, 0); // false
+thisRange.isPointInRange(text, 6); // true
+thisRange.isPointInRange(text, 7); // false
 ```
 
 ## Specifications

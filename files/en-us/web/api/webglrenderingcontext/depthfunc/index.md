@@ -1,33 +1,28 @@
 ---
-title: WebGLRenderingContext.depthFunc()
+title: "WebGLRenderingContext: depthFunc() method"
+short-title: depthFunc()
 slug: Web/API/WebGLRenderingContext/depthFunc
-tags:
-  - API
-  - Method
-  - Reference
-  - WebGL
-  - WebGLRenderingContext
+page-type: web-api-instance-method
 browser-compat: api.WebGLRenderingContext.depthFunc
 ---
-{{APIRef("WebGL")}}
+
+{{APIRef("WebGL")}}{{AvailableInWorkers}}
 
 The **`WebGLRenderingContext.depthFunc()`** method of the [WebGL API](/en-US/docs/Web/API/WebGL_API) specifies a function that compares
 incoming pixel depth to the current depth buffer value.
 
 ## Syntax
 
-```js
-void gl.depthFunc(func);
+```js-nolint
+depthFunc(func)
 ```
 
 ### Parameters
 
 - `func`
-
   - : A {{domxref("WebGL_API/Types", "GLenum")}} specifying the depth comparison function, which sets the
     conditions under which the pixel will be drawn. The default value is
     `gl.LESS`. Possible values are:
-
     - `gl.NEVER` (never pass)
     - `gl.LESS` (pass if the incoming value is less than the depth buffer
       value)
@@ -44,7 +39,7 @@ void gl.depthFunc(func);
 
 ### Return value
 
-None.
+None ({{jsxref("undefined")}}).
 
 ## Examples
 

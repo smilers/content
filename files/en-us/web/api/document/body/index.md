@@ -1,37 +1,35 @@
 ---
-title: Document.body
+title: "Document: body property"
+short-title: body
 slug: Web/API/Document/body
-tags:
-  - API
-  - Document
-  - HTML DOM
-  - Property
-  - Reference
+page-type: web-api-instance-property
 browser-compat: api.Document.body
 ---
+
 {{APIRef("DOM")}}
 
 The **`Document.body`** property represents the
 {{HTMLElement("body")}} or {{HTMLElement("frameset")}} node of the current document, or
 `null` if no such element exists.
 
-## Syntax
+## Value
 
-```js
-const objRef = document.body
-document.body = objRef
-```
+One of the following:
 
-## Example
+- {{domxref("HTMLBodyElement")}}
+- {{domxref("HTMLFrameSetElement")}}
+- `null`
+
+## Examples
 
 ```js
 // Given this HTML: <body id="oldBodyElement"></body>
 alert(document.body.id); // "oldBodyElement"
 
-const aNewBodyElement = document.createElement("body");
+const newBodyElement = document.createElement("body");
 
-aNewBodyElement.id = "newBodyElement";
-document.body = aNewBodyElement;
+newBodyElement.id = "newBodyElement";
+document.body = newBodyElement;
 alert(document.body.id); // "newBodyElement"
 ```
 

@@ -1,53 +1,45 @@
 ---
-title: NDEFMessage.NDEFMessage()
+title: "NDEFMessage: NDEFMessage() constructor"
+short-title: NDEFMessage()
 slug: Web/API/NDEFMessage/NDEFMessage
-tags:
-  - API
-  - Constructor
-  - Reference
-  - NDEFMessage
+page-type: web-api-constructor
+status:
+  - experimental
 browser-compat: api.NDEFMessage.NDEFMessage
 ---
-{{securecontext_header}}{{DefaultAPISidebar("")}}
+
+{{SecureContext_Header}}{{APIRef("Web NFC API")}}{{SeeCompatTable}}
 
 The **`NDEFMessage()`** constructor creates a new {{domxref("NDEFMessage")}} object, initialized with the given NDEF records.
 
 ## Syntax
 
-```js
-new NDEFMessage(records);
+```js-nolint
+new NDEFMessage(records)
 ```
 
 ### Parameters
 
 - `records`
-
   - : An array of objects with the following members:
-
     - `data` {{optional_inline}}
-      - : Contains the data to be transmitted; one of a string, a {{domxref("BufferSource")}}, or an array of nested records.
+      - : Contains the data to be transmitted; one of a string, an {{jsxref("ArrayBuffer")}}, a {{jsxref("TypedArray")}}, a {{jsxref("DataView")}}, or an array of nested records.
     - `encoding` {{optional_inline}}
       - : A string specifying the record's encoding.
     - `id` {{optional_inline}}
       - : A developer-defined identifier for the record.
     - `lang` {{optional_inline}}
-      - : A valid [BCP47](https://www.rfc-editor.org/info/bcp47) language tag.
+      - : A valid {{glossary("BCP 47 language tag")}}.
     - `mediaType` {{optional_inline}}
-      - : A valid [MIME type](/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types).
+      - : A valid [MIME type](/en-US/docs/Web/HTTP/Guides/MIME_types).
     - `recordType`
-
       - : A string indicating the type of data stored in `data`. It must be one of the following values:
-
         - `"absolute-url"`
-
-          An absolute URL to the data.
-
-          `"empty"`
-
+          - : An absolute URL to the data.
+        - `"empty"`
           - : An empty {{domxref("NDEFRecord")}}.
-
         - `"mime"`
-          - : A valid [MIME type](/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types).
+          - : A valid [MIME type](/en-US/docs/Web/HTTP/Guides/MIME_types).
         - `"smart-poster"`
           - : A smart poster as defined by the [NDEF-SMARTPOSTER](https://w3c.github.io/web-nfc/#bib-ndef-smartposter) specification.
         - `"text"`

@@ -1,36 +1,44 @@
 ---
-title: Event.preventDefault()
+title: "Event: preventDefault() method"
+short-title: preventDefault()
 slug: Web/API/Event/preventDefault
-tags:
-  - API
-  - DOM
-  - Event
-  - Method
-  - Reference
+page-type: web-api-instance-method
 browser-compat: api.Event.preventDefault
 ---
-{{apiref("DOM")}}
 
-The {{domxref("Event")}} interface's
-**`preventDefault()`** method tells the {{Glossary("user
-    agent")}} that if the event does not get explicitly handled, its default action should
-not be taken as it normally would be.
+{{APIRef("DOM")}}{{AvailableInWorkers}}
 
-The event continues to propagate as
-usual, unless one of its event listeners calls {{domxref("Event.stopPropagation",
-  "stopPropagation()")}} or {{domxref("Event.stopImmediatePropagation",
-  "stopImmediatePropagation()")}}, either of which terminates propagation at once.
+The **`preventDefault()`** method of the {{domxref("Event")}} interface tells the {{Glossary("user agent")}} that the event is being explicitly handled, so its default action, such as page scrolling, link navigation, or pasting text, should not be taken.
+
+The event continues to propagate as usual,
+unless one of its event listeners calls
+{{domxref("Event.stopPropagation", "stopPropagation()")}}
+or {{domxref("Event.stopImmediatePropagation", "stopImmediatePropagation()")}},
+either of which terminates propagation at once.
 
 As noted below, calling **`preventDefault()`** for a
 non-cancelable event, such as one dispatched via
 {{domxref("EventTarget.dispatchEvent()")}}, without specifying
 `cancelable: true` has no effect.
 
+If a passive listener calls `preventDefault()`, nothing will happen and a console warning may be generated.
+
+> [!NOTE]
+> Look for better alternatives than using `preventDefault()` to block default actions. For example, you can use the `disabled` or `readonly` attribute on a form control to prevent it from being interacted with, use [HTML constraint validation](/en-US/docs/Web/HTML/Guides/Constraint_validation) to reject invalid input, or use the {{cssxref("overflow")}} property to prevent scrolling.
+
 ## Syntax
 
-```js
-event.preventDefault();
+```js-nolint
+preventDefault()
 ```
+
+### Parameters
+
+None.
+
+### Return value
+
+None ({{jsxref("undefined")}}).
 
 ## Examples
 
@@ -42,10 +50,15 @@ demonstrates how to prevent that from happening:
 #### JavaScript
 
 ```js
-document.querySelector("#id-checkbox").addEventListener("click", function(event) {
-         document.getElementById("output-box").innerHTML += "Sorry! <code>preventDefault()</code> won't let you check this!<br>";
-         event.preventDefault();
-}, false);
+const checkbox = document.querySelector("#id-checkbox");
+
+checkbox.addEventListener("click", checkboxClick);
+
+function checkboxClick(event) {
+  const warn = "preventDefault() won't let you check this!\n";
+  document.getElementById("output-box").innerText += warn;
+  event.preventDefault();
+}
 ```
 
 #### HTML
@@ -55,7 +68,7 @@ document.querySelector("#id-checkbox").addEventListener("click", function(event)
 
 <form>
   <label for="id-checkbox">Checkbox:</label>
-  <input type="checkbox" id="id-checkbox"/>
+  <input type="checkbox" id="id-checkbox" />
 </form>
 
 <div id="output-box"></div>
@@ -64,99 +77,6 @@ document.querySelector("#id-checkbox").addEventListener("click", function(event)
 #### Result
 
 {{EmbedLiveSample("Blocking_default_click_handling")}}
-
-### Stopping keystrokes from reaching an edit field
-
-The following example demonstrates how invalid text input can be stopped from reaching
-the input field with `preventDefault()`. Nowadays, you should usually use [native HTML form validation](/en-US/docs/Learn/Forms/Form_validation)
-instead.
-
-#### HTML
-
-Here's the form:
-
-```html
-<div class="container">
-  <p>Please enter your name using lowercase letters only.</p>
-
-  <form>
-    <input type="text" id="my-textbox">
-  </form>
-</div>
-```
-
-#### CSS
-
-We use a little bit of CSS for the warning box we'll draw when the user presses an
-invalid key:
-
-```css
-.warning {
-  border: 2px solid #f39389;
-  border-radius: 2px;
-  padding: 10px;
-  position: absolute;
-  background-color: #fbd8d4;
-  color: #3b3c40;
-}
-```
-
-#### JavaScript
-
-And here's the JavaScript code that does the job. First, listen for
-{{domxref("Element/keypress_event", "keypress")}} events:
-
-```js
-var myTextbox = document.getElementById('my-textbox');
-myTextbox.addEventListener('keypress', checkName, false);
-```
-
-The `checkName()` function, which looks at the pressed key and decides
-whether to allow it:
-
-```js
-function checkName(evt) {
-  var charCode = evt.charCode;
-  if (charCode != 0) {
-    if (charCode < 97 || charCode > 122) {
-      evt.preventDefault();
-      displayWarning(
-        "Please use lowercase letters only."
-        + "\n" + "charCode: " + charCode + "\n"
-      );
-    }
-  }
-}
-```
-
-The `displayWarning()` function presents a notification of a problem. It's
-not an elegant function but does the job for the purposes of this example:
-
-```js
-var warningTimeout;
-var warningBox = document.createElement("div");
-warningBox.className = "warning";
-
-function displayWarning(msg) {
-  warningBox.innerHTML = msg;
-
-  if (document.body.contains(warningBox)) {
-    window.clearTimeout(warningTimeout);
-  } else {
-    // insert warningBox after myTextbox
-    myTextbox.parentNode.insertBefore(warningBox, myTextbox.nextSibling);
-  }
-
-  warningTimeout = window.setTimeout(function() {
-      warningBox.parentNode.removeChild(warningBox);
-      warningTimeout = -1;
-    }, 2000);
-}
-```
-
-#### Result
-
-{{ EmbedLiveSample('Stopping_keystrokes_from_reaching_an_edit_field', 600, 200) }}
 
 ## Notes
 

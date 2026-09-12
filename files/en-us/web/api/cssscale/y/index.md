@@ -1,32 +1,18 @@
 ---
-title: CSSScale.y
+title: "CSSScale: y property"
+short-title: y
 slug: Web/API/CSSScale/y
-tags:
-  - API
-  - CSS Typed Object Model API
-  - CSSScale
-  - CSSTransformComponent
-  - CSSTransformValue
-  - Experimental
-  - Houdini
-  - Property
+page-type: web-api-instance-property
 browser-compat: api.CSSScale.y
 ---
-{{APIRef("CSS Typed OM")}}{{SeeCompatTable}}{{draft}}
 
-The **`y`** property of the
-{{domxref("CSSScale")}} interface gets and sets the ordinate or y-axis of the
-translating vector.
+{{APIRef("CSS Typed Object Model API")}} {{AvailableInWorkers}}
 
-## Syntax
+The **`y`** property of the {{domxref("CSSScale")}} interface gets and sets the ordinate or y-axis of the translating vector.
 
-```js
-var scaleY = CSSScale.y;
-```
+## Value
 
-### Value
-
-A double integer or a {{domxref("CSSNumericValue")}}
+A {{domxref("CSSNumericValue")}}. Can be set to a number, which is wrapped in a {{domxref("CSSUnitValue")}} of `unit: "number"`.
 
 ## Examples
 

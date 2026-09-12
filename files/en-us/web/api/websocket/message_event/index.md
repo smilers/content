@@ -1,47 +1,40 @@
 ---
-title: 'WebSocket: message event'
+title: "WebSocket: message event"
+short-title: message
 slug: Web/API/WebSocket/message_event
-tags:
-  - Event
-  - Reference
-  - WebSocket
-  - message
+page-type: web-api-event
 browser-compat: api.WebSocket.message_event
 ---
-{{APIRef}}
+
+{{APIRef("WebSockets API")}}{{AvailableInWorkers}}
 
 The `message` event is fired when data is received through a `WebSocket`.
 
-<table class="properties">
-  <tbody>
-    <tr>
-      <th scope="row">Bubbles</th>
-      <td>No</td>
-    </tr>
-    <tr>
-      <th scope="row">Cancelable</th>
-      <td>No</td>
-    </tr>
-    <tr>
-      <th scope="row">Interface</th>
-      <td>{{domxref("MessageEvent")}}</td>
-    </tr>
-    <tr>
-      <th scope="row">Event handler property</th>
-      <td>{{ domxref("WebSocket.onmessage","onmessage")}}</td>
-    </tr>
-  </tbody>
-</table>
+## Syntax
+
+Use the event name in methods like {{domxref("EventTarget.addEventListener", "addEventListener()")}}, or set an event handler property.
+
+```js-nolint
+addEventListener("message", (event) => { })
+
+onmessage = (event) => { }
+```
+
+## Event type
+
+A {{domxref("MessageEvent")}}. Inherits from {{domxref("Event")}}.
+
+{{InheritanceDiagram("MessageEvent")}}
 
 ## Examples
 
 ```js
 // Create WebSocket connection.
-const socket = new WebSocket('ws://localhost:8080');
+const socket = new WebSocket("ws://localhost:8080");
 
 // Listen for messages
-socket.addEventListener('message', function (event) {
-    console.log('Message from server ', event.data);
+socket.addEventListener("message", (event) => {
+  console.log("Message from server ", event.data);
 });
 ```
 

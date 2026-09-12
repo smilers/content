@@ -1,38 +1,32 @@
 ---
-title: 'Worker: message event'
+title: "Worker: message event"
+short-title: message
 slug: Web/API/Worker/message_event
-tags:
-  - Event
+page-type: web-api-event
 browser-compat: api.Worker.message_event
 ---
-{{APIRef}}
 
-The `message` event is fired on a {{domxref('Worker')}} object when the worker's parent receives a message from its worker (i.e. when the worker sends a message using [`DedicatedWorkerGlobalScope.postMessage()`](/en-US/docs/Web/API/DedicatedWorkerGlobalScope/postMessage)).
+{{APIRef("Web Workers API")}}{{AvailableInWorkers("window_and_worker_except_service")}}
 
-<table class="properties">
-  <tbody>
-    <tr>
-      <th scope="row">Bubbles</th>
-      <td>No</td>
-    </tr>
-    <tr>
-      <th scope="row">Cancelable</th>
-      <td>No</td>
-    </tr>
-    <tr>
-      <th scope="row">Interface</th>
-      <td>{{domxref("MessageEvent")}}</td>
-    </tr>
-    <tr>
-      <th scope="row">Event handler property</th>
-      <td>
-        <code
-          ><a href="/en-US/docs/Web/API/Worker/onmessage">onmessage</a></code
-        >
-      </td>
-    </tr>
-  </tbody>
-</table>
+The `message` event is fired on a {{domxref('Worker')}} object when the worker's parent receives a message from its worker (i.e., when the worker sends a message using [`DedicatedWorkerGlobalScope.postMessage()`](/en-US/docs/Web/API/DedicatedWorkerGlobalScope/postMessage)).
+
+This event is not cancellable and does not bubble.
+
+## Syntax
+
+Use the event name in methods like {{domxref("EventTarget.addEventListener", "addEventListener()")}}, or set an event handler property.
+
+```js-nolint
+addEventListener("message", (event) => { })
+
+onmessage = (event) => { }
+```
+
+## Event type
+
+A {{domxref("MessageEvent")}}. Inherits from {{domxref("Event")}}.
+
+{{InheritanceDiagram("MessageEvent")}}
 
 ## Examples
 
@@ -41,18 +35,18 @@ This code creates a new worker and listens to messages from it using [`addEventL
 ```js
 const worker = new Worker("static/scripts/worker.js");
 
-worker.addEventListener('message', (event) => {
-    console.log(`Received message from worker: ${event.data}`)
+worker.addEventListener("message", (event) => {
+  console.log(`Received message from worker: ${event.data}`);
 });
 ```
 
-Alternatively, it could listen using the [`onmessage`](/en-US/docs/Web/API/Worker/onmessage) event handler property:
+Alternatively, it could listen using the `onmessage` event handler property:
 
 ```js
 const worker = new Worker("static/scripts/worker.js");
 
 worker.onmessage = (event) => {
-    console.log(`Received message from worker: ${event.data}`)
+  console.log(`Received message from worker: ${event.data}`);
 };
 ```
 
@@ -61,7 +55,7 @@ The worker posts messages using [`self.postMessage()`](/en-US/docs/Web/API/Dedic
 ```js
 // static/scripts/worker.js
 
-self.postMessage('I\'m alive!');
+self.postMessage("I'm alive!");
 ```
 
 ## Specifications
@@ -74,5 +68,5 @@ self.postMessage('I\'m alive!');
 
 ## See also
 
-- Related events: [`messageerror`](/docs/Web/API/Worker/messageerror_event).
+- Related events: [`messageerror`](/en-US/docs/Web/API/Worker/messageerror_event).
 - [`DedicatedWorkerGlobalScope.postMessage()`](/en-US/docs/Web/API/DedicatedWorkerGlobalScope/postMessage).

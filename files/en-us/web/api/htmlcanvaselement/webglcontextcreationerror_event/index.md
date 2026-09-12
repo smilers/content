@@ -1,47 +1,45 @@
 ---
-title: 'HTMLCanvasElement: webglcontextcreationerror event'
+title: "HTMLCanvasElement: webglcontextcreationerror event"
+short-title: webglcontextcreationerror
 slug: Web/API/HTMLCanvasElement/webglcontextcreationerror_event
-tags:
-  - WebGL
+page-type: web-api-event
 browser-compat: api.HTMLCanvasElement.webglcontextcreationerror_event
 ---
-{{APIRef}}
+
+{{APIRef("WebGL API")}}
 
 The **`webglcontextcreationerror`** event of the [WebGL API](/en-US/docs/Web/API/WebGL_API) is fired if the user agent is unable to create a {{domxref("WebGLRenderingContext")}} context.
 
 This event has a {{domxref("WebGLContextEvent.statusMessage")}} property, which can contain a platform dependent string with more information about the failure.
 
-<table class="properties">
-  <tbody>
-    <tr>
-      <th scope="row">Bubbles</th>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <th scope="row">Cancelable</th>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <th scope="row">Interface</th>
-      <td>{{domxref("WebGLContextEvent")}}</td>
-    </tr>
-    <tr>
-      <th scope="row">Event handler property</th>
-      <td>none</td>
-    </tr>
-  </tbody>
-</table>
+This event does not bubble.
+
+## Syntax
+
+Use the event name in methods like {{domxref("EventTarget.addEventListener", "addEventListener()")}}, or set an event handler property.
+
+```js-nolint
+addEventListener("webglcontextcreationerror", (event) => { })
+
+onwebglcontextcreationerror = (event) => { }
+```
+
+## Event type
+
+A {{domxref("WebGLContextEvent")}}. Inherits from {{domxref("Event")}}.
+
+{{InheritanceDiagram("WebGLContextEvent")}}
 
 ## Example
 
 ```js
-var canvas = document.getElementById('canvas');
+const canvas = document.getElementById("canvas");
 
-canvas.addEventListener('webglcontextcreationerror', function(e) {
-  console.log(e.statusMessage || 'Unknown error');
-}, false);
+canvas.addEventListener("webglcontextcreationerror", (e) => {
+  console.log(e.statusMessage || "Unknown error");
+});
 
-var gl = canvas.getContext('webgl');
+const gl = canvas.getContext("webgl");
 // logs statusMessage or "Unknown error" if unable to create WebGL context
 ```
 

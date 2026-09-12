@@ -1,45 +1,45 @@
 ---
 title: CSSStyleRule
 slug: Web/API/CSSStyleRule
-tags:
-  - API
-  - CSSOM
-  - CSSStyleRule
-  - Interface
-  - Reference
+page-type: web-api-interface
 browser-compat: api.CSSStyleRule
 ---
+
 {{ APIRef("CSSOM") }}
 
 The **`CSSStyleRule`** interface represents a single CSS style rule.
 
 {{InheritanceDiagram}}
 
-## Properties
+## Instance properties
 
-_Inherits properties from its ancestor {{domxref("CSSRule")}}._
+_Inherits properties from its ancestors {{domxref("CSSGroupingRule")}} and {{domxref("CSSRule")}}._
 
 - {{domxref("CSSStyleRule.selectorText")}}
-  - : Returns the textual representation of the selector for this rule, e.g. `"h1,h2"`.
-- {{domxref("CSSStyleRule.style")}} {{readonlyinline}}
-  - : Returns the {{domxref("CSSStyleDeclaration")}} object for the rule.
-- {{domxref("CSSStyleRule.styleMap")}} {{readonlyinline}}
+  - : Returns the textual representation of the selector for this rule, e.g., `"h1, h2"`.
+- {{domxref("CSSStyleRule.style")}} {{ReadOnlyInline}}
+  - : Returns the {{domxref("CSSStyleProperties")}} object for the rule, which represents its styles.
+- {{domxref("CSSStyleRule.styleMap")}} {{ReadOnlyInline}}
   - : Returns a {{domxref('StylePropertyMap')}} object which provides access to the rule's property-value pairs.
 
-## Methods
+## Instance methods
 
-_No specific methods; inherits methods from its ancestor {{domxref("CSSRule")}}._
+_Inherits methods from its ancestors {{domxref("CSSGroupingRule")}} and {{domxref("CSSRule")}}._
 
 ## Examples
 
-The CSS includes one style rule. This will be the first {{domxref("CSSRule")}} returned by `document.styleSheets[0].cssRules`.
-`myRules[0]` therefore returns a {{domxref("CSSStyleRule")}} object representing the rule defined for `h1`.
+### Getting a style rule
+
+The CSS below defines the style rule for the `h1` selector, which is represented in code by a `CSSStyleRule` instance.
 
 ```css
 h1 {
   color: pink;
 }
 ```
+
+Assuming the above style rule is the first rule in the document, it will be the first {{domxref("CSSRule")}} returned by `document.styleSheets[0].cssRules`.
+`myRules[0].style` returns a {{domxref("CSSStyleProperties")}} object representing the declarations defined for `h1`.
 
 ```js
 let myRules = document.styleSheets[0].cssRules;

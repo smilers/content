@@ -1,49 +1,36 @@
 ---
-title: 'Element: mousemove event'
+title: "Element: mousemove event"
+short-title: mousemove
 slug: Web/API/Element/mousemove_event
-tags:
-  - API
-  - DOM
-  - Event
-  - Interface
-  - MouseEvent
-  - Reference
-  - mouse
-  - mousemove
-  - move
-  - pointer
+page-type: web-api-event
 browser-compat: api.Element.mousemove_event
 ---
-{{APIRef}}
+
+{{APIRef("UI Events")}}
 
 The `mousemove` event is fired at an element when a pointing device (usually a mouse) is moved while the cursor's hotspot is inside it.
 
-<table class="properties">
-  <tbody>
-    <tr>
-      <th scope="row">Bubbles</th>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <th scope="row">Cancelable</th>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <th scope="row">Interface</th>
-      <td>{{domxref("MouseEvent")}}</td>
-    </tr>
-    <tr>
-      <th scope="row">Event handler property</th>
-      <td>
-        {{domxref("GlobalEventHandlers.onmousemove", "onmousemove")}}
-      </td>
-    </tr>
-  </tbody>
-</table>
+These events happen whether or not any mouse buttons are pressed. They can fire at a very high rate, depends on how fast the user moves the mouse, how fast the machine is, what other tasks and processes are happening, etc.
+
+## Syntax
+
+Use the event name in methods like {{domxref("EventTarget.addEventListener", "addEventListener()")}}, or set an event handler property.
+
+```js-nolint
+addEventListener("mousemove", (event) => { })
+
+onmousemove = (event) => { }
+```
+
+## Event type
+
+A {{domxref("MouseEvent")}}. Inherits from {{domxref("UIEvent")}} and {{domxref("Event")}}.
+
+{{InheritanceDiagram("MouseEvent")}}
 
 ## Examples
 
-The following example uses the {{domxref("Element/mousedown_event", "mousedown")}}, `mousemove`, and {{domxref("Element/mouseup_event", "mouseup")}} events to allow the user to draw on an HTML5 [canvas](/en-US/docs/Web/API/Canvas_API). Its functionality is simple: the thickness of the line is set to 1, and the color is always black.
+The following example uses the {{domxref("Element/mousedown_event", "mousedown")}}, `mousemove`, and {{domxref("Element/mouseup_event", "mouseup")}} events to allow the user to draw on an HTML [canvas](/en-US/docs/Web/API/Canvas_API). Its functionality is simple: the thickness of the line is set to 1, and the color is always black.
 
 When the page loads, constants `myPics` and `context` are created to store a reference to the canvas and the 2d context we will use to draw.
 
@@ -80,28 +67,28 @@ let isDrawing = false;
 let x = 0;
 let y = 0;
 
-const myPics = document.getElementById('myPics');
-const context = myPics.getContext('2d');
+const myPics = document.getElementById("myPics");
+const context = myPics.getContext("2d");
 
 // event.offsetX, event.offsetY gives the (x,y) offset from the edge of the canvas.
 
 // Add the event listeners for mousedown, mousemove, and mouseup
-myPics.addEventListener('mousedown', e => {
-  x = e.offsetX;
-  y = e.offsetY;
+myPics.addEventListener("mousedown", (e) => {
+  x = e.offsetX;
+  y = e.offsetY;
   isDrawing = true;
 });
 
-myPics.addEventListener('mousemove', e => {
-  if (isDrawing === true) {
+myPics.addEventListener("mousemove", (e) => {
+  if (isDrawing) {
     drawLine(context, x, y, e.offsetX, e.offsetY);
     x = e.offsetX;
     y = e.offsetY;
   }
 });
 
-window.addEventListener('mouseup', e => {
-  if (isDrawing === true) {
+window.addEventListener("mouseup", (e) => {
+  if (isDrawing) {
     drawLine(context, x, y, e.offsetX, e.offsetY);
     x = 0;
     y = 0;
@@ -111,7 +98,7 @@ window.addEventListener('mouseup', e => {
 
 function drawLine(context, x1, y1, x2, y2) {
   context.beginPath();
-  context.strokeStyle = 'black';
+  context.strokeStyle = "black";
   context.lineWidth = 1;
   context.moveTo(x1, y1);
   context.lineTo(x2, y2);
@@ -134,7 +121,7 @@ function drawLine(context, x1, y1, x2, y2) {
 
 ## See also
 
-- [Introduction to events](/en-US/docs/Learn/JavaScript/Building_blocks/Events)
+- [Learn: Introduction to events](/en-US/docs/Learn_web_development/Core/Scripting/Events)
 - {{domxref("Element/mousedown_event", "mousedown")}}
 - {{domxref("Element/mouseup_event", "mouseup")}}
 - {{domxref("Element/click_event", "click")}}
@@ -144,3 +131,4 @@ function drawLine(context, x1, y1, x2, y2) {
 - {{domxref("Element/mouseenter_event", "mouseenter")}}
 - {{domxref("Element/mouseleave_event", "mouseleave")}}
 - {{domxref("Element/contextmenu_event", "contextmenu")}}
+- {{domxref("Element/pointermove_event", "pointermove")}}

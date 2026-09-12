@@ -1,46 +1,33 @@
 ---
-title: CSSUnitValue.unit
+title: "CSSUnitValue: unit property"
+short-title: unit
 slug: Web/API/CSSUnitValue/unit
-tags:
-  - API
-  - CSS Typed Object Model API
-  - CSSUnitValue
-  - Experimental
-  - Houdini
-  - Property
-  - Reference
-  - unit
+page-type: web-api-instance-property
 browser-compat: api.CSSUnitValue.unit
 ---
-{{draft}}{{APIRef("CSS Typed Object Model API")}}{{SeeCompatTable}}
 
-The **`CSSUnitValue.unit`** read-only property
-of the {{domxref("CSSUnitValue")}} interface returns a {{jsxref('USVString')}}
-indicating the type of unit.
+{{APIRef("CSS Typed Object Model API")}} {{AvailableInWorkers}}
 
-## Syntax
+The **`unit`** read-only property of the {{domxref("CSSUnitValue")}} interface returns a string indicating the [unit type](/en-US/docs/Web/CSS/Guides/Values_and_units#units).
 
-```js
-var aString = CSSUnitValue.unit;
-```
+## Value
 
-### Value
-
-A {{jsxref('USVString')}}.
+A string indicating the unit type, such as `"em"`, `"px"`, `"%"`, etc.
 
 ## Examples
 
-The following creates a {{domxref('CSSPositionValue')}} from individual
-`CSSUnitValue` constructors, then queries the
-`CSSUnitValue.unit`.
+### Basic usage
+
+The following code creates a {{domxref('CSSPositionValue')}} from individual `CSSUnitValue` constructors, then queries the `CSSUnitValue.unit`.
 
 ```js
-let pos = new CSSPositionValue(
-    new CSSUnitValue( 5, "px" ),
-    new CSSUnitValue( 10, "em" ));
+const pos = new CSSPositionValue(
+  new CSSUnitValue(5, "px"),
+  new CSSUnitValue(10, "em"),
+);
 
-console.log( pos.x.unit ); // "px"
-console.log( pos.y.unit ); // "em"
+console.log(pos.x.unit); // "px"
+console.log(pos.y.unit); // "em"
 ```
 
 ## Specifications
@@ -54,5 +41,7 @@ console.log( pos.y.unit ); // "em"
 ## See also
 
 - {{domxref('CSSUnitValue.value')}}
+- [CSS numeric data types](/en-US/docs/Web/CSS/Guides/Values_and_units/Numeric_data_types)
+- [CSS values and units](/en-US/docs/Web/CSS/Guides/Values_and_units), a listing of all possible unit types
 - [Using the CSS Typed OM](/en-US/docs/Web/API/CSS_Typed_OM_API/Guide)
 - [CSS Typed Object Model API](/en-US/docs/Web/API/CSS_Typed_OM_API)

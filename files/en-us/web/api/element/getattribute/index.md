@@ -1,82 +1,56 @@
 ---
-title: Element.getAttribute()
+title: "Element: getAttribute() method"
+short-title: getAttribute()
 slug: Web/API/Element/getAttribute
-tags:
-  - API
-  - DOM
-  - Element
-  - Method
-  - Reference
+page-type: web-api-instance-method
 browser-compat: api.Element.getAttribute
 ---
+
 {{APIRef("DOM")}}
 
-The **`getAttribute()`** method of the
-{{domxref("Element")}} interface returns the value of a specified attribute on the
-element.
+The **`getAttribute()`** method of the {{domxref("Element")}} interface returns the string value of the specified attribute of the specified element. It returns `null` if the element doesn't have an attribute with the given name.
 
-If the given attribute does not exist, the value returned will
-either be `null` or `""` (the empty string); see [Non-existing attributes](#non-existing_attributes) for details.
+If you need to inspect the {{domxref("Attr")}} node's properties, you can use the {{domxref("Element.getAttributeNode()", "getAttributeNode()")}} method instead.
 
 ## Syntax
 
-```js
-let attribute = element.getAttribute(attributeName);
+```js-nolint
+getAttribute(attrName)
 ```
 
-where
+### Parameters
 
-- `attribute` is a string containing the value of
-  `attributeName`.
-- `attributeName` is the name of the attribute whose value you
-  want to get.
+- `attrName`
+  - : A string specifying the name of the attribute. When called on an HTML element in a DOM flagged as an HTML document, the name is normalized to lowercase.
 
-## Examples
+### Return value
 
-```js
-<!-- example div in an html DOC -->
-<div id="div1">Hi Champ!</div>
+A string containing the attribute's value, or `null` if the element doesn't have an attribute with the given name.
 
-// in a console
-const div1 = document.getElementById('div1');
-//=> <div id="div1">Hi Champ!</div>
+## Usage notes
 
-const exampleAttr= div1.getAttribute('id');
-//=> "div1"
+### Decoded character references in attribute values
 
-const align = div1.getAttribute('align')
-//=> null
+HTML [character references](/en-US/docs/Glossary/Character_reference) in an attribute's source markup (for example, `&lt;`, `&amp;`, or `&#x3C;`) are decoded by the HTML parser when the document is parsed, so `getAttribute()` returns the decoded value, not the original source.
+
+Given:
+
+```html
+<div id="example" data-payload="&lt;b&gt;hi&lt;/b&gt;"></div>
 ```
 
-## Description
+calling `document.getElementById("example").getAttribute("data-payload")` returns the string `"<b>hi</b>"`.
 
-### Lower casing
+Treating the return value from `getAttribute()` as already-escaped HTML is unsafe. If you read an attribute that holds untrusted data and then assign it to {{domxref("Element.innerHTML", "innerHTML")}} or insert it into the document as markup, any HTML references used to escape special characters will already be decoded, and the result can be exploited for [cross-site scripting (XSS)](/en-US/docs/Web/Security/Attacks/XSS).
 
-When called on an HTML element in a DOM flagged as an HTML document,
-`getAttribute()` lower-cases its argument before proceeding.
-
-### Non-existing attributes
-
-Essentially all web browsers (Firefox, Internet Explorer, recent versions of Opera,
-Safari, Konqueror, and iCab, as a non-exhaustive list) return `null` when
-the specified attribute does not exist on the specified element; this is what [the current DOM
-specification draft](https://dom.spec.whatwg.org/#dom-element-getattribute) specifies. The old DOM 3 Core specification, on the other
-hand, says that the correct return value in this case is actually the _empty
-string_, and some DOM implementations implement this behavior. The
-implementation of `getAttribute()` in XUL (Gecko) actually follows the DOM
-3 Core specification and returns an empty string. Consequently, you should use
-{{domxref("element.hasAttribute()")}} to check for an attribute's existence prior to
-calling `getAttribute()` if it is possible that the requested attribute
-does not exist on the specified element.
+Use {{domxref("Node.textContent", "textContent")}} (or another text-safe API) for untrusted data instead of `innerHTML`.
 
 ### Retrieving nonce values
 
-For security reasons, [CSP](/en-US/docs/Web/HTTP/CSP) nonces from non-script
-sources, such as CSS selectors, and  `.getAttribute("nonce")` calls are
-hidden.
+For security reasons, [CSP](/en-US/docs/Web/HTTP/Guides/CSP) nonces from non-script sources, such as CSS selectors and `.getAttribute("nonce")` calls, are hidden.
 
 ```js example-bad
-let nonce =  script.getAttribute('nonce');
+const nonce = script.getAttribute("nonce");
 // returns empty string
 ```
 
@@ -84,7 +58,25 @@ Instead of retrieving the nonce from the content attribute, use the
 {{domxref("HTMLElement/nonce", "nonce")}} property:
 
 ```js
-let nonce =  script.nonce;
+const nonce = script.nonce;
+```
+
+## Examples
+
+```html
+<!-- example div in an HTML DOC -->
+<div id="div1">Hi Champ!</div>
+```
+
+```js
+const div1 = document.getElementById("div1");
+// <div id="div1">Hi Champ!</div>
+
+const exampleAttr = div1.getAttribute("id");
+// "div1"
+
+const lang = div1.getAttribute("lang");
+// null
 ```
 
 ## Specifications
@@ -94,3 +86,10 @@ let nonce =  script.nonce;
 ## Browser compatibility
 
 {{Compat}}
+
+## See also
+
+- {{domxref("Element.hasAttribute()")}}
+- {{domxref("Element.setAttribute()")}}
+- {{domxref("Element.removeAttribute()")}}
+- {{domxref("Element.toggleAttribute()")}}

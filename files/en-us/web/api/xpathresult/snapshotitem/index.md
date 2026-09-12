@@ -1,16 +1,12 @@
 ---
-title: XPathResult.snapshotItem()
+title: "XPathResult: snapshotItem() method"
+short-title: snapshotItem()
 slug: Web/API/XPathResult/snapshotItem
-tags:
-  - API
-  - DOM XPath API
-  - Method
-  - Reference
-  - XPath
-  - XPathResult
+page-type: web-api-instance-method
 browser-compat: api.XPathResult.snapshotItem
 ---
-{{APIRef("DOM XPath")}}
+
+{{APIRef("DOM")}}
 
 The **`snapshotItem()`** method of the
 {{domxref("XPathResult")}} interface returns an item of the snapshot collection or
@@ -20,9 +16,14 @@ current document if it is mutated.
 
 ## Syntax
 
-```js
-var node = result.snapshotItem(i);
+```js-nolint
+snapshotItem(i)
 ```
+
+### Parameters
+
+- `i`
+  - : A number, the index of the item.
 
 ### Return value
 
@@ -34,10 +35,10 @@ The {{domxref("Node")}} at the given index within the node set of the
 #### TYPE_ERR
 
 In case {{domxref("XPathResult.resultType")}} is not
-`UNORDERED_NODE_SNAPSHOT_TYPE` or `ORDERED_NODE_SNAPSHOT_TYPE`, an
-{{domxref("XPathException")}} of type `TYPE_ERR` is thrown.
+`UNORDERED_NODE_SNAPSHOT_TYPE` or `ORDERED_NODE_SNAPSHOT_TYPE`, a
+{{domxref("DOMException")}} of type `TYPE_ERR` is thrown.
 
-## Example
+## Examples
 
 The following example shows the use of the `snapshotItem()` method.
 
@@ -51,20 +52,26 @@ The following example shows the use of the `snapshotItem()` method.
 ### JavaScript
 
 ```js
-var xpath = "//div";
-var result = document.evaluate(xpath, document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
-var node = null;
-var tagNames = [];
-for(var i = 0; i < result.snapshotLength; i++) {
-  var node = result.snapshotItem(i);
-  tagNames.push(node.localName);
+const xpath = "//div";
+const result = document.evaluate(
+  xpath,
+  document,
+  null,
+  XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
+  null,
+);
+let node = null;
+const tagNames = [];
+for (let i = 0; i < result.snapshotLength; i++) {
+  node = result.snapshotItem(i);
+  tagNames.push(node.localName);
 }
 document.querySelector("output").textContent = tagNames.join(", ");
 ```
 
 ### Result
 
-{{EmbedLiveSample('Example', 400, 70)}}
+{{EmbedLiveSample('Examples')}}
 
 ## Specifications
 

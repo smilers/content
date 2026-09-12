@@ -1,18 +1,11 @@
 ---
-title: AudioBufferSourceNode.start()
+title: "AudioBufferSourceNode: start() method"
+short-title: start()
 slug: Web/API/AudioBufferSourceNode/start
-tags:
-  - API
-  - Audio
-  - AudioBufferSourceNode
-  - Media
-  - Method
-  - Reference
-  - Web Audio API
-  - sound
-  - start
+page-type: web-api-instance-method
 browser-compat: api.AudioBufferSourceNode.start
 ---
+
 {{ APIRef("Web Audio API") }}
 
 The `start()` method of the {{ domxref("AudioBufferSourceNode") }}
@@ -21,8 +14,10 @@ to begin playback immediately.
 
 ## Syntax
 
-```js
-AudioBufferSourceNode.start([when][, offset][, duration]);
+```js-nolint
+start(when)
+start(when, offset)
+start(when, offset, duration)
 ```
 
 ### Parameters
@@ -31,7 +26,7 @@ AudioBufferSourceNode.start([when][, offset][, duration]);
   - : The time, in seconds, at which the sound should begin to play, in the same time
     coordinate system used by the {{domxref("AudioContext")}}. If `when` is
     less than ({{domxref("BaseAudioContext/currentTime", "AudioContext.currentTime")}}, or if it's 0, the sound begins to
-    play at once. **The default value is 0.**
+    play at once. **The default value is 0.**
 - `offset` {{optional_inline}}
   - : An offset, specified as the number of seconds in the same time coordinate system as
     the `AudioContext`, to the time within the audio buffer that playback
@@ -45,23 +40,24 @@ AudioBufferSourceNode.start([when][, offset][, duration]);
     current playback rate, so even if the sound is playing at twice its normal speed, the
     midway point through a 10-second audio buffer is still 5.
 - `duration` {{optional_inline}}
-  - : The duration of the sound to be played, specified in seconds. If this parameter
-    isn't specified, the sound plays until it reaches its natural conclusion or is stopped
-    using the {{domxref("AudioScheduledSourceNode.stop", "stop()")}} method. Using this
-    parameter is functionally identical to calling `start(when, offset)` and
-    then calling `stop(when+duration)`.
+  - : The duration of the audio data to be played, specified as seconds of total buffer content.
+    If this parameter isn't specified, the sound plays until it reaches its natural conclusion or
+    is stopped using the {{domxref("AudioScheduledSourceNode.stop", "stop()")}} method. The
+    value is independent of the {{domxref("AudioBufferSourceNode.playbackRate")}}, so e.g., a
+    `duration` of 2 seconds with a `playbackRate` of `2` will play 2 seconds of the source,
+    producing a 1 second audio output.
 
 ### Return value
 
-{{jsxref("undefined")}}.
+None ({{jsxref("undefined")}}).
 
 ### Exceptions
 
-- `TypeError`
-  - : A negative value was specified for one or more of the three time parameters. Please
+- {{jsxref("TypeError")}}
+  - : Thrown if a negative value was specified for one or more of the three time parameters. Please
     don't attempt to tamper with the laws of temporal physics.
-- `InvalidStateError`
-  - : `start()` has already been called. You can only call this function once
+- `InvalidStateError` {{domxref("DOMException")}}
+  - : Thrown if `start()` has already been called. You can only call this function once
     during the lifetime of an `AudioBufferSourceNode`.
 
 ## Examples
@@ -77,10 +73,11 @@ The following more complex example will, 1 second from now, start playing 10 sec
 worth of sound starting 3 seconds into the audio buffer.
 
 ```js
-source.start(audioCtx.currentTime + 1,3,10);
+source.start(audioCtx.currentTime + 1, 3, 10);
 ```
 
-> **Note:** For a more complete example showing `start()` in use, check out our {{domxref("BaseAudioContext/decodeAudioData", "AudioContext.decodeAudioData()")}} example. You can also [run the code example live](https://mdn.github.io/webaudio-examples/decode-audio-data/), or [view the source](https://github.com/mdn/webaudio-examples/tree/master/decode-audio-data).
+> [!NOTE]
+> For a more complete example showing `start()` in use, check out our {{domxref("BaseAudioContext/decodeAudioData", "AudioContext.decodeAudioData()")}} example. You can also [try the example live](https://mdn.github.io/webaudio-examples/decode-audio-data/promise/), and have a look at [the example source](https://github.com/mdn/webaudio-examples/tree/main/decode-audio-data).
 
 ## Specifications
 
@@ -92,5 +89,4 @@ source.start(audioCtx.currentTime + 1,3,10);
 
 ## See also
 
-- [Using the Web Audio
-  API](/en-US/docs/Web/API/Web_Audio_API/Using_Web_Audio_API)
+- [Using the Web Audio API](/en-US/docs/Web/API/Web_Audio_API/Using_Web_Audio_API)

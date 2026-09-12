@@ -1,27 +1,22 @@
 ---
-title: HTMLAnchorElement.protocol
+title: "HTMLAnchorElement: protocol property"
+short-title: protocol
 slug: Web/API/HTMLAnchorElement/protocol
-tags:
-  - API
-  - HTMLAnchorElement
-  - Property
+page-type: web-api-instance-property
 browser-compat: api.HTMLAnchorElement.protocol
 ---
+
 {{ApiRef("HTML DOM")}}
 
-The
-**`HTMLAnchorElement.protocol`**
-property is a {{domxref("USVString")}} representing the protocol scheme of the URL,
-including the final `':'`.
+The **`protocol`** property of the {{domxref("HTMLAnchorElement")}} interface is a string containing the protocol or scheme of the `<a>` element's `href`, including the final `":"`.
 
-## Syntax
+This property can be set to change the protocol of the URL. A `":"` is appended to the provided string if not provided. The provided scheme has to be compatible with the rest of the URL to be considered valid.
 
-```js
-// Getter
-string = anchor.protocol;
-// Setter
-anchor.protocol = string;
-```
+See {{domxref("URL.protocol")}} for more information.
+
+## Value
+
+A string.
 
 ## Examples
 

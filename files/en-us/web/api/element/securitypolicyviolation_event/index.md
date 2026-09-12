@@ -1,56 +1,49 @@
 ---
-title: 'Element: securitypolicyviolation event'
+title: "Element: securitypolicyviolation event"
+short-title: securitypolicyviolation
 slug: Web/API/Element/securitypolicyviolation_event
-tags:
-  - CSP
-  - API
-  - Event
-  - Reference
+page-type: web-api-event
 browser-compat: api.Element.securitypolicyviolation_event
 ---
-{{APIRef}}
 
-The **`securitypolicyviolation`** event is fired when a [Content Security Policy](/en-US/docs/Web/HTTP/CSP) is violated.
+{{APIRef("Reporting API")}}
 
-<table class="properties">
-  <tbody>
-    <tr>
-      <th scope="row">Bubbles</th>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <th scope="row">Cancelable</th>
-      <td>No</td>
-    </tr>
-    <tr>
-      <th scope="row">Interface</th>
-      <td>{{domxref("SecurityPolicyViolationEvent")}}</td>
-    </tr>
-    <tr>
-      <th scope="row">Event handler property</th>
-      <td>
-        {{domxref("GlobalEventHandlers/onsecuritypolicyviolation", "onsecuritypolicyviolation")}}
-      </td>
-    </tr>
-  </tbody>
-</table>
+The **`securitypolicyviolation`** event is fired when a [Content Security Policy](/en-US/docs/Web/HTTP/Guides/CSP) is violated.
 
-The event is fired on the element that violates the policy and bubbles.
-It is normally handled by an event handler on the {{domxref("Window")}} or {{domxref("Document")}} object.
+The event is fired on the element when there is a violation of the CSP policy.
 
-The handler can be assigned using the {{domxref("GlobalEventHandlers.onsecuritypolicyviolation")}} property or using {{domxref("EventTarget.addEventListener()")}}.
+This event [bubbles](/en-US/docs/Learn_web_development/Core/Scripting/Event_bubbling) to the {{domxref("Window")}} object, and is [composed](/en-US/docs/Web/API/Event/composed).
 
-> **Note:** You must add the handler for this event to a top level object (i.e. {{domxref("Window")}} or {{domxref("Document")}}).
-> While the property exists in HTML elements, you can't assign a handler to the property until the elements have been loaded, by which time this event will already have fired.
+> [!NOTE]
+> You should generally add the handler for this event to a top-level object (i.e., {{domxref("Window")}} or {{domxref("Document")}}).
+> While HTML elements can technically be the target of the `securitypolicyviolation` event, in reality this event does not fire on them—for example, a blocked `<img>` source directly triggers this event on `document` as the target, instead of bubbling from the `<img>` element.
+
+## Syntax
+
+Use the event name in methods like {{domxref("EventTarget.addEventListener", "addEventListener()")}}, or set an event handler property.
+
+```js-nolint
+addEventListener("securitypolicyviolation", (event) => { })
+
+onsecuritypolicyviolation = (event) => { }
+```
+
+## Event type
+
+A {{domxref("SecurityPolicyViolationEvent")}}. Inherits from {{domxref("Event")}}.
+
+{{InheritanceDiagram("SecurityPolicyViolationEvent")}}
 
 ## Examples
+
+### Listening for securitypolicyviolation on Window
 
 The code below shows how you might add an event handler function using the `onsecuritypolicyviolation` global event handler property or `addEventListener()` on the top level `Window` (you could use exactly the same approach on `Document`).
 
 ```js
-window.onsecuritypolicyviolation = function(e) {
-   // Handle SecurityPolicyViolationEvent e here
- };
+window.onsecuritypolicyviolation = (e) => {
+  // Handle SecurityPolicyViolationEvent e here
+};
 
 window.addEventListener("securitypolicyviolation", (e) => {
   // Handle SecurityPolicyViolationEvent e here
@@ -67,5 +60,6 @@ window.addEventListener("securitypolicyviolation", (e) => {
 
 ## See also
 
-- {{domxref("GlobalEventHandlers.onsecuritypolicyviolation")}}
-- [HTTP > Content Security Policy](/en-US/docs/Web/HTTP/CSP)
+- The {{domxref("Document/securitypolicyviolation_event", "securitypolicyviolation")}} event of the {{domxref("Document")}} interface
+- The {{domxref("WorkerGlobalScope/securitypolicyviolation_event", "securitypolicyviolation")}} event of the {{domxref("WorkerGlobalScope")}} interface
+- [HTTP > Content Security Policy](/en-US/docs/Web/HTTP/Guides/CSP)

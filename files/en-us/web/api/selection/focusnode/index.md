@@ -1,32 +1,20 @@
 ---
-title: Selection.focusNode
+title: "Selection: focusNode property"
+short-title: focusNode
 slug: Web/API/Selection/focusNode
-tags:
-  - API
-  - Experimental
-  - HTML Editing
-  - Property
-  - Read-only
-  - Reference
-  - Selection
+page-type: web-api-instance-property
 browser-compat: api.Selection.focusNode
 ---
-{{ ApiRef("DOM") }}{{SeeCompatTable}}
 
-The **`Selection.focusNode`** read-only property returns the
-{{domxref("Node")}} in which the selection ends.
+{{ ApiRef("DOM") }}
 
-A user may make a selection from left to right (in document order) or right to left
-(reverse of document order). The focus is where the user ended the selection. This can
-be visualized by holding the <kbd>Shift</kbd> key and pressing the arrow keys on your
-keyboard to modify the current selection. The selection's focus moves, but the
-selection's anchor, the other end of the selection, does not move.
+The **`Selection.focusNode`** read-only property returns the {{domxref("Node")}} in which the selection ends. It can return `null` if selection never existed in the document (e.g., an iframe that was never clicked on, or the node belongs to another document tree).
 
-## Syntax
+A user may make a selection from left to right (in document order) or right to left (reverse of document order). The focus is where the user ended the selection. This can be visualized by holding the <kbd>Shift</kbd> key and pressing the arrow keys on your keyboard. The selection's focus moves, but the selection's anchor, the other end of the selection, does not move.
 
-```js
-node = sel.focusNode
-```
+## Value
+
+A {{domxref("Node")}} object or `null`.
 
 ## Specifications
 
@@ -38,4 +26,5 @@ node = sel.focusNode
 
 ## See also
 
-- {{domxref("Selection")}}, the interface it belongs to.
+- {{domxref("Selection")}}
+- {{domxref("Selection.anchorNode")}}

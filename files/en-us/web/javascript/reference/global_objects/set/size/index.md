@@ -1,19 +1,28 @@
 ---
 title: Set.prototype.size
+short-title: size
 slug: Web/JavaScript/Reference/Global_Objects/Set/size
-tags:
-  - ECMAScript 2015
-  - JavaScript
-  - Property
-  - Prototype
-  - set
+page-type: javascript-instance-accessor-property
 browser-compat: javascript.builtins.Set.size
+sidebar: jsref
 ---
-{{JSRef}}
 
-The **`size`** accessor property returns the number of (unique) elements in a {{jsxref("Set")}} object.
+The **`size`** accessor property of {{jsxref("Set")}} instances returns the number of (unique) elements in this set.
 
-{{EmbedInteractiveExample("pages/js/set-prototype-size.html")}}
+{{InteractiveExample("JavaScript Demo: Set.prototype.size")}}
+
+```js interactive-example
+const set = new Set();
+const object = {};
+
+set.add(42);
+set.add("forty two");
+set.add("forty two");
+set.add(object);
+
+console.log(set.size);
+// Expected output: 3
+```
 
 ## Description
 
@@ -24,12 +33,12 @@ The value of `size` is an integer representing how many entries the `Set` object
 ### Using size
 
 ```js
-var mySet = new Set();
+const mySet = new Set();
 mySet.add(1);
 mySet.add(5);
-mySet.add('some text')
+mySet.add("some text");
 
-mySet.size; // 3
+console.log(mySet.size); // 3
 ```
 
 ## Specifications

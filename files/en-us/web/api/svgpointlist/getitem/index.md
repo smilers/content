@@ -1,22 +1,19 @@
 ---
-title: SVGPointList.getItem()
+title: "SVGPointList: getItem() method"
+short-title: getItem()
 slug: Web/API/SVGPointList/getItem
-tags:
-  - API
-  - Method
-  - Reference
-  - getItem
-  - SVGPointList
+page-type: web-api-instance-method
 browser-compat: api.SVGPointList.getItem
 ---
+
 {{APIRef("SVG")}}
 
 The **`getItem()`** method of the {{domxref("SVGPointList")}} interface gets one item from the list at the specified index.
 
 ## Syntax
 
-```js
-SVGPointList.getItem(index);
+```js-nolint
+getItem(index)
 ```
 
 ### Parameters
@@ -26,7 +23,7 @@ SVGPointList.getItem(index);
 
 ### Return value
 
-An {{domxref("SVGPoint")}} object.
+A {{domxref("DOMPoint")}} object.
 
 ### Exceptions
 
@@ -35,16 +32,20 @@ An {{domxref("SVGPoint")}} object.
 
 ## Examples
 
-The following example shows an SVG which contains a {{SVGElement("polyline")}} with five coordinate pairs. The {{domxref("SVGPoint")}} at index `0`.
+The following example shows an SVG which contains a {{SVGElement("polyline")}} with five coordinate pairs. The {{domxref("DOMPoint")}} at index `0`.
 
 ```html
 <svg id="svg" viewBox="-10 -10 120 120" xmlns="http://www.w3.org/2000/svg">
-  <polyline id="example" stroke="black" fill="none"
-   points="50,0 21,90 98,35 2,35 79,90"/>
+  <polyline
+    id="example"
+    stroke="black"
+    fill="none"
+    points="50,0 21,90 98,35 2,35 79,90" />
+</svg>
 ```
 
 ```js
-let example = document.getElementById("example");
+const example = document.getElementById("example");
 console.log(example.points.getItem(0));
 ```
 

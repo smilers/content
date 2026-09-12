@@ -1,29 +1,30 @@
 ---
-title: HTMLTableElement.deleteCaption()
+title: "HTMLTableElement: deleteCaption() method"
+short-title: deleteCaption()
 slug: Web/API/HTMLTableElement/deleteCaption
-tags:
-  - API
-  - HTML DOM
-  - HTMLTableElement
-  - Method
-  - NeedsSpecTable
-  - Reference
+page-type: web-api-instance-method
 browser-compat: api.HTMLTableElement.deleteCaption
 ---
+
 {{APIRef("HTML DOM")}}
 
-The **`HTMLTableElement.deleteCaption()`** method removes the
-{{HtmlElement("caption")}} element from a given {{HtmlElement("table")}}. If there is no
-`<caption>` element associated with the table, this method does
-nothing.
+The **`deleteCaption()`** method of the {{domxref("HTMLTableElement")}} interface removes the first {{HTMLElement("caption")}} element child from a given {{HTMLElement("table")}}, if any.
 
 ## Syntax
 
-```js
-HTMLTableElement.deleteCaption()
+```js-nolint
+deleteCaption()
 ```
 
-## Example
+### Parameters
+
+None.
+
+### Return value
+
+None ({{jsxref("undefined")}}).
+
+## Examples
 
 This example uses JavaScript to delete a table's caption.
 
@@ -31,22 +32,32 @@ This example uses JavaScript to delete a table's caption.
 
 ```html
 <table>
-  <caption>This caption will be deleted!</caption>
-  <tr><td>Cell 1.1</td><td>Cell 1.2</td></tr>
-  <tr><td>Cell 2.1</td><td>Cell 2.2</td></tr>
+  <caption>
+    This caption will be deleted!
+  </caption>
+  <tbody>
+    <tr>
+      <td>Cell 1.1</td>
+      <td>Cell 1.2</td>
+    </tr>
+    <tr>
+      <td>Cell 2.1</td>
+      <td>Cell 2.2</td>
+    </tr>
+  </tbody>
 </table>
 ```
 
 ### JavaScript
 
 ```js
-let table = document.querySelector('table');
+const table = document.querySelector("table");
 table.deleteCaption();
 ```
 
 ### Result
 
-{{EmbedLiveSample("Example")}}
+{{EmbedLiveSample("Examples")}}
 
 ## Specifications
 
@@ -55,3 +66,9 @@ table.deleteCaption();
 ## Browser compatibility
 
 {{Compat}}
+
+## See also
+
+- {{domxref("HTMLTableElement.createCaption()")}}
+- {{domxref("HTMLTableElement.deleteTFoot()")}}
+- {{domxref("HTMLTableElement.deleteTHead()")}}

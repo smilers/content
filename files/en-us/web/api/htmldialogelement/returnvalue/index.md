@@ -1,100 +1,102 @@
 ---
-title: HTMLDialogElement.returnValue
+title: "HTMLDialogElement: returnValue property"
+short-title: returnValue
 slug: Web/API/HTMLDialogElement/returnValue
-tags:
-  - API
-  - Experimental
-  - HTML DOM
-  - HTMLDialogElement
-  - Property
-  - Reference
-  - returnValue
+page-type: web-api-instance-property
 browser-compat: api.HTMLDialogElement.returnValue
 ---
+
 {{ APIRef("HTML DOM") }}
 
-{{ SeeCompatTable() }}
+The **`returnValue`** property of the {{domxref("HTMLDialogElement")}} interface is a string representing the return value for a {{htmlelement("dialog")}} element when it's closed.
+You can set the value directly (`dialog.returnValue = "result"`) or by providing the value as a string argument to {{domxref("HTMLDialogElement.close()", "close()")}} or {{domxref("HTMLDialogElement.requestClose()", "requestClose()")}}.
 
-The **`returnValue`** property of the
-{{domxref("HTMLDialogElement")}} interface gets or sets the return value for the
-`<dialog>`, usually to indicate which button the user pressed to
-close it.
+## Value
 
-## Syntax
-
-```js
-dialogInstance.returnValue = 'myReturnValue';
-var myReturnValue = dialogInstance.returnValue;
-```
-
-### Value
-
-A {{domxref("DOMString")}} representing the `returnValue` of the dialog.
+A string representing the `returnValue` of the dialog.
+Defaults to an empty string (`""`).
 
 ## Examples
 
-The following example displays a button to open a {{htmlelement("dialog")}} containing
-a form via the `showModal()` method. From there, either button will close the
-dialog.
+### Checking the return value
+
+The following example displays a button to open a dialog. The dialog asks the user if they want to accept a Terms of Service prompt.
+
+The dialog contains "Accept" or "Decline" buttons: when the user clicks one of the buttons, the button's click handler closes the dialog, passing their choice into the {{domxref("HTMLDialogElement.close()", "close()")}} function. This assigns the choice to the dialog's `returnValue` property.
+
+In the dialog's {{domxref("HTMLDialogElement.close_event", "close")}} event handler, the example updates the main page's status text to record the `returnValue`.
+
+If the user dismisses the dialog without clicking a button (for example, by pressing the <kbd>Esc</kbd> key), then the return value is not set.
+
+#### HTML
 
 ```html
-  <!-- Simple pop-up dialog box containing a form -->
-  <dialog id="favDialog">
-    <form method="dialog">
-      <p><label>Favorite animal:
-        <select name="favAnimal" required>
-          <option></option>
-          <option>Brine shrimp</option>
-          <option>Red panda</option>
-          <option>Spider monkey</option>
-        </select>
-      </label></p>
-      <menu>
-        <button>Cancel</button>
-        <button>Confirm</button>
-      </menu>
-    </form>
-  </dialog>
-
-  <menu>
-    <button id="updateDetails">Update details</button>
-  </menu>
-
-  <script>
-    (function() {
-      var updateButton = document.getElementById('updateDetails');
-      var dialog = document.getElementById('favDialog');
-      dialog.returnValue = 'favAnimal';
-
-      function openCheck(dialog) {
-        if (dialog.open) {
-          console.log('Dialog open');
-        } else {
-          console.log('Dialog closed');
-        }
-      }
-
-      function handleUserInput(returnValue) {
-        if (returnValue === 'Cancel' || returnValue == null) {
-          // User canceled the dialog, do nothing
-        } else if (returnValue === 'Confirm') {
-          // User chose a favorite animal, do something with it
-        }
-      }
-
-      // “Update details” button opens the <dialog> modally
-      updateButton.addEventListener('click', function() {
-        dialog.showModal();
-        openCheck(dialog);
-        handleUserInput(dialog.returnValue);
-      });
-    })();
-  </script>
+<dialog id="dialog">
+  <p>Do you agree to the Terms of Service (link)?</p>
+  <button id="decline" value="declined">Decline</button>
+  <button id="accept" value="accepted">Accept</button>
+</dialog>
+<button id="open">Open dialog</button>
 ```
 
-> **Note:** You can find this example on GitHub as [htmldialogelement-basic](https://github.com/mdn/dom-examples/blob/master/htmldialogelement-basic/index.html)
-> ([see it live
-> also](https://mdn.github.io/dom-examples/htmldialogelement-basic/)).
+```html hidden
+<pre id="log"></pre>
+```
+
+```css hidden
+#log {
+  height: 170px;
+  overflow: scroll;
+  padding: 0.5rem;
+  border: 1px solid black;
+}
+```
+
+```js hidden
+const logElement = document.getElementById("log");
+function log(text) {
+  logElement.innerText = `${logElement.innerText}${text}\n`;
+  logElement.scrollTop = logElement.scrollHeight;
+}
+```
+
+#### JavaScript
+
+```js
+const dialog = document.getElementById("dialog");
+const openButton = document.getElementById("open");
+const declineButton = document.getElementById("decline");
+const acceptButton = document.getElementById("accept");
+
+openButton.addEventListener("click", () => {
+  // Reset the return value on each open
+  dialog.returnValue = "";
+  updateReturnValue();
+  // Show the dialog
+  dialog.showModal();
+});
+
+function closeDialog(event) {
+  const button = event.target;
+  dialog.close(button.value);
+}
+
+function updateReturnValue() {
+  log(`Return value: "${dialog.returnValue}"`);
+}
+
+declineButton.addEventListener("click", closeDialog);
+acceptButton.addEventListener("click", closeDialog);
+
+dialog.addEventListener("close", updateReturnValue);
+```
+
+#### Result
+
+Click "Open Dialog", then choose the "Accept" or "Decline" buttons in the dialog, or dismiss the dialog by pressing the <kbd>Esc</kbd> key.
+Observe the different status updates.
+
+{{ EmbedLiveSample('Checking the return value', '100%', "250px")}}
 
 ## Specifications
 
@@ -106,4 +108,4 @@ dialog.
 
 ## See also
 
-- The HTML element implementing this interface: {{ HTMLElement("dialog") }}.
+- HTML {{htmlelement("dialog")}} element

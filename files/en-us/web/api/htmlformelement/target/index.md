@@ -1,32 +1,25 @@
 ---
-title: HTMLFormElement.target
+title: "HTMLFormElement: target property"
+short-title: target
 slug: Web/API/HTMLFormElement/target
-tags:
-  - API
-  - HTML DOM
-  - HTMLFormElement
-  - NeedsSpecTable
-  - Property
-  - Reference
+page-type: web-api-instance-property
 browser-compat: api.HTMLFormElement.target
 ---
+
 {{APIRef("HTML DOM")}}
 
 The **`target`** property of the {{domxref("HTMLFormElement")}}
 interface represents the target of the form's action (i.e., the frame in which to render
 its output).
 
-## Syntax
+## Value
+
+A string.
+
+## Examples
 
 ```js
-string = HTMLFormElement.target
-HTMLFormElement.target = string
-```
-
-## Example
-
-```js
-myForm.target = document.frames[1].name;
+myForm.target = frames[1].name;
 ```
 
 ## Specifications

@@ -1,53 +1,38 @@
 ---
-title: HTMLStyleElement.media
+title: "HTMLStyleElement: media property"
+short-title: media
 slug: Web/API/HTMLStyleElement/media
-tags:
-  - API
-  - HTML DOM
-  - HTMLStyleElement
-  - NeedsMarkupWork
-  - Property
-  - Reference
+page-type: web-api-instance-property
 browser-compat: api.HTMLStyleElement.media
 ---
+
 {{APIRef("HTML DOM")}}
 
 The **`HTMLStyleElement.media`** property specifies the
 intended destination medium for style information.
 
-## Syntax
+## Value
 
-```js
-medium = style.media
-style.media = medium
-```
+A string describing a single medium or a comma-separated list.
 
-### Parameters
+## Examples
 
-- `medium` is a string describing a single medium or a comma-separated
-  list.
-
-## Example
+Suppose the `<head>` contains the following:
 
 ```html
-<!doctype html>
-<html>
-<head>
-
-<link id="LinkedStyle" rel="stylesheet" href="document.css" type="text/css" media="screen" />
-<style id="InlineStyle" rel="stylesheet" type="text/css" media="screen, print">
-p { color: blue; }
+<style id="inline-style" media="screen, print">
+  p {
+    color: blue;
+  }
 </style>
-</head>
-<body>
+```
 
-<script>
-alert('LinkedStyle: ' + document.getElementById('LinkedStyle').media); // 'screen'
-alert('InlineStyle: ' + document.getElementById('InlineStyle').media); // 'screen, print'
-</script>
+Then:
 
-</body>
-</html>
+```js
+const style = document.getElementById("inline-style");
+
+console.log(style.media); // 'screen, print'
 ```
 
 ## Specifications

@@ -1,52 +1,56 @@
 ---
-title: DecompressionStream.writable
+title: "DecompressionStream: writable property"
+short-title: writable
 slug: Web/API/DecompressionStream/writable
-tags:
-  - API
-  - Property
-  - Reference
-  - writable
-  - DecompressionStream
+page-type: web-api-instance-property
 browser-compat: api.DecompressionStream.writable
 ---
-{{DefaultAPISidebar("Compression Streams API")}}
 
-The **`writable`** read-only property of the {{domxref("DecompressionStream")}} interface returns a {{domxref("WritableStream")}}.
+{{APIRef("Compression Streams API")}}{{AvailableInWorkers}}
 
-## Syntax
+The **`writable`** read-only property of the {{domxref("DecompressionStream")}} interface returns a {{domxref("WritableStream")}} that accepts compressed data to be decompressed, in the form of {{jsxref("ArrayBuffer")}}, {{jsxref("TypedArray")}}, or {{jsxref("DataView")}} chunks.
 
-    let writableStream = DecompressionStream.writable;
-
-### Value
+## Value
 
 A {{domxref("WritableStream")}}.
 
 ## Examples
 
-The following example returns a {{domxref("WritableStream")}} from a `DecompressionStream`.
+This example creates a `DecompressionStream` that performs gzip decompression. It writes some compressed binary data to the `writable` stream, then reads the decompressed data from the `readable` stream, decoding it as UTF-8 text.
 
 ```js
-let stream = new DecompressionStream('gzip');
-console.log(stream.writeable); //a WritableStream
+const stream = new DecompressionStream("gzip");
+
+// Write data to be compressed
+const data = Uint8Array.fromBase64(
+  "H4sIAAAAAAAAE/NIzcnJ11Eozy/KSVEEAObG5usNAAAA",
+);
+const writer = stream.writable.getWriter();
+writer.write(data);
+writer.close();
+
+// Read compressed data
+const reader = stream.readable.getReader();
+let done = false;
+let output = [];
+while (!done) {
+  const result = await reader.read();
+  if (result.value) {
+    output.push(...result.value);
+  }
+  done = result.done;
+}
+console.log(new TextDecoder().decode(new Uint8Array(output))); // Hello, world!
 ```
 
-<table class="no-markdown">
-  <tbody>
-    <tr>
-      <th scope="col">Specification</th>
-      <th scope="col">Status</th>
-      <th scope="col">Comment</th>
-    </tr>
-    <tr>
-      <td>
-        {{SpecName('Streams','#dom-generictransformstream-writable','writable')}}
-      </td>
-      <td>{{Spec2('Streams')}}</td>
-      <td>Initial definition.</td>
-    </tr>
-  </tbody>
-</table>
+## Specifications
+
+{{Specifications}}
 
 ## Browser compatibility
 
 {{Compat}}
+
+## See also
+
+- {{domxref("TransformStream.writable")}}

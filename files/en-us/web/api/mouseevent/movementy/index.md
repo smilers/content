@@ -1,62 +1,55 @@
 ---
-title: MouseEvent.movementY
+title: "MouseEvent: movementY property"
+short-title: movementY
 slug: Web/API/MouseEvent/movementY
-tags:
-  - API
-  - DOM
-  - DOM Events
-  - MouseEvent
-  - MovementY
-  - Property
-  - Read-only
-  - Reference
-  - mouse lock
-  - pointer lock
+page-type: web-api-instance-property
 browser-compat: api.MouseEvent.movementY
 ---
-{{APIRef("DOM Events")}}
 
-The **`movementY`** read-only property of the
-{{domxref("MouseEvent")}} interface provides the difference in the Y coordinate of the
-mouse pointer between the given event and the previous {{event("mousemove")}} event. In
-other words, the value of the property is computed like this:
-`currentEvent.movementY = currentEvent.screenY - previousEvent.screenY`.
+{{APIRef("Pointer Lock API")}}
 
-## Syntax
+The **`movementY`** read-only property of the {{domxref("MouseEvent")}} interface provides the difference in the Y coordinate of the mouse (or pointer) between the given move event and the previous move event of the same type.
 
-```js
-var yShift = instanceOfMouseEvent.movementY;
-```
+In other words, the value of the property is computed like this: `currentEvent.movementY = currentEvent.screenY - previousEvent.screenY`.
+The value is zero for all events other than {{domxref("Element/mousemove_event", "mousemove")}}, {{domxref("Element/pointermove_event", "pointermove")}}, and {{domxref("Element/pointerrawupdate_event", "pointerrawupdate")}}.
 
-### Return value
+> [!WARNING]
+> Browsers [use different units for `movementY` and `screenY`](https://github.com/w3c/pointerlock/issues/42) than what the specification defines.
+> Depending on the browser and operating system, the `movementY` units may be a physical pixel, a logical pixel, or a CSS pixel.
+> You may want to avoid the movement properties, and instead calculate the delta between the current client values ({{domxref("MouseEvent.screenX", "screenX")}}, {{domxref("MouseEvent.screenY", "screenY")}}) and the previous client values.
 
-A number
+## Value
 
-## Example
+A number.
+Always zero on any {{domxref("MouseEvent")}} other than `mousemove`, and any {{domxref("PointerEvent")}} other than `pointermove` or `pointerrawupdate`.
 
-This example logs the amount of mouse movement using {{domxref("MouseEvent.movementX",
-  "movementX")}} and `movementY`.
+## Examples
 
-### HTML
+### Log mouse movement for `mousemove` events
+
+This example logs the amount of mouse movement using {{domxref("MouseEvent.movementX", "movementX")}} and `movementY`.
+
+#### HTML
 
 ```html
-<p id="log">Move your mouse around.</p>
+<p id="log">Move your mouse around inside this element.</p>
 ```
 
-### JavaScript
+#### JavaScript
 
 ```js
+const log = document.getElementById("log");
+
 function logMovement(event) {
   log.innerText = `movement: ${event.movementX}, ${event.movementY}\n${log.innerText}`;
 }
 
-const log = document.getElementById('log');
-document.addEventListener('mousemove', logMovement);
+document.addEventListener("mousemove", logMovement);
 ```
 
-### Result
+#### Result
 
-{{EmbedLiveSample("Example")}}
+{{EmbedLiveSample("Log mouse movement for `mousemove` events")}}
 
 ## Specifications
 

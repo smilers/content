@@ -1,41 +1,31 @@
 ---
-title: ShadowRoot.host
+title: "ShadowRoot: host property"
+short-title: host
 slug: Web/API/ShadowRoot/host
-tags:
-  - API
-  - Host
-  - Property
-  - Reference
-  - ShadowRoot
-  - shadow dom
+page-type: web-api-instance-property
 browser-compat: api.ShadowRoot.host
 ---
+
 {{APIRef("Shadow DOM")}}
 
-The **`host`** read-only property of
+The **`host`** read-only property of
 the {{domxref("ShadowRoot")}} returns a reference to the DOM element the
-`ShadowRoot` is attached to.
+`ShadowRoot` is attached to.
 
-## Syntax
+## Value
 
-```js
-const someElement = shadowRoot.host
-```
-
-### Value
-
-A  DOM {{domxref('Element')}}.
+A DOM {{domxref('Element')}}.
 
 ## Examples
 
 ```js
-let customElem = document.querySelector('my-shadow-dom-element');
-let shadow = customElem.shadowRoot;
+const customElem = document.querySelector("my-shadow-dom-element");
+const shadow = customElem.shadowRoot;
 
-  ...
+// …
 
 // return the original host element some time later
-let hostElem = shadow.host;
+const hostElem = shadow.host;
 ```
 
 ## Specifications
@@ -45,3 +35,10 @@ let hostElem = shadow.host;
 ## Browser compatibility
 
 {{Compat}}
+
+## See also
+
+- [`part`](/en-US/docs/Web/HTML/Reference/Global_attributes/part) and [`exportparts`](/en-US/docs/Web/HTML/Reference/Global_attributes/exportparts) HTML attributes
+- {{HTMLelement("template")}} and {{HTMLElement("slot")}} HTML elements
+- {{CSSXref(":host")}}, {{cssxref(":host()")}}, and {{cssxref(":host-context()")}} CSS pseudo-classes
+- {{CSSXref("::part")}} and {{CSSXref("::slotted")}} CSS pseudo-elements

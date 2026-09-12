@@ -1,24 +1,28 @@
 ---
-title: HTMLElement.blur()
+title: "HTMLElement: blur() method"
+short-title: blur()
 slug: Web/API/HTMLElement/blur
-tags:
-  - API
-  - HTML DOM
-  - HTMLElement
-  - Method
-  - Reference
+page-type: web-api-instance-method
 browser-compat: api.HTMLElement.blur
 ---
+
 {{APIRef("HTML DOM")}}
 
-The **`HTMLElement.blur()`** method
-removes keyboard focus from the current element.
+The **`HTMLElement.blur()`** method removes keyboard focus from the current element.
 
 ## Syntax
 
-```js
-element.blur();
+```js-nolint
+blur()
 ```
+
+### Parameters
+
+None.
+
+### Return value
+
+None ({{jsxref("undefined")}}).
 
 ## Examples
 
@@ -27,21 +31,26 @@ element.blur();
 #### HTML
 
 ```html
-<input type="text" id="myText" value="Sample Text">
-<br><br>
-<button type="button" onclick="focusInput()">Click me to gain focus</button>
-<button type="button" onclick="blurInput()">Click me to lose focus</button>
+<input type="text" id="sampleText" value="Sample Text" /><br /><br />
+<button type="button">Click me to gain focus</button>
 ```
 
 #### JavaScript
 
 ```js
+const textField = document.getElementById("sampleText");
+const button = document.querySelector("button");
+
 function focusInput() {
-  document.getElementById('myText').focus();
+  textField.focus();
+
+  // The input will lose focus after 3 seconds
+  setTimeout(() => {
+    textField.blur();
+  }, 3000);
 }
-function blurInput() {
-  document.getElementById('myText').blur();
-}
+
+button.addEventListener("click", focusInput);
 ```
 
 #### Result

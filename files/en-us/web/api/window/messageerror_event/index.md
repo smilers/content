@@ -1,56 +1,48 @@
 ---
-title: 'Window: messageerror event'
+title: "Window: messageerror event"
+short-title: messageerror
 slug: Web/API/Window/messageerror_event
-tags:
-  - API
-  - Event
-  - MessageEvent
-  - Reference
-  - Window
+page-type: web-api-event
 browser-compat: api.Window.messageerror_event
 ---
-{{APIRef}}
+
+{{APIRef("HTML DOM")}}
 
 The `messageerror` event is fired on a {{domxref('Window')}} object when it receives a message that can't be deserialized.
 
-<table class="properties">
-  <tbody>
-    <tr>
-      <th scope="row">Bubbles</th>
-      <td>No</td>
-    </tr>
-    <tr>
-      <th scope="row">Cancelable</th>
-      <td>No</td>
-    </tr>
-    <tr>
-      <th scope="row">Interface</th>
-      <td>{{domxref("MessageEvent")}}</td>
-    </tr>
-    <tr>
-      <th scope="row">Event handler property</th>
-      <td>
-        {{domxref("WindowEventHandlers/onmessageerror", "onmessageerror")}}
-      </td>
-    </tr>
-  </tbody>
-</table>
+This event is not cancellable and does not bubble.
+
+## Syntax
+
+Use the event name in methods like {{domxref("EventTarget.addEventListener", "addEventListener()")}}, or set an event handler property.
+
+```js-nolint
+addEventListener("messageerror", (event) => { })
+
+onmessageerror = (event) => { }
+```
+
+## Event type
+
+A {{domxref("MessageEvent")}}. Inherits from {{domxref("Event")}}.
+
+{{InheritanceDiagram("MessageEvent")}}
 
 ## Examples
 
 Listen for `messageerror` using {{domxref("EventTarget/addEventListener", "addEventListener()")}}:
 
 ```js
-window.addEventListener('messageerror', (event) => {
-    console.error(event);
+window.addEventListener("messageerror", (event) => {
+  console.error(event);
 });
 ```
 
-The same, but using the {{domxref("WindowEventHandlers/onmessageerror", "onmessageerror")}} event handler property:
+The same, but using the `onmessageerror` event handler property:
 
 ```js
 window.onmessageerror = (event) => {
-    console.error(event);
+  console.error(event);
 };
 ```
 

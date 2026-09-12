@@ -1,14 +1,11 @@
 ---
-title: HTMLFormControlsCollection.namedItem()
+title: "HTMLFormControlsCollection: namedItem() method"
+short-title: namedItem()
 slug: Web/API/HTMLFormControlsCollection/namedItem
-tags:
-  - API
-  - HTML DOM
-  - HTMLFormControlsCollection
-  - Method
-  - Reference
+page-type: web-api-instance-method
 browser-compat: api.HTMLFormControlsCollection.namedItem
 ---
+
 {{APIRef("HTML DOM")}}
 
 The **`HTMLFormControlsCollection.namedItem()`** method returns
@@ -23,36 +20,72 @@ equivalent to `collection.namedItem("value")`.
 
 ## Syntax
 
-```js
-var item = collection.namedItem(str);
-var item = collection[str];
+```js-nolint
+namedItem(name)
+[name]
 ```
 
 ### Parameters
 
-- `str` is a {{domxref("DOMString")}}
+- `name`
+  - : A string which will be used to match against the `name` or `id` attributes of the controls in this `HTMLFormControlsCollection` object.
 
 ### Return value
 
-- `item` is a {{domxref("RadioNodeList")}} , {{domxref("Element")}}, or
-  {{jsxref("null")}}.
+- A {{domxref("RadioNodeList")}} if there are multiple elements with the given `name` or `id`,
+- An {{domxref("Element")}} if there is exactly one element with the given `name` or `id`, or
+- [`null`](/en-US/docs/Web/JavaScript/Reference/Operators/null) if no element has the given `name` or `id`.
 
-## Example
+> [!NOTE]
+> The returned {{domxref("RadioNodeList")}} is live, meaning that its contents automatically update if elements that match the given name are added to or removed from the collection. Furthermore, it may contain non-radio input elements despite the collection's name.
 
-### HTML
+## Examples
+
+### Using namedItem()
+
+#### HTML
 
 ```html
 <form>
-  <input id="my-form-control" type="textarea">
+  <label for="yes">Yes</label>
+  <input id="yes" name="my-radio" type="radio" />
+  <label for="no">No</label>
+  <input id="no" name="my-radio" type="radio" />
+  <label for="maybe">Maybe</label>
+  <input id="maybe" name="my-radio" type="radio" />
+  <br />
+  <label for="text1">Text input 1</label>
+  <input id="text1" name="my-form-control" type="text" />
 </form>
+
+<div id="output"></div>
 ```
 
-### JavaScript
+```css hidden
+div {
+  margin: 1rem 0;
+}
+```
+
+#### JavaScript
 
 ```js
-// Returns the HTMLInputElement representing #my-form-control
-elem1 = document.forms[0]['my-form-control'];
+const form = document.querySelector("form");
+const items = form.elements.namedItem("my-radio");
+
+const output = document.querySelector("#output");
+const itemIDs = Array.from(items)
+  .map((item) => `"${item.id}"`)
+  .join(", ");
+
+const item2 = form.elements.namedItem("my-form-control");
+output.textContent = `My items: ${itemIDs}
+My single item: "${item2.id}"`;
 ```
+
+#### Result
+
+{{EmbedLiveSample("Using namedItem()")}}
 
 ## Specifications
 

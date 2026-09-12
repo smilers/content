@@ -1,27 +1,30 @@
 ---
-title: HTMLTableElement.deleteTFoot()
+title: "HTMLTableElement: deleteTFoot() method"
+short-title: deleteTFoot()
 slug: Web/API/HTMLTableElement/deleteTFoot
-tags:
-  - API
-  - HTML DOM
-  - HTMLTableElement
-  - Method
-  - NeedsSpecTable
-  - Reference
+page-type: web-api-instance-method
 browser-compat: api.HTMLTableElement.deleteTFoot
 ---
+
 {{APIRef("HTML DOM")}}
 
-The **`HTMLTableElement.deleteTFoot()`** method removes the
-{{HTMLElement("tfoot")}} element from a given {{HtmlElement("table")}}.
+The **`deleteTFoot()`** method of the {{domxref("HTMLTableElement")}} interface removes the first {{HTMLElement("tfoot")}} element child from a given {{HTMLElement("table")}}, if any.
 
 ## Syntax
 
-```js
-HTMLTableElement.deleteTFoot();
+```js-nolint
+deleteTFoot()
 ```
 
-## Example
+### Parameters
+
+None.
+
+### Return value
+
+None ({{jsxref("undefined")}}).
+
+## Examples
 
 This example uses JavaScript to delete a table's footer.
 
@@ -29,23 +32,41 @@ This example uses JavaScript to delete a table's footer.
 
 ```html
 <table>
-  <thead><th>Name</th><th>Score</th></thead>
-  <tr><td>Bob</td><td>541</td></tr>
-  <tr><td>Jim</td><td>225</td></tr>
-  <tfoot><th>Average</th><td>383</td></tfoot>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Bob</td>
+      <td>541</td>
+    </tr>
+    <tr>
+      <td>Jim</td>
+      <td>225</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th>Average</th>
+      <td>383</td>
+    </tr>
+  </tfoot>
 </table>
 ```
 
 ### JavaScript
 
 ```js
-let table = document.querySelector('table');
+const table = document.querySelector("table");
 table.deleteTFoot();
 ```
 
 ### Result
 
-{{EmbedLiveSample("Example")}}
+{{EmbedLiveSample("Examples")}}
 
 ## Specifications
 
@@ -54,3 +75,9 @@ table.deleteTFoot();
 ## Browser compatibility
 
 {{Compat}}
+
+## See also
+
+- {{domxref("HTMLTableElement.createTFoot()")}}
+- {{domxref("HTMLTableElement.deleteCaption()")}}
+- {{domxref("HTMLTableElement.deleteTHead()")}}

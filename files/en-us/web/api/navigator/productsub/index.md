@@ -1,47 +1,34 @@
 ---
-title: Navigator.productSub
+title: "Navigator: productSub property"
+short-title: productSub
 slug: Web/API/Navigator/productSub
-tags:
-  - API
-  - Deprecated
-  - HTML DOM
-  - Navigator
-  - Property
-  - Read-only
+page-type: web-api-instance-property
 browser-compat: api.Navigator.productSub
 ---
-{{ ApiRef("HTML DOM") }} {{Deprecated_Header}}
 
-The **`Navigator.productSub`** read-only property returns the
-build number of the current browser.
+{{ ApiRef("HTML DOM") }}
 
-## Syntax
+The **`Navigator.productSub`** read-only property that returns either the string "20030107", or the string "20100101".
 
-```js
-prodSub = navigator.productSub
-```
+## Value
 
-- `prodSub` is a string.
+Either "20030107", or "20100101".
 
-## Example
+## Examples
 
 ```js
-<script>
-function prodsub() {
-  var dt = document.getElementById("d").childNodes[0];
-  dt.data = navigator.productSub;
-}
-</script>
-
-<button onclick="prodsub();">productSub</button>
-// returns: 20010725
+document.body.textContent = `productSub: ${navigator.productSub}`;
 ```
+
+{{ EmbedLiveSample("Examples") }}
 
 ## Notes
 
 On IE, this property returns undefined.
 
 On Apple Safari and Google Chrome this property always returns `20030107`.
+
+On Firefox, this property always returns `20100101`.
 
 ## Specifications
 

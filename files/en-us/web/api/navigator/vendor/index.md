@@ -1,24 +1,18 @@
 ---
-title: Navigator.vendor
+title: "Navigator: vendor property"
+short-title: vendor
 slug: Web/API/Navigator/vendor
-tags:
-  - API
-  - HTML DOM
-  - Property
-  - Read-only
+page-type: web-api-instance-property
 browser-compat: api.Navigator.vendor
 ---
-{{ APIRef("HTML DOM") }}
 
-The value of the {{DomXref("Navigator")}} **`vendor`** property is always either "`Google Inc.`", "`Apple Computer, Inc.`", or (in Firefox) the empty string.
+{{APIRef("HTML DOM")}}
 
-## Syntax
+The value of the {{DomXref("Navigator")}} **`vendor`** property is always either `"Google Inc."`, `"Apple Computer, Inc."`, or (in Firefox) the empty string.
 
-    venString = navigator.vendor
+## Value
 
-### Value
-
-- Either "`Google Inc.`", "`Apple Computer, Inc.`", or (in Firefox) the empty string.
+Either `"Google Inc."`, `"Apple Computer, Inc."`, or (in Firefox) the empty string.
 
 ## Specifications
 

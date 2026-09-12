@@ -1,18 +1,14 @@
 ---
-title: XRProjectionLayer.textureWidth
+title: "XRProjectionLayer: textureWidth property"
+short-title: textureWidth
 slug: Web/API/XRProjectionLayer/textureWidth
-tags:
-  - API
-  - Property
-  - Reference
-  - VR
-  - WebXR
-  - WebXR API
-  - WebXR Device API
-  - XR
+page-type: web-api-instance-property
+status:
+  - experimental
 browser-compat: api.XRProjectionLayer.textureWidth
 ---
-{{APIRef("WebXR Device API")}}
+
+{{APIRef("WebXR Device API")}}{{SeeCompatTable}}
 
 The read-only **`textureWidth`** property of the {{domxref("XRProjectionLayer")}} interface indicates the width in pixels of the color textures of this layer.
 
@@ -31,10 +27,15 @@ The `textureWidth` of a layer is useful when creating render buffers for a layer
 ```js
 let glLayer = xrGLBinding.createProjectionLayer();
 
-let color_rb = gl.createRenderbuffer();
-gl.bindRenderbuffer(gl.RENDERBUFFER, color_rb);
-gl.renderbufferStorageMultisample(gl.RENDERBUFFER, samples, gl.RGBA8,
-                                  glLayer.textureWidth, glLayer.textureHeight);
+let colorRB = gl.createRenderbuffer();
+gl.bindRenderbuffer(gl.RENDERBUFFER, colorRB);
+gl.renderbufferStorageMultisample(
+  gl.RENDERBUFFER,
+  samples,
+  gl.RGBA8,
+  glLayer.textureWidth,
+  glLayer.textureHeight,
+);
 ```
 
 ## Specifications

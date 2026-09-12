@@ -1,84 +1,76 @@
 ---
-title: 'ScriptProcessorNode: audioprocess event'
+title: "ScriptProcessorNode: audioprocess event"
+short-title: audioprocess
 slug: Web/API/ScriptProcessorNode/audioprocess_event
-tags:
-  - ScriptProcessorNode
-  - Web Audio API
-  - audioprocess
-  - event
+page-type: web-api-event
+status:
+  - deprecated
 browser-compat: api.ScriptProcessorNode.audioprocess_event
 ---
-{{APIRef("Web Audio API")}}{{deprecated_header}}
 
-The audioprocess event of the {{domxref("ScriptProcessorNode")}} interface is fired when an input buffer of a script processor is ready to be processed.
+{{APIRef("Web Audio API")}}
 
-> **Note:** This feature was replaced by [AudioWorklets](/en-US/docs/Web/API/AudioWorklet) and the {{domxref("AudioWorkletNode")}} interface.
+The **`audioprocess`** event of the {{domxref("ScriptProcessorNode")}} interface is fired when an input buffer of a script processor is ready to be processed.
 
-<table class="properties">
-  <tbody>
-    <tr>
-      <th scope="row">Bubbles</th>
-      <td>No</td>
-    </tr>
-    <tr>
-      <th scope="row">Cancelable</th>
-      <td>No</td>
-    </tr>
-    <tr>
-      <th scope="row">Default action</th>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th scope="row">Interface</th>
-      <td>{{domxref("AudioProcessingEvent")}}</td>
-    </tr>
-    <tr>
-      <th scope="row">Event handler property</th>
-      <td>{{domxref("ScriptProcessorNode.onaudioprocess")}}</td>
-    </tr>
-  </tbody>
-</table>
+> [!NOTE]
+> This feature was replaced by [AudioWorklets](/en-US/docs/Web/API/AudioWorklet) and the {{domxref("AudioWorkletNode")}} interface.
+
+This event is not cancelable and does not bubble.
+
+## Syntax
+
+Use the event name in methods like {{domxref("EventTarget.addEventListener", "addEventListener()")}}, or set an event handler property.
+
+```js-nolint
+addEventListener("audioprocess", (event) => { })
+
+onaudioprocess = (event) => { }
+```
+
+## Event type
+
+An {{domxref("AudioProcessingEvent")}}. Inherits from {{domxref("Event")}}.
+
+{{InheritanceDiagram("AudioProcessingEvent")}}
 
 ## Examples
 
 ```js
-scriptNode.addEventListener('audioprocess', function(audioProcessingEvent) {
+scriptNode.addEventListener("audioprocess", (audioProcessingEvent) => {
   // The input buffer is a song we loaded earlier
-  var inputBuffer = audioProcessingEvent.inputBuffer;
+  const inputBuffer = audioProcessingEvent.inputBuffer;
 
   // The output buffer contains the samples that will be modified and played
-  var outputBuffer = audioProcessingEvent.outputBuffer;
+  const outputBuffer = audioProcessingEvent.outputBuffer;
 
   // Loop through the output channels (in this case there is only one)
-  for (var channel = 0; channel < outputBuffer.numberOfChannels; channel++) {
-    var inputData = inputBuffer.getChannelData(channel);
-    var outputData = outputBuffer.getChannelData(channel);
+  for (let channel = 0; channel < outputBuffer.numberOfChannels; channel++) {
+    const inputData = inputBuffer.getChannelData(channel);
+    const outputData = outputBuffer.getChannelData(channel);
 
     // Loop through the 4096 samples
-    for (var sample = 0; sample < inputBuffer.length; sample++) {
+    for (let sample = 0; sample < inputBuffer.length; sample++) {
       // make output equal to the same as the input
       outputData[sample] = inputData[sample];
 
       // add noise to each output sample
-      outputData[sample] += ((Math.random() * 2) - 1) * 0.2;
+      outputData[sample] += (Math.random() * 2 - 1) * 0.2;
     }
   }
-})
+});
 ```
 
-You could also set up the event handler using the {{domxref("ScriptProcessorNode.onaudioprocess")}} property:
+You could also set up the event handler using the `onaudioprocess` property:
 
 ```js
-scriptNode.onaudioprocess = function(audioProcessingEvent) {
-  ...
-}
+scriptNode.onaudioprocess = (audioProcessingEvent) => {
+  // …
+};
 ```
 
 ## Specifications
 
-Since the August 29 2014 [Web Audio API specification](https://www.w3.org/TR/webaudio/#ScriptProcessorNode) publication, this feature has been deprecated. It is no longer on track to become a standard.
-
-It was replaced by [AudioWorklets](/en-US/docs/Web/API/AudioWorklet) and the {{domxref("AudioWorkletNode")}} interface.
+{{Specifications}}
 
 ## Browser compatibility
 
@@ -86,5 +78,4 @@ It was replaced by [AudioWorklets](/en-US/docs/Web/API/AudioWorklet) and the {{d
 
 ## See also
 
-- {{domxref("ScriptProcessorNode.onaudioprocess")}}
 - [Web Audio API](/en-US/docs/Web/API/Web_Audio_API)

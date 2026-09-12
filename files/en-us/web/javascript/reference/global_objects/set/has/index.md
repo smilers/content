@@ -1,24 +1,32 @@
 ---
 title: Set.prototype.has()
+short-title: has()
 slug: Web/JavaScript/Reference/Global_Objects/Set/has
-tags:
-  - ECMAScript 2015
-  - JavaScript
-  - Method
-  - Prototype
-  - set
+page-type: javascript-instance-method
 browser-compat: javascript.builtins.Set.has
+sidebar: jsref
 ---
-{{JSRef}}
 
-The **`has()`** method returns a boolean indicating whether an
-element with the specified value exists in a `Set` object or not.
+The **`has()`** method of {{jsxref("Set")}} instances returns a boolean indicating whether the specified value exists in this `Set` or not.
 
-{{EmbedInteractiveExample("pages/js/set-prototype-has.html")}}
+{{InteractiveExample("JavaScript Demo: Set.prototype.has()")}}
+
+```js interactive-example
+const set = new Set([1, 2, 3, 4, 5]);
+
+console.log(set.has(1));
+// Expected output: true
+
+console.log(set.has(5));
+// Expected output: true
+
+console.log(set.has(6));
+// Expected output: false
+```
 
 ## Syntax
 
-```js
+```js-nolint
 has(value)
 ```
 
@@ -29,30 +37,26 @@ has(value)
 
 ### Return value
 
-Returns `true` if an element with the specified value exists in the
-`Set` object; otherwise `false`.
-
-> **Note:** Technically speaking, `has()` uses the [Same-value-zero](/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness#Same-value-zero_equality)
-> algorithm to determine whether the given element is found.
+Returns `true` if the specified value exists in the `Set` object; otherwise `false`.
 
 ## Examples
 
-### Using the has() method
+### Using has()
 
 ```js
-var mySet = new Set();
-mySet.add('foo');
+const mySet = new Set();
+mySet.add("foo");
 
-mySet.has('foo');  // returns true
-mySet.has('bar');  // returns false
+console.log(mySet.has("foo")); // true
+console.log(mySet.has("bar")); // false
 
-var set1 = new Set();
-var obj1 = {'key1': 1};
-set1.add(obj1);
+const set = new Set();
+const obj = { key1: 1 };
+set.add(obj);
 
-set1.has(obj1);        // returns true
-set1.has({'key1': 1}); // returns false because they are different object references
-set1.add({'key1': 1}); // now set1 contains 2 entries
+console.log(set.has(obj)); // true
+console.log(set.has({ key1: 1 })); // false, because they are different object references
+console.log(set.add({ key1: 1 })); // now set contains 2 entries
 ```
 
 ## Specifications

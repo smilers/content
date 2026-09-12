@@ -2,36 +2,48 @@ name: Check Redirects
 
 on:
   pull_request:
-    branches:
-      - main
-    paths:
-      - files/**
-      - .github/workflows/pr-check_redirects.yml
+
+# No GITHUB_TOKEN permissions, as we only use it to increase API limit.
+permissions: {}
 
 jobs:
-  check_redirects:
+  check-redirects:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Setup Node.js environment
-        uses: actions/setup-node@v2.4.1
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
-          node-version: "12"
+          node-version-file: ".nvmrc"
+          cache: npm
 
-      - name: Cache node_modules
-        uses: actions/cache@v2.1.6
-        id: cached-node_modules
+      # This is a "required" workflow so path filtering can not be used:
+      # https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/collaborating-on-repositories-with-code-quality-features/troubleshooting-required-status-checks#handling-skipped-but-required-checks
+      # We have to rely on a custom filtering mechanism to run the checks only if required files are modified.
+      - uses: dorny/paths-filter@ceb8a2b8f2d89434be7ff52d3de7ec3738c5cc9d # v4.0.3
+        name: See if any file needs checking
+        id: filter
         with:
-          path: |
-            node_modules
-          key: ${{ runner.os }}-${{ hashFiles('yarn.lock') }}-${{ hashFiles('.github/workflows/pr-check_redirects.yml') }}
+          filters: |
+            required_files:
+              - ".nvmrc"
+              - "files/**"
+              - ".github/workflows/pr-check_redirects.yml"
 
-      - name: Install all yarn packages
-        if: steps.cached-node_modules.outputs.cache-hit != 'true'
-        run: |
-          yarn --frozen-lockfile
+      - name: Install
+        if: steps.filter.outputs.required_files == 'true'
+        run: npm ci
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Check redirects file(s)
-        run: yarn content validate-redirects en-us --strict
+        if: steps.filter.outputs.required_files == 'true'
+        run: npm run content validate-redirects en-US
+        env:
+          # Used by the `rari` cli to avoid rate limiting issues
+          # when fetching the latest releases info from the GitHub API.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,42 +1,26 @@
 ---
 title: CSSNumericValue
 slug: Web/API/CSSNumericValue
-tags:
-  - API
-  - CSS Typed Object Model API
-  - CSSNumericValue
-  - Experimental
-  - Houdini
-  - Interface
-  - Reference
+page-type: web-api-interface
 browser-compat: api.CSSNumericValue
 ---
-{{APIRef("CSS Typed OM")}}{{SeeCompatTable}}
 
-The **`CSSNumericValue`** interface of the [CSS Typed Object Model API](/en-US/docs/Web/API/CSS_Object_Model#css_typed_object_model) represents operations that all numeric values can perform.
+{{APIRef("CSS Typed Object Model API")}} {{AvailableInWorkers}}
 
-## Interfaces based on CSSNumericValue
+The **`CSSNumericValue`** interface of the [CSS Typed Object Model API](/en-US/docs/Web/API/CSS_Typed_OM_API) represents operations that all numeric values can perform.
 
-Below is a list of interfaces based on the CSSNumericValue interface.
+{{InheritanceDiagram}}
 
-- {{domxref('CSSMathClamp')}}
-- {{domxref('CSSMathInvert')}}
-- {{domxref('CSSMathMax')}}
-- {{domxref('CSSMathMin')}}
-- {{domxref('CSSMathNegate')}}
-- {{domxref('CSSMathProduct')}}
-- {{domxref('CSSMathSum')}}
-- {{domxref('CSSMathValue')}}
-- {{domxref('CSSNumericArray')}}
-- {{domxref('CSSUnitValue')}}
-
-## Properties
+## Instance properties
 
 None.
 
-## Methods
+## Static methods
 
-### Instance methods
+- {{domxref('CSSNumericValue/parse_static', 'CSSNumericValue.parse')}}
+  - : Allows a `CSSNumericValue` to be constructed directly from a string containing CSS.
+
+## Instance methods
 
 - {{domxref('CSSNumericValue.add')}}
   - : Adds a supplied number to the `CSSNumericValue`.
@@ -59,10 +43,18 @@ None.
 - {{domxref('CSSNumericValue.type')}}
   - : Returns the type of `CSSNumericValue`, one of `angle`, `flex`, `frequency`, `length`, `resolution`, `percent`, `percentHint`, or `time`.
 
-### Static methods
+## Interfaces based on CSSNumericValue
 
-- {{domxref('CSSNumericValue.parse')}}
-  - : Allows a `CSSNumericValue` to be constructed directly from a string containing CSS.
+- {{domxref('CSSMathClamp')}}
+- {{domxref('CSSMathInvert')}}
+- {{domxref('CSSMathMax')}}
+- {{domxref('CSSMathMin')}}
+- {{domxref('CSSMathNegate')}}
+- {{domxref('CSSMathProduct')}}
+- {{domxref('CSSMathSum')}}
+- {{domxref('CSSMathValue')}}
+- {{domxref('CSSNumericArray')}}
+- {{domxref('CSSUnitValue')}}
 
 ## Specifications
 

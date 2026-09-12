@@ -1,47 +1,44 @@
 ---
 title: DOMException
 slug: Web/API/DOMException
-tags:
-  - API
-  - DOM
-  - DOMException
-  - Error
-  - Error code
-  - Exception
-  - Reference
+page-type: web-api-interface
 browser-compat: api.DOMException
 ---
-{{ APIRef("DOM") }}
+
+{{APIRef("DOM")}}{{AvailableInWorkers}}
 
 The **`DOMException`** interface represents an abnormal event (called an **exception**) that occurs as a result of calling a method or accessing a property of a web API. This is how error conditions are described in web APIs.
 
 Each exception has a **name**, which is a short "PascalCase"-style string identifying the error or abnormal condition.
 
+`DOMException` is a {{Glossary("Serializable object")}}, so it can be cloned with {{DOMxRef("Window.structuredClone", "structuredClone()")}} or copied between [Workers](/en-US/docs/Web/API/Worker) using {{domxref("Worker.postMessage()", "postMessage()")}}.
+
 ## Constructor
 
-- {{domxref("DOMException.DOMException()", "DOMException()")}} {{experimental_inline}}
+- {{domxref("DOMException.DOMException()", "DOMException()")}}
   - : Returns a `DOMException` object with a specified message and name.
 
-## Properties
+## Instance properties
 
-- {{domxref("DOMException.code")}} {{deprecated_inline}} {{readOnlyInline}}
-  - : Returns a `short` that contains one of the error code constants, or `0` if none match. This field is used for historical reasons. New DOM exceptions don't use this anymore: they put this info in the {{domxref("DOMException.name")}} attribute.
-- {{domxref("DOMException.message")}} {{readOnlyInline}}
-  - : Returns a {{ domxref("DOMString") }} representing a message or description associated with the given [error name](#error_names).
-- {{domxref("DOMException.name")}} {{readOnlyInline}}
-  - : Returns a {{domxref("DOMString")}} that contains one of the strings associated with an [error name](#error_names).
+- {{domxref("DOMException.code")}} {{deprecated_inline}} {{ReadOnlyInline}}
+  - : Returns one of the legacy error code constants, or `0` if none match.
+- {{domxref("DOMException.message")}} {{ReadOnlyInline}}
+  - : Returns a string representing a message or description associated with the given [error name](#error_names).
+- {{domxref("DOMException.name")}} {{ReadOnlyInline}}
+  - : Returns a string that contains one of the strings associated with an [error name](#error_names).
 
 ## Error names
 
 Common error names are listed here. Some APIs define their own sets of names, so this is not necessarily a complete list.
 
-Note that the following deprecated historical errors don’t have an error name but instead have only a legacy constant code value and a legacy constant name:
+The following deprecated historical errors don't have an error name but instead have only a legacy constant code value and a legacy constant name:
 
 - Legacy code value: `2`, legacy constant name: `DOMSTRING_SIZE_ERR`
 - Legacy code value: `6`, legacy constant name: `NO_DATA_ALLOWED_ERR`
 - Legacy code value: `16`, legacy constant name: `VALIDATION_ERR`
 
-> **Note:** Because historically the errors were identified by a numeric value that corresponded with a named variable defined to have that value, some of the entries below indicate the legacy code value and constant name that were used in the past.
+> [!NOTE]
+> Because historically the errors were identified by a numeric value that corresponded with a named variable defined to have that value, some of the entries below indicate the legacy code value and constant name that were used in the past.
 
 - `IndexSizeError`
   - : The index is not in the allowed range. For example, this can be thrown by the {{ domxref("Range") }} object. (Legacy code value: `1` and legacy constant name: `INDEX_SIZE_ERR`)
@@ -57,10 +54,10 @@ Note that the following deprecated historical errors don’t have an error name 
   - : The object cannot be found here. (Legacy code value: `8` and legacy constant name: `NOT_FOUND_ERR`)
 - `NotSupportedError`
   - : The operation is not supported. (Legacy code value: `9` and legacy constant name: `NOT_SUPPORTED_ERR`)
-- `InvalidStateError`
-  - : The object is in an invalid state. (Legacy code value: `11` and legacy constant name: `INVALID_STATE_ERR`)
 - `InUseAttributeError`
   - : The attribute is in use. (Legacy code value: `10` and legacy constant name: `INUSE_ATTRIBUTE_ERR`)
+- `InvalidStateError`
+  - : The object is in an invalid state. (Legacy code value: `11` and legacy constant name: `INVALID_STATE_ERR`)
 - `SyntaxError`
   - : The string did not match the expected pattern. (Legacy code value: `12` and legacy constant name: `SYNTAX_ERR`)
 - `InvalidModificationError`
@@ -79,20 +76,20 @@ Note that the following deprecated historical errors don’t have an error name 
   - : The operation was aborted. (Legacy code value: `20` and legacy constant name: `ABORT_ERR`)
 - `URLMismatchError` {{experimental_inline}}
   - : The given URL does not match another URL. (Legacy code value: `21` and legacy constant name: `URL_MISMATCH_ERR`)
-- `QuotaExceededError` {{experimental_inline}}
-  - : The quota has been exceeded. (Legacy code value: `22` and legacy constant name: `QUOTA_EXCEEDED_ERR`)
+- {{domxref("QuotaExceededError")}}
+  - : The quota has been exceeded. (Legacy code value: `22` and legacy constant name: `QUOTA_EXCEEDED_ERR`) It is a proper interface that derives from `DOMException`.
 - `TimeoutError`
   - : The operation timed out. (Legacy code value: `23` and legacy constant name: `TIMEOUT_ERR`)
 - `InvalidNodeTypeError` {{experimental_inline}}
   - : The node is incorrect or has an incorrect ancestor for this operation. (Legacy code value: `24` and legacy constant name: `INVALID_NODE_TYPE_ERR`)
 - `DataCloneError` {{experimental_inline}}
-  - : The object can not be cloned. (Legacy code value: `25` and legacy constant name: `DATA_CLONE_ERR`)
+  - : The object cannot be cloned. (Legacy code value: `25` and legacy constant name: `DATA_CLONE_ERR`)
 - `EncodingError` {{experimental_inline}}
   - : The encoding or decoding operation failed (No legacy code value and constant name).
 - `NotReadableError` {{experimental_inline}}
   - : The input/output read operation failed (No legacy code value and constant name).
 - `UnknownError` {{experimental_inline}}
-  - : The operation failed for an unknown transient reason (e.g. out of memory) (No legacy code value and constant name).
+  - : The operation failed for an unknown transient reason (e.g., out of memory) (No legacy code value and constant name).
 - `ConstraintError` {{experimental_inline}}
   - : A mutation operation in a transaction failed because a constraint was not satisfied (No legacy code value and constant name).
 - `DataError` {{experimental_inline}}
@@ -118,4 +115,5 @@ Note that the following deprecated historical errors don’t have an error name 
 
 ## See also
 
+- [A polyfill of `DOMException`](https://github.com/zloirock/core-js#domexception) is available in [`core-js`](https://github.com/zloirock/core-js)
 - {{ domxref("DOMError") }}

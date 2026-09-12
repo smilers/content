@@ -1,27 +1,26 @@
 ---
 title: SVGPointList
 slug: Web/API/SVGPointList
-tags:
-  - API
-  - Interface
-  - Reference
-  - SVGPointList
+page-type: web-api-interface
 browser-compat: api.SVGPointList
 ---
+
 {{APIRef("SVG")}}
 
-The **`SVGPointList`** interface represents a list of {{domxref("SVGPoint")}} objects.
+The **`SVGPointList`** interface represents a list of {{domxref("DOMPoint")}} objects.
 
 An `SVGPointList` can be designated as read-only, which means that attempts to modify the object will result in an exception being thrown.
 
-## Properties
+An `SVGPointList` object is indexable and can be accessed like an array using [bracket notation](/en-US/docs/Web/JavaScript/Reference/Operators/Property_accessors#bracket_notation). Reading an index is equivalent to calling {{domxref("SVGPointList.getItem", "getItem()")}}. Assigning to an index is equivalent to calling {{domxref("SVGPointList.replaceItem", "replaceItem()")}}, including the exceptions it throws.
 
-- {{domxref("SVGPointList.length")}}{{ReadOnlyInline}}
+## Instance properties
+
+- {{domxref("SVGPointList.length")}} {{ReadOnlyInline}}
   - : Returns the number of points in the list.
-- {{domxref("SVGPointList.numberOfItems")}}{{ReadOnlyInline}}
+- {{domxref("SVGPointList.numberOfItems")}} {{ReadOnlyInline}}
   - : Returns the number of points in the list.
 
-## Methods
+## Instance methods
 
 - {{domxref("SVGPointList.clear()")}}
   - : Removes all items in the list.
@@ -44,13 +43,17 @@ The following example shows an SVG which contains a {{SVGElement("polyline")}} w
 
 ```html
 <svg viewBox="-10 -10 120 120" xmlns="http://www.w3.org/2000/svg">
-  <polyline id="example" stroke="black" fill="none"
-   points="50,0 21,90 98,35 2,35 79,90"/>
+  <polyline
+    id="example"
+    stroke="black"
+    fill="none"
+    points="50,0 21,90 98,35 2,35 79,90" />
+</svg>
 ```
 
 ```js
-let example = document.getElementById("example");
-console.log(example.points); //an SVGPointList
+const example = document.getElementById("example");
+console.log(example.points); // An SVGPointList
 ```
 
 ## Specifications

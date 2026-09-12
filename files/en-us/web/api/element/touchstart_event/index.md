@@ -1,43 +1,30 @@
 ---
-title: 'Element: touchstart event'
+title: "Element: touchstart event"
+short-title: touchstart
 slug: Web/API/Element/touchstart_event
-tags:
-  - Event
-  - Touch Events
-  - TouchEvent
-  - UI
-  - UI Events
-  - UX
-  - touch
-  - touchstart
+page-type: web-api-event
 browser-compat: api.Element.touchstart_event
 ---
-{{APIRef}}
+
+{{APIRef("Touch Events")}}
 
 The `touchstart` event is fired when one or more touch points are placed on the touch surface.
 
-<table class="properties">
-  <tbody>
-    <tr>
-      <th scope="row">Bubbles</th>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <th scope="row">Cancelable</th>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <th scope="row">Interface</th>
-      <td>{{domxref("TouchEvent")}}</td>
-    </tr>
-    <tr>
-      <th scope="row">Event handler property</th>
-      <td>
-        {{ domxref("GlobalEventHandlers.ontouchstart","ontouchstart")}}
-      </td>
-    </tr>
-  </tbody>
-</table>
+## Syntax
+
+Use the event name in methods like {{domxref("EventTarget.addEventListener", "addEventListener()")}}, or set an event handler property.
+
+```js-nolint
+addEventListener("touchstart", (event) => { })
+
+ontouchstart = (event) => { }
+```
+
+## Event type
+
+A {{domxref("TouchEvent")}}. Inherits from {{domxref("Event")}}.
+
+{{InheritanceDiagram("TouchEvent")}}
 
 ## Examples
 
@@ -54,4 +41,3 @@ Code samples for those events are available on the dedicated page: [Touch events
 ## See also
 
 - [Touch events](/en-US/docs/Web/API/Touch_events)
-- This event on {{domxref("Document")}} targets: {{domxref("Document/touchstart_event", "touchstart")}}

@@ -1,46 +1,33 @@
 ---
-title: CSSUnitValue.value
+title: "CSSUnitValue: value property"
+short-title: value
 slug: Web/API/CSSUnitValue/value
-tags:
-  - API
-  - CSS Typed Object Model API
-  - CSSUnitValue
-  - Experimental
-  - Houdini
-  - Property
-  - Reference
-  - value
+page-type: web-api-instance-property
 browser-compat: api.CSSUnitValue.value
 ---
-{{draft}}{{APIRef("CSS Typed Object Model API")}}{{SeeCompatTable}}
 
-The **`CSSUnitValue.value`** property of the
-{{domxref("CSSUnitValue")}} interface returns a double indicating the number of units.
+{{APIRef("CSS Typed Object Model API")}} {{AvailableInWorkers}}
 
-## Syntax
+The **`value`** property of the {{domxref("CSSUnitValue")}} interface represents the number of units.
 
-```js
-var cssUnitValue = CSSUnitValue.value;
-CSSUnitValue.value = cssUnitValue;
-```
+## Value
 
-### Value
-
-A double.
+A number.
 
 ## Examples
 
-The following creates a {{domxref('CSSPositionValue')}} from individual
-`CSSUnitValue` constructors, then queries the
-`CSSUnitValue.value`.
+### Basic usage
+
+The following code creates a {{domxref('CSSPositionValue')}} from individual `CSSUnitValue` constructors, then queries the `CSSUnitValue.value`.
 
 ```js
-let pos = new CSSPositionValue(
-    new CSSUnitValue( 5, "px" ),
-    new CSSUnitValue( 10, "px" ));
+const pos = new CSSPositionValue(
+  new CSSUnitValue(5, "px"),
+  new CSSUnitValue(10, "px"),
+);
 
-console.log( pos.x.value ); // 5
-console.log( pos.y.value ); // 10
+console.log(pos.x.value); // 5
+console.log(pos.y.value); // 10
 ```
 
 ## Specifications

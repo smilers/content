@@ -1,28 +1,18 @@
 ---
-title: Element.ariaColSpan
+title: "Element: ariaColSpan property"
+short-title: ariaColSpan
 slug: Web/API/Element/ariaColSpan
-tags:
-  - API
-  - Property
-  - Reference
-  - ariaColSpan
-  - AriaAttributes
-  - AriaMixin
-  - Element
+page-type: web-api-instance-property
 browser-compat: api.Element.ariaColSpan
 ---
-{{DefaultAPISidebar("DOM")}}
 
-The **`ariaColSpan`** property of the {{domxref("Element")}} interface reflects the value of the `aria-colspan` attribute, which defines the number of columns spanned by a cell or gridcell within a table, grid, or treegrid.
+{{APIRef("DOM")}}
 
-## Syntax
+The **`ariaColSpan`** property of the {{domxref("Element")}} interface reflects the value of the [`aria-colspan`](/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-colspan) attribute, which defines the number of columns spanned by a cell or gridcell within a table, grid, or treegrid.
 
-    var ariaColSpan = element.ariaColSpan;
-    element.ariaColSpan = ariaColSpan
+## Value
 
-### Value
-
-A {{domxref("DOMString")}} which contains an integer.
+A string which contains an integer.
 
 ## Examples
 
@@ -30,20 +20,24 @@ In this example the `aria-colspan` attribute on the element with an ID of `spann
 
 ```html
 <table>
-  <tr>
-    <th>Heading 1</th>
-    <th>Heading 2</th>
-    <th>Heading 3</td>
-  </tr>
-  <tr>
-    <td colspan="2" aria-colspan="2" id="spanning-column">Spanning</td>
-    <td>One</td>
-  </tr>
+  <thead>
+    <tr>
+      <th>Heading 1</th>
+      <th>Heading 2</th>
+      <th>Heading 3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td colspan="2" aria-colspan="2" id="spanning-column">Spanning</td>
+      <td>One</td>
+    </tr>
+  </tbody>
 </table>
 ```
 
 ```js
-let el = document.getElementById('spanning-column');
+let el = document.getElementById("spanning-column");
 console.log(el.ariaColSpan);
 el.ariaColSpan = "3";
 console.log(el.ariaColSpan);
@@ -59,4 +53,4 @@ console.log(el.ariaColSpan);
 
 ## See also
 
-- [ARIA: table role](/en-US/docs/Web/Accessibility/ARIA/Roles/Table_Role)
+- [ARIA: table role](/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/table_role)

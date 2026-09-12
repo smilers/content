@@ -1,32 +1,21 @@
 ---
-title: ElementInternals.ariaReadOnly
+title: "ElementInternals: ariaReadOnly property"
+short-title: ariaReadOnly
 slug: Web/API/ElementInternals/ariaReadOnly
-tags:
-  - API
-  - Property
-  - Reference
-  - ariaReadOnly
-  - AriaAttributes
-  - AriaMixin
-  - ElementInternals
+page-type: web-api-instance-property
 browser-compat: api.ElementInternals.ariaReadOnly
 ---
-{{DefaultAPISidebar("DOM")}}
 
-The **`ariaReadOnly`** property of the {{domxref("ElementInternals")}} interface reflects the value of the `aria-readonly` attribute, which indicates that the element is not editable, but is otherwise operable.
+{{APIRef("Web Components")}}
 
-> **Note:** Setting aria attributes on `ElementInternals` allows default semantics to be defined on a custom element. These may be overwritten by author-defined attributes, but ensure that default semantics are retained should the author delete those attributes, or fail to add them at all. For more information see the [Accessibility Object Model explainer](https://wicg.github.io/aom/explainer.html#default-semantics-for-custom-elements-via-the-elementinternals-object).
+The **`ariaReadOnly`** property of the {{domxref("ElementInternals")}} interface reflects the value of the [`aria-readonly`](/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-readonly) attribute, which indicates that the element is not editable, but is otherwise operable.
 
-## Syntax
+> [!NOTE]
+> Setting aria attributes on `ElementInternals` allows default semantics to be defined on a custom element. These may be overwritten by author-defined attributes, but ensure that default semantics are retained should the author delete those attributes, or fail to add them at all. For more information see the [Accessibility Object Model explainer](https://wicg.github.io/aom/explainer.html#default-semantics-for-custom-elements-via-the-elementinternals-object).
 
-```js
-let ariaReadOnly = ElementInternals.ariaReadOnly;
-ElementInternals.ariaReadOnly = ariaReadOnly;
-```
+## Value
 
-### Value
-
-A {{domxref("DOMString")}} with one of the following values:
+A string with one of the following values:
 
 - `"true"`
   - : The user cannot change the value of the element.
@@ -38,7 +27,14 @@ A {{domxref("DOMString")}} with one of the following values:
 In this example the value of `ariaReadOnly` is set to "true".
 
 ```js
-this.internals_.ariaReadonly = "true";
+class CustomControl extends HTMLElement {
+  constructor() {
+    super();
+    this.internals_ = this.attachInternals();
+    this.internals_.ariaReadonly = "true";
+  }
+  // …
+}
 ```
 
 ## Specifications
@@ -51,4 +47,4 @@ this.internals_.ariaReadonly = "true";
 
 ## See also
 
-- [ARIA: textbox role](/en-US/docs/Web/Accessibility/ARIA/Roles/textbox_role)
+- [ARIA: textbox role](/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/textbox_role)

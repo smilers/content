@@ -1,37 +1,41 @@
 ---
 title: XMLHttpRequestEventTarget
 slug: Web/API/XMLHttpRequestEventTarget
-tags:
-  - AJAX
-  - API
-  - NeedsBrowserCompatibility
-  - NeedsContent
-  - Reference
-  - XMLHttpRequest
+page-type: web-api-interface
 browser-compat: api.XMLHttpRequestEventTarget
 ---
-{{APIRef("XMLHttpRequest")}}
 
-`XMLHttpRequestEventTarget` is the interface that describes the event handlers you can implement in an object that will handle events for an {{ domxref("XMLHttpRequest") }}.
+{{APIRef("XMLHttpRequest API")}} {{AvailableInWorkers("window_and_worker_except_service")}}
 
-{{InheritanceDiagram}}
+`XMLHttpRequestEventTarget` is the interface that describes the event handlers shared on {{domxref("XMLHttpRequest")}} and {{domxref("XMLHttpRequestUpload")}}.
 
-## Properties
+You don't use `XMLHttpRequestEventTarget` directly; instead you interact with the sub classes.
 
-- {{ domxref("XMLHttpRequestEventTarget.onabort") }}
-  - : Contains the function to call when a request is aborted and the {{event('abort')}} event is received by this object.
-- {{ domxref("XMLHttpRequestEventTarget.onerror") }}
-  - : Contains the function to call when a request encounters an error and the {{event('error')}} event is received by this object.
-- {{ domxref("XMLHttpRequestEventTarget.onload") }}
-  - : Contains the function to call when an HTTP request returns after successfully fetching content and the {{event('load')}} event is received by this object.
-- {{ domxref("XMLHttpRequestEventTarget.onloadstart") }}
-  - : Contains the function that gets called when the HTTP request first begins loading data and the {{event('loadstart')}} event is received by this object.
-- {{ domxref("XMLHttpRequestEventTarget.onprogress") }}
-  - : Contains the function that is called periodically with information about the progress of the request and the {{event('progress')}} event is received by this object.
-- {{ domxref("XMLHttpRequestEventTarget.ontimeout") }}
-  - : Contains the function that is called if the event times out and the {{event("timeout")}} event is received by this object; this only happens if a timeout has been previously established by setting the value of the `XMLHttpRequest` object's `timeout` attribute.
-- {{ domxref("XMLHttpRequestEventTarget.onloadend") }}
-  - : Contains the function that is called when the load is completed, even if the request failed, and the {{event('loadend')}} event is received by this object.
+## Events
+
+The following events are made available to {{domxref("XMLHttpRequest")}} and {{domxref("XMLHttpRequestUpload")}}:
+
+- {{domxref("XMLHttpRequestEventTarget/abort_event", "abort")}}
+  - : Fired when a request has been aborted, for example because the program called {{domxref("XMLHttpRequest.abort()")}}.
+    Also available via the `onabort` event handler property.
+- {{domxref("XMLHttpRequestEventTarget/error_event", "error")}}
+  - : Fired when the request encountered an error.
+    Also available via the `onerror` event handler property.
+- {{domxref("XMLHttpRequestEventTarget/load_event", "load")}}
+  - : Fired when a request transaction completes successfully.
+    Also available via the `onload` event handler property.
+- {{domxref("XMLHttpRequestEventTarget/loadend_event", "loadend")}}
+  - : Fired when a request has completed, whether successfully (after {{domxref("XMLHttpRequestEventTarget/load_event", "load")}}) or unsuccessfully (after {{domxref("XMLHttpRequestEventTarget/abort_event", "abort")}} or {{domxref("XMLHttpRequestEventTarget/error_event", "error")}}).
+    Also available via the `onloadend` event handler property.
+- {{domxref("XMLHttpRequestEventTarget/loadstart_event", "loadstart")}}
+  - : Fired when a request has started to load data.
+    Also available via the `onloadstart` event handler property.
+- {{domxref("XMLHttpRequestEventTarget/progress_event", "progress")}}
+  - : Fired periodically when a request receives more data.
+    Also available via the `onprogress` event handler property.
+- {{domxref("XMLHttpRequestEventTarget/timeout_event", "timeout")}}
+  - : Fired when progress is terminated due to preset time expiring.
+    Also available via the `ontimeout` event handler property.
 
 ## Specifications
 
@@ -43,5 +47,5 @@ browser-compat: api.XMLHttpRequestEventTarget
 
 ## See also
 
-- {{ domxref("XMLHttpRequest") }}
-- [Using XMLHttpRequest](/en-US/docs/DOM/XMLHttpRequest/Using_XMLHttpRequest "Using XMLHttpRequest")
+- {{domxref("XMLHttpRequest")}}
+- {{domxref("XMLHttpRequestUpload")}}

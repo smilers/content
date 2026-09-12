@@ -1,28 +1,23 @@
 ---
-title: HTMLDialogElement.showModal()
+title: "HTMLDialogElement: showModal() method"
+short-title: showModal()
 slug: Web/API/HTMLDialogElement/showModal
-tags:
-  - API
-  - Experimental
-  - HTML DOM
-  - HTMLDialogElement
-  - Method
-  - Reference
-  - showModal
+page-type: web-api-instance-method
 browser-compat: api.HTMLDialogElement.showModal
 ---
-{{ APIRef("HTML DOM") }} {{ SeeCompatTable() }}
 
-The **`showModal()`** method of the
-{{domxref("HTMLDialogElement")}} interface displays the dialog as a modal, over the top
-of any other dialogs that might be present. It displays into the top layer, along with a
-{{cssxref('::backdrop')}} pseudo-element. Interaction outside the dialog is blocked and
-the content outside it is rendered inert.
+{{ APIRef("HTML DOM") }}
+
+The **`showModal()`** method of the {{domxref("HTMLDialogElement")}} interface displays the dialog as a modal dialog, over the top of any other dialogs or elements that might be visible.
+
+A modal dialog displays in the {{glossary("top layer")}}, along with a {{cssxref('::backdrop')}} pseudo-element.
+Elements inside the same document as the dialog, except the dialog and its descendants, become _inert_ (as if the [`inert`](/en-US/docs/Web/HTML/Reference/Global_attributes/inert) attribute is specified).
+Only the containing document becomes blocked; if the dialog is rendered inside an iframe, the rest of the page remains interactive.
 
 ## Syntax
 
-```js
-dialogInstance.showModal();
+```js-nolint
+showModal()
 ```
 
 ### Parameters
@@ -31,79 +26,61 @@ None.
 
 ### Return value
 
-Void.
+None ({{jsxref("undefined")}}).
 
 ### Exceptions
 
-If the dialog is already open (i.e. if the `open` attribute is already set
-on the {{htmlelement("dialog")}} element), an `InvalidStateError` is thrown.
+- `InvalidStateError` {{domxref("DOMException")}}
+  - : Thrown if the dialog is already open and non-modal (i.e., if the dialog has already been opened with {{domxref("HTMLDialogElement.show()")}}).
 
 ## Examples
 
-The following example shows a simple button that, when clicked, opens a
-{{htmlelement("dialog")}} containing a form via the `showModal()` method.
-From there you can click the _Cancel_ button to close the dialog (via the
-{{domxref("HTMLDialogElement.close()")}} method), or submit the form via the submit
-button.
+### Basic usage
+
+The following example shows a simple button that, when clicked, opens a {{htmlelement("dialog")}} using the `showModal()` method.
+
+When the dialog is open, you cannot interact with the rest of the page, including clicking the _Click me_ button that would otherwise trigger an alert.
+
+You can click the _Close dialog_ button to close the dialog (via the {{domxref("HTMLDialogElement.close()")}} method).
+
+#### HTML
 
 ```html
-  <!-- Simple pop-up dialog box, containing a form -->
-  <dialog id="favDialog">
-    <form method="dialog">
-      <section>
-        <p><label for="favAnimal">Favorite animal:</label>
-        <select id="favAnimal" name="favAnimal">
-          <option></option>
-          <option>Brine shrimp</option>
-          <option>Red panda</option>
-          <option>Spider monkey</option>
-        </select></p>
-      </section>
-      <menu>
-        <button id="cancel" type="reset">Cancel</button>
-        <button type="submit">Confirm</button>
-      </menu>
-    </form>
-  </dialog>
+<dialog id="dialog">
+  <button type="button" id="close">Close dialog</button>
+</dialog>
 
-  <menu>
-    <button id="updateDetails">Update details</button>
-  </menu>
-
-  <script>
-    (function() {
-      var updateButton = document.getElementById('updateDetails');
-      var cancelButton = document.getElementById('cancel');
-      var dialog = document.getElementById('favDialog');
-      dialog.returnValue = 'favAnimal';
-
-      function openCheck(dialog) {
-        if(dialog.open) {
-          console.log('Dialog open');
-        } else {
-          console.log('Dialog closed');
-        }
-      }
-
-      // Update button opens a modal dialog
-      updateButton.addEventListener('click', function() {
-        dialog.showModal();
-        openCheck(dialog);
-      });
-
-      // Form cancel button closes the dialog box
-      cancelButton.addEventListener('click', function() {
-        dialog.close('animalNotChosen');
-        openCheck(dialog);
-      });
-
-    })();
-  </script>
+<p><button id="open">Open dialog</button></p>
+<p><button id="alert">Trigger alert</button></p>
 ```
 
-> **Note:** You can find this example on GitHub as [htmldialogelement-basic](https://github.com/mdn/dom-examples/blob/master/htmldialogelement-basic/index.html)
-> ([see it live
-> also](https://mdn.github.io/dom-examples/htmldialogelement-basic/)).
+#### JavaScript
+
+```js
+const dialog = document.getElementById("dialog");
+const openButton = document.getElementById("open");
+const closeButton = document.getElementById("close");
+const alertButton = document.getElementById("alert");
+
+// Open button opens a modal dialog
+openButton.addEventListener("click", () => {
+  dialog.showModal();
+});
+
+// Alert button triggers an alert
+alertButton.addEventListener("click", () => {
+  alert("you clicked me!");
+});
+
+// Close button closes the dialog box
+closeButton.addEventListener("click", () => {
+  dialog.close();
+});
+```
+
+#### Result
+
+{{EmbedLiveSample("Basic usage", '100%', "250px")}}
 
 ## Specifications
 
@@ -115,4 +92,5 @@ button.
 
 ## See also
 
-- The HTML element implementing this interface: {{ HTMLElement("dialog") }}.
+- HTML {{htmlelement("dialog")}} element
+- {{domxref("HTMLDialogElement.show()")}}

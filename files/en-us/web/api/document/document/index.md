@@ -1,15 +1,12 @@
 ---
-title: Document()
+title: "Document: Document() constructor"
+short-title: Document()
 slug: Web/API/Document/Document
-tags:
-  - API
-  - Constructor
-  - DOM
-  - Document
-  - Reference
+page-type: web-api-constructor
 browser-compat: api.Document.Document
 ---
-{{APIRef}}
+
+{{APIRef("DOM")}}
 
 The **`Document`** constructor creates a new
 {{domxref("Document")}} object that is a web page loaded in the browser and serving as
@@ -17,9 +14,13 @@ an entry point into the page's content.
 
 ## Syntax
 
-```js
-new Document();
+```js-nolint
+new Document()
 ```
+
+### Parameters
+
+None.
 
 ## Specifications
 

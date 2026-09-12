@@ -1,39 +1,37 @@
 ---
 title: TextDecoderStream
 slug: Web/API/TextDecoderStream
-tags:
-  - API
-  - Interface
-  - Reference
-  - TextDecoderStream
+page-type: web-api-interface
 browser-compat: api.TextDecoderStream
 ---
-{{APIRef("Encoding API")}}
 
-The **`TextDecoderStream`** interface of the {{domxref('Encoding API','','',' ')}} converts a stream of strings into bytes in the UTF-8 encoding. It is the streaming equivalent of {{domxref("TextDecoder")}}.
+{{APIRef("Encoding API")}}{{AvailableInWorkers}}
+
+The **`TextDecoderStream`** interface of the {{domxref('Encoding API','','',' ')}} converts a stream of text in a binary encoding, such as UTF-8 etc., to a stream of strings.
+It is the streaming equivalent of {{domxref("TextDecoder")}}.
+It implements the same shape as a {{domxref("TransformStream")}}, allowing it to be used in {{domxref("ReadableStream.pipeThrough()")}} and similar methods.
 
 ## Constructor
 
-- {{domxref("TextDecoderStream.TextDecoderStream()")}}
+- {{domxref("TextDecoderStream.TextDecoderStream","TextDecoderStream()")}}
   - : Creates a new `TextDecoderStream` object.
 
-## Properties
+## Instance properties
 
-- {{DOMxRef("TextDecoderStream.encoding")}}{{ReadOnlyInline}}
+- {{DOMxRef("TextDecoderStream.encoding")}} {{ReadOnlyInline}}
   - : An encoding.
-- {{DOMxRef("TextDecoderStream.fatal")}}{{ReadOnlyInline}}
-  - : A {{jsxref("boolean")}} indicating if the error mode is fatal.
-- {{DOMxRef("TextDecoderStream.ignoreBOM")}}{{ReadOnlyInline}}
-  - : A {{jsxref("boolean")}} indicating whether the byte order mark is ignored.
-- {{DOMxRef("TextDecoderStream.readable")}}{{ReadOnlyInline}}
+- {{DOMxRef("TextDecoderStream.fatal")}} {{ReadOnlyInline}}
+  - : A {{jsxref("Boolean")}} indicating if the error mode is fatal.
+- {{DOMxRef("TextDecoderStream.ignoreBOM")}} {{ReadOnlyInline}}
+  - : A {{jsxref("Boolean")}} indicating whether the byte order mark is ignored.
+- {{DOMxRef("TextDecoderStream.readable")}} {{ReadOnlyInline}}
   - : Returns the {{domxref("ReadableStream")}} instance controlled by this object.
-- {{DOMxRef("TextDecoderStream.writable")}}{{ReadOnlyInline}}
+- {{DOMxRef("TextDecoderStream.writable")}} {{ReadOnlyInline}}
   - : Returns the {{domxref("WritableStream")}} instance controlled by this object.
 
 ## Examples
 
-- [Examples of streaming structured data and HTML](https://streams.spec.whatwg.org/demos/)
-- [An example of fetch request streams which uses `TextDecoderStream`](https://glitch.com/~fetch-request-stream).
+[Examples of streaming structured data and HTML](https://streams.spec.whatwg.org/demos/)
 
 ## Specifications
 
@@ -46,5 +44,8 @@ The **`TextDecoderStream`** interface of the {{domxref('Encoding API','','',' ')
 ## See also
 
 - {{domxref("TextEncoderStream")}}
+- {{domxref("TextDecoder")}}
+- {{domxref("TransformStream")}}
 - [Streams API Concepts](/en-US/docs/Web/API/Streams_API/Concepts)
 - [Experimenting with the Streams API](https://deanhume.com/experimenting-with-the-streams-api/)
+- [Streaming requests with the fetch API](https://developer.chrome.com/docs/capabilities/web-apis/fetch-streaming-requests), developer.chrome.com (2020)

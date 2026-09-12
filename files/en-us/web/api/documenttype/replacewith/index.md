@@ -1,28 +1,31 @@
 ---
-title: DocumentType.replaceWith()
+title: "DocumentType: replaceWith() method"
+short-title: replaceWith()
 slug: Web/API/DocumentType/replaceWith
-tags:
-  - API
-  - DOM
-  - Method
-  - DocumentType
-  - Reference
+page-type: web-api-instance-method
 browser-compat: api.DocumentType.replaceWith
 ---
+
 {{APIRef("DOM")}}
 
 The **`DocumentType.replaceWith()`** method replaces the document type with a set of given nodes.
 
 ## Syntax
 
-```js
-replaceWith(...nodes)
+```js-nolint
+replaceWith(node1)
+replaceWith(node1, node2)
+replaceWith(node1, node2, /* …, */ nodeN)
 ```
 
 ### Parameters
 
-- `nodes`
+- `node1`, …, `nodeN`
   - : A set of nodes to replace the {{domxref("DocumentType")}} with.
+
+### Return value
+
+None ({{jsxref("undefined")}}).
 
 ### Exceptions
 
@@ -34,13 +37,13 @@ replaceWith(...nodes)
 ### Using `replaceWith()`
 
 ```js
-let svg_dt = document.implementation.createDocumentType(
-  'svg:svg',
-  '-//W3C//DTD SVG 1.1//EN',
-  'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'
+let svgDt = document.implementation.createDocumentType(
+  "svg:svg",
+  "-//W3C//DTD SVG 1.1//EN",
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd",
 );
 
-document.doctype.replaceWith(svg_dt);
+document.doctype.replaceWith(svgDt);
 ```
 
 ## Specifications
@@ -53,4 +56,6 @@ document.doctype.replaceWith(svg_dt);
 
 ## See also
 
+- {{domxref("CharacterData.replaceWith()")}}
 - {{domxref("Element.replaceWith()")}}
+- {{domxref("CharacterData.replaceWith()")}}

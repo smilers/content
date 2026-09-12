@@ -1,19 +1,15 @@
 ---
-title: IDBObjectStore.getAllKeys()
+title: "IDBObjectStore: getAllKeys() method"
+short-title: getAllKeys()
 slug: Web/API/IDBObjectStore/getAllKeys
-tags:
-  - API
-  - IDBObjectStore
-  - IndexedDB
-  - Method
-  - Reference
-  - Storage
+page-type: web-api-instance-method
 browser-compat: api.IDBObjectStore.getAllKeys
 ---
+
 {{ APIRef("IndexedDB") }}
 
 The `getAllKeys()` method of the {{domxref("IDBObjectStore")}}
-interface returns an {{domxref("IDBRequest")}} object retrieves record keys for all
+interface returns an {{domxref("IDBRequest")}} object retrieves record keys for all
 objects in the object store matching the specified parameter or all objects in the
 store if no parameters are given.
 
@@ -31,35 +27,62 @@ method provides a cursor if the record exists, and no cursor if it does not.
 
 ## Syntax
 
-```js
-var request = objectStore.getAllKeys();
-var request = objectStore.getAllKeys(query);
-var request = objectStore.getAllKeys(query, count);
+```js-nolint
+getAllKeys()
+getAllKeys(query)
+getAllKeys(query, count)
+getAllKeys(options)
 ```
 
 ### Parameters
 
-- *query* {{optional_inline}}
-  - : A value that is or resolves to an {{domxref("IDBKeyRange")}}.
-- *count* {{optional_inline}}
+The `getAllKeys()` method can take separate parameters or a single options object containing the parameters as properties.
+
+The parameters can include:
+
+- `query` {{optional_inline}}
+  - : A value that is or resolves to an {{domxref("IDBKeyRange")}}. If this value is not specified, this will
+    default to a key range that selects all the records in this object store.
+- `count` {{optional_inline}}
   - : Specifies the number of values to return if more than one is found. If it is lower
     than `0` or greater than `2^32 - 1` a
     {{jsxref("TypeError")}} exception will be thrown.
 
+If an object parameter is specified, its properties can include:
+
+- `query` {{optional_inline}}
+  - : See the earlier [`query`](#query) definition.
+- `count` {{optional_inline}}
+  - : See the earlier [`count`](#count) definition.
+- `direction` {{optional_inline}}
+  - : An enumerated value specifying the direction in which the objects are traversed. Possible values are:
+    - `next`
+      - : The objects are traversed from the beginning, in increasing key order. This is the default value.
+    - `nextunique`
+      - : The objects are traversed from the beginning, in increasing key order. This will yield the same keys as `next`, because duplicate keys are not allowed in `IDBObjectStore`s.
+    - `prev`
+      - : The objects are traversed from the end, in decreasing key order.
+    - `prevunique`
+      - : The objects are traversed from the end, in decreasing key order. This will yield the same keys as `prev`, because duplicate keys are not allowed in `IDBObjectStore`s.
+
 ### Return value
 
-An {{domxref("IDBRequest")}} object on which subsequent events related to this
-operation are fired.
+An {{domxref("IDBRequest")}} object on which subsequent events related to this operation are fired.
+
+If the operation is successful, the value of the request's {{domxref("IDBRequest.result", "result")}} property is an {{jsxref("Array")}} of the keys for all records matching the given query, up to the value of `count`, if `count` was supplied.
 
 ### Exceptions
 
 This method may raise a {{domxref("DOMException")}} of one of the following types:
 
-| Exception                  | Description                                                                 |
-| -------------------------- | --------------------------------------------------------------------------- |
-| `TransactionInactiveError` | This {{domxref("IDBObjectStore")}}'s transaction is inactive.    |
-| `DataError`                | The key or key range provided contains an invalid key or is null.           |
-| `InvalidStateError`        | The {{domxref("IDBObjectStore")}} has been deleted or removed.   |
+- `TransactionInactiveError` {{domxref("DOMException")}}
+  - : Thrown if this {{domxref("IDBObjectStore")}}'s transaction is inactive.
+- `DataError` {{domxref("DOMException")}}
+  - : Thrown if the key or key range provided contains an invalid key or is null.
+- `InvalidStateError` {{domxref("DOMException")}}
+  - : Thrown if the {{domxref("IDBObjectStore")}} has been deleted or removed.
+- {{jsxref("TypeError")}} {{domxref("DOMException")}}
+  - : Thrown if the [`count`](#count) parameter is not between `0` and `2^32 - 1`, inclusive.
 
 ## Specifications
 
@@ -77,5 +100,4 @@ This method may raise a {{domxref("DOMException")}} of one of the following type
 - Setting a range of keys: {{domxref("IDBKeyRange")}}
 - Retrieving and making changes to your data: {{domxref("IDBObjectStore")}}
 - Using cursors: {{domxref("IDBCursor")}}
-- Reference example: [To-do
-  Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
+- Reference example: [To-do Notifications](https://github.com/mdn/dom-examples/tree/main/to-do-notifications) ([View the example live](https://mdn.github.io/dom-examples/to-do-notifications/)).

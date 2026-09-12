@@ -1,43 +1,62 @@
 ---
 title: SVGAElement
 slug: Web/API/SVGAElement
-tags:
-  - API
-  - Reference
-  - SVG
-  - SVGAElement
+page-type: web-api-interface
 browser-compat: api.SVGAElement
 ---
+
 {{APIRef("SVG")}}
 
-The **`SVGAElement`** interface provides access to the properties of {{SVGElement("a")}} element, as well as methods to manipulate them.
+The **`SVGAElement`** interface provides access to the properties of an {{SVGElement("a")}} element, as well as methods to manipulate them.
 
-## Properties
+{{InheritanceDiagram}}
 
-_This interface also inherits properties from its parent, {{domxref("SVGGraphicsElement")}}, and implements properties from {{domxref("HTMLHyperlinkElementUtils")}}._
+## Instance properties
+
+_This interface also inherits properties from its parent, {{domxref("SVGGraphicsElement")}}._
 
 - {{domxref("SVGAElement.download")}}
-  - : See {{domxref("HTMLAnchorElement.download")}}.
+  - : A string indicating that the linked resource is intended to be downloaded rather than displayed in the browser.
+- {{domxref("SVGAElement.hash")}} {{experimental_inline}}
+  - : A string representing the fragment identifier, including the leading hash mark (`#`), if any, in the referenced URL.
+- {{domxref("SVGAElement.host")}} {{experimental_inline}}
+  - : A string representing the hostname and port (if it's not the default port) in the referenced URL.
+- {{domxref("SVGAElement.hostname")}} {{experimental_inline}}
+  - : A string representing the hostname in the referenced URL.
 - {{domxref("SVGAElement.href")}} {{ReadOnlyInline}}
-  - : Is an {{domxref("SVGAnimatedString")}} that reflects the {{SVGAttr("href")}} or {{SVGAttr("xlink:href")}} attribute.
+  - : An {{domxref("SVGAnimatedString")}} that reflects the {{SVGAttr("href")}} or {{SVGAttr("xlink:href")}} {{deprecated_inline}} attribute.
 - {{domxref("SVGAElement.hreflang")}}
-  - : Is a {{domxref("DOMString")}} that reflects the `hreflang` attribute, indicating the language of the linked resource.
+  - : A string indicating the language of the linked resource.
+- {{domxref("SVGAElement.interestForElement")}} {{experimental_inline}} {{non-standard_inline}}
+  - : Gets or sets the target element of an [interest invoker](/en-US/docs/Web/API/Popover_API/Using_interest_invokers#creating_an_interest_invoker), in cases where the associated {{svgelement("a")}} element is specified as an interest invoker.
+- {{domxref("SVGAElement.origin")}} {{ReadOnlyInline}} {{experimental_inline}}
+  - : Returns a string containing the origin of the URL — that is, its scheme, its domain and its port.
+- {{domxref("SVGAElement.pathname")}} {{experimental_inline}}
+  - : A string containing an initial `/` followed by the path of the URL, not including the query string or fragment.
+- {{domxref("SVGAElement.password")}} {{experimental_inline}}
+  - : A string containing the password specified before the domain name.
 - {{domxref("SVGAElement.ping")}}
-  - : Is a {{domxref("DOMString")}} that reflects the ping attribute, containing a space-separated list of URLs to which, when the hyperlink is followed, {{HTTPMethod("POST")}} requests with the body `PING` will be sent by the browser (in the background). Typically used for tracking.
+  - : A string that reflects the `ping` attribute, containing a space-separated list of URLs to which, when the hyperlink is followed, {{HTTPMethod("POST")}} requests with the body `PING` will be sent by the browser (in the background). Typically used for tracking.
+- {{domxref("SVGAElement.port")}} {{experimental_inline}}
+  - : A string representing the port component, if any, of the referenced URL.
+- {{domxref("SVGAElement.protocol")}} {{experimental_inline}}
+  - : A string representing the protocol component, including trailing colon (`:`), of the referenced URL.
 - {{domxref("SVGAElement.referrerPolicy")}}
-  - : See {{domxref("HTMLAnchorElement.referrerPolicy")}}.
+  - : A string specifying which [referrer](/en-US/docs/Web/HTTP/Reference/Headers/Referer) to send when fetching the [URL](/en-US/docs/Glossary/URL).
 - {{domxref("SVGAElement.rel")}}
-  - : See {{domxref("HTMLAnchorElement.rel")}}.
+  - : A string reflecting the `rel` SVG attribute, specifying the relationship of the link's target.
 - {{domxref("SVGAElement.relList")}}
-  - : See {{domxref("HTMLAnchorElement.relList")}}.
-- {{domxref("SVGAElement.target")}} {{readonlyInline}}
+  - : A {{domxref("DOMTokenList")}} reflecting the `rel` SVG attribute, as a list of tokens.
+- {{domxref("SVGAElement.search")}} {{experimental_inline}}
+  - : A string representing the URL's query string, if any, including the leading question mark (`?`).
+- {{domxref("SVGAElement.target")}} {{ReadOnlyInline}}
   - : It corresponds to the {{SVGAttr("target")}} attribute of the given element.
-- {{domxref("SVGAElement.text")}}
-  - : Is a {{domxref("DOMString")}} being a synonym for the {{domxref("Node.textContent")}} property.
 - {{domxref("SVGAElement.type")}}
-  - : Is a {{domxref("DOMString")}} that reflects the `type` attribute, indicating the MIME type of the linked resource.
+  - : A string that reflects the `type` attribute, indicating the MIME type of the linked resource.
+- {{domxref("SVGAElement.username")}} {{experimental_inline}}
+  - : A string containing the username specified before the domain name.
 
-## Methods
+## Instance methods
 
 _This interface has no methods but inherits methods from its parent, {{domxref("SVGGraphicsElement")}}._
 
@@ -46,17 +65,17 @@ _This interface has no methods but inherits methods from its parent, {{domxref("
 In the example below, the {{SVGAttr("target")}} attribute of the {{SVGElement("a")}} element is set to `_blank` and when the link is clicked, it logs to notify whether the condition is met or not.
 
 ```js
-var linkRef = document.querySelector("a");
+const linkRef = document.querySelector("a");
 linkRef.target = "_self";
 
-linkRef.onclick = function(){
+linkRef.onclick = () => {
   if (linkRef.target === "_blank") {
     console.log("BLANK!");
     linkRef.target = "_self";
   } else {
     console.log("SORRY! not _blank");
   }
-}
+};
 ```
 
 ## Specifications

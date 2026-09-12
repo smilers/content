@@ -1,60 +1,46 @@
 ---
-title: KeyboardEvent.altKey
+title: "KeyboardEvent: altKey property"
+short-title: altKey
 slug: Web/API/KeyboardEvent/altKey
-tags:
-  - API
-  - DOM
-  - KeyboardEvent
-  - Property
-  - Read-only
-  - Reference
+page-type: web-api-instance-property
 browser-compat: api.KeyboardEvent.altKey
 ---
-{{APIRef("DOM Events")}}
+
+{{APIRef("UI Events")}}
 
 The **`KeyboardEvent.altKey`** read-only property is a
-boolean value that indicates if the <kbd>alt</kbd> key (<kbd>Option</kbd> or <kbd>⌥</kbd> on OS X) was pressed (`true`) or not (`false`) when
+boolean value that indicates if the <kbd>alt</kbd> key (<kbd>Option</kbd> or <kbd>⌥</kbd> on macOS) was pressed (`true`) or not (`false`) when
 the event occurred.
 
-## Syntax
+When the <kbd>Alt</kbd> key itself is pressed or released, this property is `true` for its {{domxref("Element/keydown_event", "keydown")}} event and `false` for its {{domxref("Element/keyup_event", "keyup")}} event, because both events fire _after_ the state change.
 
-```js
-var altKeyPressed = instanceOfKeyboardEvent.altKey
-```
+## Value
 
-### Return value
-
-A boolean value
+A boolean value.
 
 ## Examples
 
+```html
+<p>
+  Press any character key, with or without holding down the ALT key.<br />
+  You can also use the SHIFT key together with the ALT key.
+</p>
+<pre id="output"></pre>
+```
+
 ```js
-<html>
-<head>
-<title>altKey example</title>
+const output = document.getElementById("output");
 
-<script type="text/javascript">
-
-function showChar(e){
-  alert(
-    "Key KeyDown: " + String.fromCharCode(e.charCode) + "\n"
-    + "charCode: " + e.charCode + "\n"
-    + "ALT key KeyDown: " + e.altKey + "\n"
-  );
+function showChar(e) {
+  output.textContent = `Key KeyDown: "${e.key}"
+ALT key KeyDown: ${e.altKey}
+`;
 }
 
-</script>
-</head>
-
-<body onkeydown="showChar(event);">
-<p>
-Press any character key,
-with or without holding down the ALT key.<br />
-You can also use the SHIFT key together with the ALT key.
-</p>
-</body>
-</html>
+document.addEventListener("keydown", showChar);
 ```
+
+{{EmbedLiveSample("examples", "", "400")}}
 
 ## Specifications
 

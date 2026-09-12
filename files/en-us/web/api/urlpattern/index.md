@@ -1,61 +1,52 @@
 ---
 title: URLPattern
 slug: Web/API/URLPattern
-tags:
-  - API
-  - Interface
-  - Reference
-  - URLPattern
-  - URL Pattern API
-  - Web
-  - Polyfill
-  - Experimental
+page-type: web-api-interface
 browser-compat: api.URLPattern
 ---
 
-{{APIRef("URL Pattern API")}}
+{{APIRef("URL Pattern API")}} {{AvailableInWorkers}}
 
-The **`URLPattern`** interface matches URLs or parts of URLs against a pattern.
-The pattern can contain capturing groups that extract parts of the matched URL.
+The **`URLPattern`** interface of the {{domxref("URL Pattern API", "", "", "nocode")}} matches URLs or parts of URLs against a pattern. The pattern can contain capturing groups that extract parts of the matched URL.
 
 More information about the syntax of patterns can be found on the API overview
-page: [URL Pattern API](/en-US/docs/Web/API/URL_Pattern_API)
-
-{{AvailableInWorkers}}
+page: {{domxref("URL Pattern API", "", "", "nocode")}}.
 
 ## Constructor
 
 - {{domxref("URLPattern.URLPattern", "URLPattern()")}}
   - : Returns a new `URLPattern` object based on the given pattern and base URL.
 
-## Properties
+## Instance properties
 
-- {{domxref("URLPattern.hash", "hash")}}
-  - : A {{domxref("USVString")}} containing a pattern to match the _hash_ part
+- {{domxref("URLPattern.hash", "hash")}} {{ReadOnlyInline}}
+  - : A string containing a pattern to match the _hash_ part
     of a URL.
-- {{domxref("URLPattern.hostname", "hostname")}}
-  - : A {{domxref("USVString")}} containing a pattern to match the _hostname_
+- {{domxref("URLPattern.hasRegExpGroups", "hasRegExpGroups")}} {{ReadOnlyInline}}
+  - : A boolean indicating whether or not any of the `URLPattern` components contain [regular expression capturing groups](/en-US/docs/Web/JavaScript/Guide/Regular_expressions/Groups_and_backreferences).
+- {{domxref("URLPattern.hostname", "hostname")}} {{ReadOnlyInline}}
+  - : A string containing a pattern to match the _hostname_
     part of a URL.
-- {{domxref("URLPattern.password", "password")}}
-  - : A {{domxref("USVString")}} containing a pattern to match the _password_
+- {{domxref("URLPattern.password", "password")}} {{ReadOnlyInline}}
+  - : A string containing a pattern to match the _password_
     part of a URL.
-- {{domxref("URLPattern.pathname", "pathname")}}
-  - : A {{domxref("USVString")}} containing a pattern to match the _pathname_
+- {{domxref("URLPattern.pathname", "pathname")}} {{ReadOnlyInline}}
+  - : A string containing a pattern to match the _pathname_
     part of a URL.
-- {{domxref("URLPattern.port", "port")}}
-  - : A {{domxref("USVString")}} containing a pattern to match the _port_ part
+- {{domxref("URLPattern.port", "port")}} {{ReadOnlyInline}}
+  - : A string containing a pattern to match the _port_ part
     of a URL.
-- {{domxref("URLPattern.protocol", "protocol")}}
-  - : A {{domxref("USVString")}} containing a pattern to match the _protocol_
+- {{domxref("URLPattern.protocol", "protocol")}} {{ReadOnlyInline}}
+  - : A string containing a pattern to match the _protocol_
     part of a URL.
-- {{domxref("URLPattern.search", "search")}}
-  - : A {{domxref("USVString")}} containing a pattern to match the _search_ part
+- {{domxref("URLPattern.search", "search")}} {{ReadOnlyInline}}
+  - : A string containing a pattern to match the _search_ part
     of a URL.
-- {{domxref("URLPattern.username","username")}}
-  - : A {{domxref("USVString")}} containing a pattern to match the _username_
+- {{domxref("URLPattern.username","username")}} {{ReadOnlyInline}}
+  - : A string containing a pattern to match the _username_
     part of a URL.
 
-## Methods
+## Instance methods
 
 - {{domxref("URLPattern.exec", "exec()")}}
   - : Returns an object with the matched parts of the URL or `null` if the URL

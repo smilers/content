@@ -1,70 +1,57 @@
 ---
-title: DataTransferItem.getAsFile()
+title: "DataTransferItem: getAsFile() method"
+short-title: getAsFile()
 slug: Web/API/DataTransferItem/getAsFile
-tags:
-  - API
-  - DataTransferItem
-  - HTML DOM
-  - HTML Drag and Drop API
-  - Method
-  - Reference
-  - drag and drop
+page-type: web-api-instance-method
 browser-compat: api.DataTransferItem.getAsFile
 ---
+
 {{APIRef("HTML Drag and Drop API")}}
 
-If the item is a file, the **`DataTransferItem.getAsFile()`**
-method returns the drag data item's {{domxref("File")}} object. If the item is not a
-file, this method returns `null`.
+The **`getAsFile()`** method of the {{domxref("DataTransferItem")}} interface returns the drag data item's {{domxref("File")}} object if the item is a file. If the item is not a file, this method returns `null`.
+
+During a drag operation, this method can only read data in the handlers for the {{domxref("HTMLElement/dragstart_event", "dragstart")}} and {{domxref("HTMLElement/drop_event", "drop")}} events, because those are the only times the drag data store is readable. Calling it from any other drag event returns `null`. See [Reading the drag data store](/en-US/docs/Web/API/HTML_Drag_and_Drop_API/Drag_data_store#reading_the_drag_data_store) for details.
 
 ## Syntax
 
-```js
-File = DataTransferItem.getAsFile();
+```js-nolint
+getAsFile()
 ```
 
 ### Parameters
 
-_None._
+None.
 
 ### Return value
 
-- {{domxref("File")}}
-  - : If the drag data item is a file, a {{domxref("File")}} object is returned; otherwise
-    `null` is returned.
+If the drag data item is a file, a {{domxref("File")}} object is returned; otherwise `null` is returned.
 
-## Example
+## Examples
 
-This example shows the use of the `getAsFile()` method in a
-{{event("drop")}} event handler.
+This example shows the use of the `getAsFile()` method in a {{domxref("HTMLElement/drop_event", "drop")}} event handler.
 
 ```js
-function drop_handler(ev) {
- console.log("Drop");
- ev.preventDefault();
- var data = event.dataTransfer.items;
- for (var i = 0; i < data.length; i += 1) {
-   if ((data[i].kind == 'string') &&
-       (data[i].type.match('^text/plain'))) {
-     // This item is the target node
-     data[i].getAsString(function (s){
-       ev.target.appendChild(document.getElementById(s));
-     });
-   } else if ((data[i].kind == 'string') &&
-              (data[i].type.match('^text/html'))) {
-     // Drag data item is HTML
-     console.log("... Drop: HTML");
-   } else if ((data[i].kind == 'string') &&
-              (data[i].type.match('^text/uri-list'))) {
-     // Drag data item is URI
-     console.log("... Drop: URI");
-   } else if ((data[i].kind == 'file') &&
-              (data[i].type.match('^image/'))) {
-     // Drag data item is an image file
-     var f = data[i].getAsFile();
-     console.log("... Drop: File ");
-   }
- }
+function dropHandler(ev) {
+  console.log("Drop");
+  ev.preventDefault();
+  for (const item of ev.dataTransfer.items) {
+    if (item.kind === "string" && item.type === "text/plain") {
+      // This item is the target node
+      item.getAsString((s) => {
+        ev.target.appendChild(document.getElementById(s));
+      });
+    } else if (item.kind === "string" && item.type === "text/html") {
+      // Drag data item is HTML
+      console.log("… Drop: HTML");
+    } else if (item.kind === "string" && item.type === "text/uri-list") {
+      // Drag data item is URI
+      console.log("… Drop: URI");
+    } else if (item.kind === "file" && item.type.startsWith("image/")) {
+      // Drag data item is an image file
+      const f = item.getAsFile();
+      console.log("… Drop: File");
+    }
+  }
 }
 ```
 

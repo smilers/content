@@ -1,36 +1,22 @@
 ---
-title: CSSScale.z
+title: "CSSScale: z property"
+short-title: z
 slug: Web/API/CSSScale/z
-tags:
-  - API
-  - CSS Typed Object Model API
-  - CSSScale
-  - CSSTransformComponent
-  - CSSTransformValue
-  - Experimental
-  - Houdini
-  - Property
+page-type: web-api-instance-property
 browser-compat: api.CSSScale.z
 ---
-{{APIRef("CSS Typed OM")}}{{SeeCompatTable}}{{draft}}
 
-The **`z`** property of the
-{{domxref("CSSScale")}} interface representing the z-component of the translating
-vector. A positive value moves the element towards the viewer, and a negative value
-farther away.
+{{APIRef("CSS Typed Object Model API")}} {{AvailableInWorkers}}
 
-If this value is present then the transform is a 3D transform and the `is2D`
-property will be set to false.
+The **`z`** property of the {{domxref("CSSScale")}} interface represents the z-component of the translating vector.
+A positive value moves the element towards the viewer, and a negative value farther away.
 
-## Syntax
+If this value is present, then the transform is a 3D transform and the `is2D` property will be set to false.
 
-```js
-var scaleZ = CSSScale.z;
-```
+## Value
 
-### Value
-
-A double integer or a {{domxref("CSSNumericValue")}}
+A {{domxref("CSSNumericValue")}}.
+Can be set to a number, which is wrapped in a {{domxref("CSSUnitValue")}} of `unit: "number"`.
 
 ## Examples
 

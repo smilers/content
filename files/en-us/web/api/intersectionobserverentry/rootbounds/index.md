@@ -1,40 +1,22 @@
 ---
-title: IntersectionObserverEntry.rootBounds
+title: "IntersectionObserverEntry: rootBounds property"
+short-title: rootBounds
 slug: Web/API/IntersectionObserverEntry/rootBounds
-tags:
-  - API
-  - Experimental
-  - Intersection Observer
-  - Intersection Observer API
-  - IntersectionObserverEntry
-  - Property
-  - Reference
-  - rootBounds
+page-type: web-api-instance-property
 browser-compat: api.IntersectionObserverEntry.rootBounds
 ---
-{{APIRef("Intersection Observer API")}}{{SeeCompatTable}}
 
-The {{domxref("IntersectionObserverEntry")}} interface's
-read-only **`rootBounds`** property is a
-{{domxref("DOMRectReadOnly")}} corresponding to the
-{{domxref("IntersectionObserverEntry.target", "target")}}'s root intersection
-rectangle, offset by the {{domxref("IntersectionObserver.rootMargin")}} if one is
-specified.
+{{APIRef("Intersection Observer API")}}
 
-## Syntax
+The **`rootBounds`** read-only property of the {{domxref("IntersectionObserverEntry")}} interface is a {{domxref("DOMRectReadOnly")}} corresponding to the {{domxref("IntersectionObserverEntry.target", "target")}}'s root intersection rectangle, offset by the {{domxref("IntersectionObserver.rootMargin")}} if one is specified.
 
-```js
-var rootBounds = IntersectionObserverEntry.rootBounds;
-```
+## Value
 
-### Value
+A {{domxref("DOMRectReadOnly")}} which describes the root intersection rectangle.
+For roots which are the {{domxref("Document")}}'s viewport, this rectangle is the bounds rectangle of the entire document.
+Otherwise, it's the bounds of the root element.
 
-A {{domxref("DOMRectReadOnly")}} which describes the root intersection rectangle. For
-roots which are the {{domxref("Document")}}'s viewport, this rectangle is the bounds
-rectangle of the entire document. Otherwise, it's the bounds of the root element.
-
-This rectangle is offset by the values in
-{{domxref("IntersectionObserver.rootMargin")}}.
+This rectangle is offset by the values in {{domxref("IntersectionObserver.rootMargin")}}.
 
 ## Specifications
 

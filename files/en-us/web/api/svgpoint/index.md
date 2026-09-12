@@ -1,38 +1,19 @@
 ---
 title: SVGPoint
 slug: Web/API/SVGPoint
-tags:
-  - API
-  - DOM
-  - NeedsContent
-  - SVG
+page-type: web-api-interface
+status:
+  - deprecated
 browser-compat: api.SVGPoint
 ---
-{{APIRef("SVG")}}{{Deprecated_header}}
 
-An `SVGPoint` represents a 2D or 3D point in the SVG coordinate system.
+{{APIRef("SVG")}}
 
-## Syntax
+An **`SVGPoint`** represents a 2D or 3D point in the SVG coordinate system. It has been replaced in SVG 2 with {{domxref("DOMPoint")}} and {{domxref("DOMPointReadOnly")}}. All APIs that used to return an `SVGPoint`, including {{domxref("SVGSVGElement.createSVGPoint()")}}, now return a {{domxref("DOMPoint")}} instead.
 
-```js
-retObject = SVGSVGElement.createSVGPoint()
-```
+## Specifications
 
-### Value
-
-The returned value is an `SVGPoint` object.
-
-## Example
-
-```js
-// Create an SVGPoint in the user coordinate system
-let s = document.getElementById("SVG-ElementID").createSVGPoint();
-
-// Then, set the x and y values of the returned SVGPoint object
-// (which is the variable `s`)
-s.y = 10;
-s.x = 10;
-```
+{{Specifications}}
 
 ## Browser compatibility
 

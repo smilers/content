@@ -1,29 +1,19 @@
 ---
-title: CSSUnparsedValue.values()
+title: "CSSUnparsedValue: values() method"
+short-title: values()
 slug: Web/API/CSSUnparsedValue/values
-tags:
-  - API
-  - CSS Typed Object Model API
-  - CSSUnparsedValue
-  - Constructor
-  - Experimental
-  - Houdini
-  - Method
-  - NeedsExample
-  - Reference
-  - values()
+page-type: web-api-instance-method
 browser-compat: api.CSSUnparsedValue.values
 ---
-{{draft}}{{APIRef("CSS Typed OM")}}{{SeeCompatTable}}
 
-The **`CSSUnparsedValue.values()`** method
-returns a new _array iterator_ object that contains the
-values for each index in the CSSUnparsedValue object.
+{{APIRef("CSS Typed Object Model API")}} {{AvailableInWorkers}}
+
+The **`values()`** method of the {{domxref("CSSUnparsedValue")}} interface returns a new _array iterator_ that yields each item in the object.
 
 ## Syntax
 
-```js
-CSSUnparsedValue.values()
+```js-nolint
+values()
 ```
 
 ### Parameters
@@ -32,7 +22,22 @@ None.
 
 ### Return value
 
-A new {{jsxref("Array")}}.
+A new [iterable iterator object](/en-US/docs/Web/JavaScript/Reference/Global_Objects/Iterator).
+
+## Examples
+
+### Iterating over values
+
+```js
+const value = new CSSUnparsedValue(["1em", "#445566", "-45px"]);
+
+for (const fragment of value.values()) {
+  console.log(fragment);
+}
+// "1em"
+// "#445566"
+// "-45px"
+```
 
 ## Specifications
 
@@ -44,10 +49,10 @@ A new {{jsxref("Array")}}.
 
 ## See also
 
-- {{domxref("CSSUnparsedValue.CSSUnparsedValue()")}}
-- {{domxref("CSSUnparsedValue.entries")}}
-- {{domxref("CSSUnparsedValue.forEach")}}
-- {{domxref("CSSUnparsedValue.keys")}}
+- {{domxref("CSSUnparsedValue.CSSUnparsedValue", "CSSUnparsedValue()")}}
+- {{domxref("CSSUnparsedValue.entries()")}}
+- {{domxref("CSSUnparsedValue.forEach()")}}
+- {{domxref("CSSUnparsedValue.keys()")}}
 - {{domxref("CSSUnparsedValue.length")}}
 - [Using the CSS Typed OM](/en-US/docs/Web/API/CSS_Typed_OM_API/Guide)
 - [CSS Typed Object Model API](/en-US/docs/Web/API/CSS_Typed_OM_API)

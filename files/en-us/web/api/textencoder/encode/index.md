@@ -1,53 +1,46 @@
 ---
-title: TextEncoder.prototype.encode()
+title: "TextEncoder: encode() method"
+short-title: encode()
 slug: Web/API/TextEncoder/encode
-tags:
-  - API
-  - Encoding
-  - Method
-  - Reference
-  - TextEncoder
-  - encode
+page-type: web-api-instance-method
 browser-compat: api.TextEncoder.encode
 ---
-{{APIRef("Encoding API")}}
 
-The **`TextEncoder.prototype.encode()`** method takes a
-{{domxref("USVString")}} as input, and returns a {{jsxref("Global_Objects/Uint8Array",
-  "Uint8Array")}} containing the text given in parameters encoded with the specific method
-for that `TextEncoder` object.
+{{APIRef("Encoding API")}}{{AvailableInWorkers}}
+
+The **`TextEncoder.encode()`** method takes a string as input, and returns a {{jsxref("Global_Objects/Uint8Array", "Uint8Array")}} containing the string {{glossary("character encoding", "encoded")}} using {{glossary("UTF-8")}}.
 
 ## Syntax
 
-```js
-b1 = encoder.encode(string);
+```js-nolint
+encode(string)
 ```
 
 ### Parameters
 
 - `string`
-  - : Is a {{DOMxRef("USVString")}} containing the text to encode.
+  - : A string containing the text to encode.
 
 ### Return value
 
-A {{jsxref("Uint8Array")}} object.
+A {{jsxref("Uint8Array")}} object containing the UTF-8 encoding of the input string.
 
 ## Examples
 
 ```html
-<p class="source">This is a sample paragraph.</p>
-<p class="result">Encoded result: </p>
+<p class="source">Sample paragraph.</p>
+<p class="result">Encoded result:</p>
 ```
 
 ```js
-const sourcePara = document.querySelector('.source');
-const resultPara = document.querySelector('.result');
+const sourcePara = document.querySelector(".source");
+const resultPara = document.querySelector(".result");
 const string = sourcePara.textContent;
 
 const textEncoder = new TextEncoder();
 
-let encoded = textEncoder.encode(string);
-resultPara.textContent += encoded;
+const encoded = textEncoder.encode(string);
+resultPara.textContent = `${resultPara.textContent} ${encoded}`;
 ```
 
 {{EmbedLiveSample('Examples')}}

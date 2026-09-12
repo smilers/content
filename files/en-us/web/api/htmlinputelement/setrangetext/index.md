@@ -1,16 +1,11 @@
 ---
-title: HTMLInputElement.setRangeText()
+title: "HTMLInputElement: setRangeText() method"
+short-title: setRangeText()
 slug: Web/API/HTMLInputElement/setRangeText
-tags:
-  - API
-  - HTML DOM
-  - HTMLInputElement
-  - Method
-  - NeedsCompatTable
-  - Reference
-  - Text Field Selection API
+page-type: web-api-instance-method
 browser-compat: api.HTMLInputElement.setRangeText
 ---
+
 {{APIRef("HTML DOM")}}
 
 The **`HTMLInputElement.setRangeText()`** method replaces a
@@ -19,9 +14,11 @@ a new string.
 
 ## Syntax
 
-```js
-element.setRangeText(replacement);
-element.setRangeText(replacement, start, end [, selectMode]);
+```js-nolint
+setRangeText(replacement)
+setRangeText(replacement, start)
+setRangeText(replacement, start, end)
+setRangeText(replacement, start, end, selectMode)
 ```
 
 ### Parameters
@@ -36,16 +33,18 @@ element.setRangeText(replacement, start, end [, selectMode]);
     Defaults to the current `selectionEnd` value (the end of the user's current
     selection).
 - `selectMode` {{optional_inline}}
-
   - : A string defining how the selection should be set after the text has been replaced.
     Possible values:
-
     - `"select"` selects the newly inserted text.
-    - `"start"`moves the selection to just before the inserted text.
+    - `"start"` moves the selection to just before the inserted text.
     - `"end"` moves the selection to just after the inserted text.
     - `"preserve"` attempts to preserve the selection. This is the default.
 
-## Example
+### Return value
+
+None ({{jsxref("undefined")}}).
+
+## Examples
 
 Click the button in this example to replace part of the text in the text box. The newly
 inserted text will be highlighted (selected) afterwards.
@@ -53,23 +52,29 @@ inserted text will be highlighted (selected) afterwards.
 ### HTML
 
 ```html
-<input type="text" id="text-box" size="30" value="This text has NOT been updated.">
-<button onclick="selectText()">Update text</button>
+<input
+  type="text"
+  id="text-box"
+  size="30"
+  value="This text has NOT been updated." />
+<button>Update text</button>
 ```
 
 ### JavaScript
 
 ```js
 function selectText() {
-  const input = document.getElementById('text-box');
+  const input = document.getElementById("text-box");
   input.focus();
-  input.setRangeText('ALREADY', 14, 17, 'select');
+  input.setRangeText("ALREADY", 14, 17, "select");
 }
+
+document.querySelector("button").addEventListener("click", selectText);
 ```
 
 ### Result
 
-{{EmbedLiveSample("Example")}}
+{{EmbedLiveSample("Examples")}}
 
 ## Specifications
 

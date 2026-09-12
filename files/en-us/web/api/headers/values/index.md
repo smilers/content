@@ -1,51 +1,55 @@
 ---
-title: Headers.values()
+title: "Headers: values() method"
+short-title: values()
 slug: Web/API/Headers/values
-tags:
-  - API
-  - Experimental
-  - Fetch API
-  - Headers
-  - Method
-  - Reference
+page-type: web-api-instance-method
 browser-compat: api.Headers.values
 ---
-{{APIRef}}
+
+{{APIRef("Fetch API")}} {{AvailableInWorkers}}
 
 The **`Headers.values()`** method returns an
-{{jsxref("Iteration_protocols",'iterator')}} allowing to go through all values contained
+{{jsxref("Iteration_protocols",'iterator')}} allowing you to go through all values contained
 in this object. The values are {{jsxref("String")}} objects.
-
-> **Note:** This method is available in [Web Workers](/en-US/docs/Web/API/Web_Workers_API).
 
 ## Syntax
 
-```js
-headers.values();
+```js-nolint
+values()
 ```
+
+### Parameters
+
+None.
 
 ### Return value
 
 Returns an {{jsxref("Iteration_protocols","iterator")}}.
 
-## Example
+## Examples
 
 ```js
 // Create a test Headers object
-var myHeaders = new Headers();
-myHeaders.append('Content-Type', 'text/xml');
-myHeaders.append('Vary', 'Accept-Language');
+const myHeaders = new Headers();
+myHeaders.append("Content-Type", "text/xml");
+myHeaders.append("Vary", "Accept-Language");
 
 // Display the values
-for (var value of myHeaders.values()) {
-   console.log(value);
+for (const value of myHeaders.values()) {
+  console.log(value);
 }
 ```
 
 The result is:
 
-    text/xml
-    Accept-Language
+```plain
+text/xml
+Accept-Language
+```
+
+## Specifications
+
+{{Specifications}}
 
 ## Browser compatibility
 
@@ -54,5 +58,5 @@ The result is:
 ## See also
 
 - [ServiceWorker API](/en-US/docs/Web/API/Service_Worker_API)
-- [HTTP access control (CORS)](/en-US/docs/Web/HTTP/CORS)
+- [HTTP access control (CORS)](/en-US/docs/Web/HTTP/Guides/CORS)
 - [HTTP](/en-US/docs/Web/HTTP)

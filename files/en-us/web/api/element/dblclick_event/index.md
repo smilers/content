@@ -1,50 +1,32 @@
 ---
-title: 'Element: dblclick event'
+title: "Element: dblclick event"
+short-title: dblclick
 slug: Web/API/Element/dblclick_event
-tags:
-  - API
-  - DOM
-  - Double Click
-  - Double-Click
-  - Element
-  - Event
-  - Input
-  - Interface
-  - MouseEvent
-  - Reference
-  - button
-  - dblclick
-  - mouse
+page-type: web-api-event
 browser-compat: api.Element.dblclick_event
 ---
-{{APIRef}}
+
+{{APIRef("UI Events")}}
 
 The **`dblclick`** event fires when a pointing device button (such as a mouse's primary button) is double-clicked; that is, when it's rapidly clicked twice on a single element within a very short span of time.
 
 `dblclick` fires after two {{domxref("Element/click_event", "click")}} events (and by extension, after two pairs of {{domxref("Element.mousedown_event", "mousedown")}} and {{domxref("Element.mouseup_event", "mouseup")}} events).
 
-<table class="properties">
-  <tbody>
-    <tr>
-      <th scope="row">Bubbles</th>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <th scope="row">Cancelable</th>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <th scope="row">Interface</th>
-      <td>{{domxref("MouseEvent")}}</td>
-    </tr>
-    <tr>
-      <th scope="row">Event handler property</th>
-      <td>
-        {{domxref("GlobalEventHandlers.ondblclick", "ondblclick")}}
-      </td>
-    </tr>
-  </tbody>
-</table>
+## Syntax
+
+Use the event name in methods like {{domxref("EventTarget.addEventListener", "addEventListener()")}}, or set an event handler property.
+
+```js-nolint
+addEventListener("dblclick", (event) => { })
+
+ondblclick = (event) => { }
+```
+
+## Event type
+
+A {{domxref("MouseEvent")}}. Inherits from {{domxref("UIEvent")}} and {{domxref("Event")}}.
+
+{{InheritanceDiagram("MouseEvent")}}
 
 ## Examples
 
@@ -53,10 +35,10 @@ This example toggles the size of a card when you double click on it.
 ### JavaScript
 
 ```js
-const card = document.querySelector('aside');
+const card = document.querySelector("aside");
 
-card.addEventListener('dblclick', function (e) {
-  card.classList.toggle('large');
+card.addEventListener("dblclick", (e) => {
+  card.classList.toggle("large");
 });
 ```
 
@@ -73,13 +55,13 @@ card.addEventListener('dblclick', function (e) {
 
 ```css
 aside {
-  background: #fe9;
+  background: #ffee99;
   border-radius: 1em;
   display: inline-block;
   padding: 1em;
-  transform: scale(.9);
+  transform: scale(0.9);
   transform-origin: 0 0;
-  transition: transform .6s;
+  transition: transform 0.6s;
   user-select: none;
 }
 
@@ -102,11 +84,11 @@ aside {
 
 ## See also
 
-- [Introduction to events](/en-US/docs/Learn/JavaScript/Building_blocks/Events)
+- [Learn: Introduction to events](/en-US/docs/Learn_web_development/Core/Scripting/Events)
 - {{domxref("Element/auxclick_event", "auxclick")}}
 - {{domxref("Element/click_event", "click")}}
 - {{domxref("Element/contextmenu_event", "contextmenu")}}
 - {{domxref("Element/mousedown_event", "mousedown")}}
 - {{domxref("Element/mouseup_event", "mouseup")}}
-- {{domxref("HTMLElement/pointerdown_event", "pointerdown")}}
-- {{domxref("HTMLElement/pointerup_event", "pointerup")}}
+- {{domxref("Element/pointerdown_event", "pointerdown")}}
+- {{domxref("Element/pointerup_event", "pointerup")}}

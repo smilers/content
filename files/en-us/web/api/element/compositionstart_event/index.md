@@ -1,47 +1,39 @@
 ---
-title: 'Element: compositionstart event'
+title: "Element: compositionstart event"
+short-title: compositionstart
 slug: Web/API/Element/compositionstart_event
-tags:
-  - Element
-  - Event
-  - Input method
-  - Reference
-  - compositionstart
+page-type: web-api-event
 browser-compat: api.Element.compositionstart_event
 ---
-{{APIRef}}
+
+{{APIRef("UI Events")}}
 
 The **`compositionstart`** event is fired when a text composition system such as an {{glossary("input method editor")}} starts a new composition session.
 
-For example, this event could be fired after a user starts entering a Chinese character using a [Pinyin](https://en.wikipedia.org/wiki/Pinyin) IME.
+For example, this event could be fired after a user starts entering a Chinese character using a [Pinyin](https://en.wikipedia.org/wiki/Pinyin) {{glossary("Input method editor")}}.
 
-<table class="properties">
-  <tbody>
-    <tr>
-      <th>Bubbles</th>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <th>Cancelable</th>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <th>Interface</th>
-      <td>{{domxref("CompositionEvent")}}</td>
-    </tr>
-    <tr>
-      <th>Event handler property</th>
-      <td>None</td>
-    </tr>
-  </tbody>
-</table>
+## Syntax
+
+Use the event name in methods like {{domxref("EventTarget.addEventListener", "addEventListener()")}}, or set an event handler property.
+
+```js-nolint
+addEventListener("compositionstart", (event) => { })
+
+oncompositionstart = (event) => { }
+```
+
+## Event type
+
+A {{domxref("CompositionEvent")}}. Inherits from {{domxref("UIEvent")}} and {{domxref("Event")}}.
+
+{{InheritanceDiagram("CompositionEvent")}}
 
 ## Examples
 
 ```js
 const inputElement = document.querySelector('input[type="text"]');
 
-inputElement.addEventListener('compositionstart', (event) => {
+inputElement.addEventListener("compositionstart", (event) => {
   console.log(`generated characters were: ${event.data}`);
 });
 ```
@@ -52,22 +44,29 @@ inputElement.addEventListener('compositionstart', (event) => {
 
 ```html
 <div class="control">
-  <label for="name">On macOS, click in the textbox below,<br> then type <kbd>option</kbd> + <kbd>`</kbd>, then <kbd>a</kbd>:</label>
-  <input type="text" id="example" name="example">
+  <label for="example">
+    Focus the text-input control, then open your IME and begin typing.
+  </label>
+  <input type="text" id="example" name="example" />
 </div>
 
 <div class="event-log">
-  <label>Event log:</label>
-  <textarea readonly class="event-log-contents" rows="8" cols="25"></textarea>
+  <label for="eventLog">Event log:</label>
+  <textarea
+    readonly
+    class="event-log-contents"
+    rows="8"
+    cols="25"
+    id="eventLog"></textarea>
   <button class="clear-log">Clear</button>
 </div>
 ```
 
 ```css hidden
 body {
-  padding: .2rem;
+  padding: 0.2rem;
   display: grid;
-  grid-template-areas: "control  log";
+  grid-template-areas: "control log";
 }
 
 .control {
@@ -82,12 +81,13 @@ body {
   resize: none;
 }
 
-label, button {
+label,
+button {
   display: block;
 }
 
 input[type="text"] {
-  margin: .5rem 0;
+  margin: 0.5rem 0;
 }
 
 kbd {
@@ -97,24 +97,24 @@ kbd {
 }
 ```
 
-#### JS
+#### JavaScript
 
 ```js
 const inputElement = document.querySelector('input[type="text"]');
-const log = document.querySelector('.event-log-contents');
-const clearLog = document.querySelector('.clear-log');
+const log = document.querySelector(".event-log-contents");
+const clearLog = document.querySelector(".clear-log");
 
-clearLog.addEventListener('click', () => {
-    log.textContent = '';
+clearLog.addEventListener("click", () => {
+  log.textContent = "";
 });
 
 function handleEvent(event) {
-    log.textContent = log.textContent + `${event.type}: ${event.data}\n`;
+  log.textContent += `${event.type}: ${event.data}\n`;
 }
 
-inputElement.addEventListener('compositionstart', handleEvent);
-inputElement.addEventListener('compositionupdate', handleEvent);
-inputElement.addEventListener('compositionend', handleEvent);
+inputElement.addEventListener("compositionstart", handleEvent);
+inputElement.addEventListener("compositionupdate", handleEvent);
+inputElement.addEventListener("compositionend", handleEvent);
 ```
 
 #### Result

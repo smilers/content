@@ -1,30 +1,26 @@
 ---
-title: ProgressEvent.total
+title: "ProgressEvent: total property"
+short-title: total
 slug: Web/API/ProgressEvent/total
-tags:
-  - API
-  - Progress Event
-  - ProgressEvent
-  - Property
-  - Reference
+page-type: web-api-instance-property
 browser-compat: api.ProgressEvent.total
 ---
-{{APIRef("DOM Events")}}
 
-The **`ProgressEvent.total`** read-only property is an unsigned
-64-bit integer value indicating the total size of the data being processed or
-transmitted. In the case of an HTTP transmission, this is the size of the body of the
-message (the `Content-Length`), and does not include headers and other
-overhead.
+{{APIRef("XMLHttpRequest API")}}{{AvailableInWorkers}}
 
-If the event's {{domxref("ProgressEvent.lengthComputable", "lengthComputable")}}
-property is `false`, this value is meaningless and should be ignored.
+The **`ProgressEvent.total`** read-only property is a number indicating the total size of the data being transmitted or processed.
 
-## Syntax
+For `ProgressEvent`s dispatched by the browser, the value refers to the size, in bytes, of a resource and is derived from the `Content-Length` response header.
 
-```js
-let value = progressEvent.total;
-```
+In a `ProgressEvent` you create yourself, this may also be the total bytes of a resource, although this can be any number.
+For example, you may wish to normalize `total` to a value such as `100` or `1` if revealing the precise number of bytes of a resource is a concern.
+If using `1` as a total, then {{domxref("ProgressEvent.loaded")}} would be a decimal value between `0` and `1`.
+
+If the event's {{domxref("ProgressEvent.lengthComputable", "lengthComputable")}} property is `false`, this value is meaningless and should be ignored.
+
+## Value
+
+A number.
 
 ## Specifications
 

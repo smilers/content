@@ -1,47 +1,61 @@
 ---
 title: Map.prototype.clear()
+short-title: clear()
 slug: Web/JavaScript/Reference/Global_Objects/Map/clear
-tags:
-  - ECMAScript 2015
-  - JavaScript
-  - Map
-  - Method
-  - Prototype
-  - Reference
+page-type: javascript-instance-method
 browser-compat: javascript.builtins.Map.clear
+sidebar: jsref
 ---
-{{JSRef}}
 
-The **`clear()`** method removes all elements from a `Map` object.
+The **`clear()`** method of {{jsxref("Map")}} instances removes all elements from this map.
 
-{{EmbedInteractiveExample("pages/js/map-prototype-clear.html")}}
+{{InteractiveExample("JavaScript Demo: Map.prototype.clear()")}}
+
+```js interactive-example
+const map = new Map();
+
+map.set("bar", "baz");
+map.set(1, "foo");
+
+console.log(map.size);
+// Expected output: 2
+
+map.clear();
+
+console.log(map.size);
+// Expected output: 0
+```
 
 ## Syntax
 
-```js
+```js-nolint
 clear()
 ```
 
+### Parameters
+
+None.
+
 ### Return value
 
-{{jsxref("undefined")}}.
+None ({{jsxref("undefined")}}).
 
 ## Examples
 
 ### Using clear()
 
 ```js
-var myMap = new Map();
-myMap.set('bar', 'baz');
-myMap.set(1, 'foo');
+const myMap = new Map();
+myMap.set("bar", "baz");
+myMap.set(1, "foo");
 
-myMap.size;       // 2
-myMap.has('bar'); // true
+console.log(myMap.size); // 2
+console.log(myMap.has("bar")); // true
 
 myMap.clear();
 
-myMap.size;       // 0
-myMap.has('bar')  // false
+console.log(myMap.size); // 0
+console.log(myMap.has("bar")); // false
 ```
 
 ## Specifications

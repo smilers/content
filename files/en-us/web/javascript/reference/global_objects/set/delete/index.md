@@ -1,67 +1,77 @@
 ---
 title: Set.prototype.delete()
+short-title: delete()
 slug: Web/JavaScript/Reference/Global_Objects/Set/delete
-tags:
-  - ECMAScript 2015
-  - JavaScript
-  - Method
-  - Prototype
-  - Reference
-  - set
+page-type: javascript-instance-method
 browser-compat: javascript.builtins.Set.delete
+sidebar: jsref
 ---
-{{JSRef}}
 
-The **`delete()`** method removes a specified value from a
-`Set` object, if it is in the set.
+The **`delete()`** method of {{jsxref("Set")}} instances removes the specified value from this set, if it is in the set.
 
-{{EmbedInteractiveExample("pages/js/set-prototype-delete.html")}}
+{{InteractiveExample("JavaScript Demo: Set.prototype.delete()")}}
+
+```js interactive-example
+const set = new Set();
+set.add({ x: 10, y: 20 }).add({ x: 20, y: 30 });
+
+// Delete any point with `x > 10`.
+set.forEach((point) => {
+  if (point.x > 10) {
+    set.delete(point);
+  }
+});
+
+console.log(set.size);
+// Expected output: 1
+```
 
 ## Syntax
 
-```js
-delete(value)
+```js-nolint
+setInstance.delete(value)
 ```
 
 ### Parameters
 
 - `value`
-  - : The value to remove from `mySet`.
+  - : The value to remove from the `Set` object. Objects are compared by [reference](/en-US/docs/Glossary/Object_reference), not by value.
 
 ### Return value
 
-Returns `true` if `value` was already in
-`mySet`; otherwise `false`.
+`true` if a value in the `Set` object has been removed successfully. `false` if the value is not found in the `Set`.
 
 ## Examples
 
-### Using the delete() method
+### Using delete()
 
 ```js
 const mySet = new Set();
-mySet.add('foo');
+mySet.add("foo");
 
-mySet.delete('bar'); // Returns false. No "bar" element found to be deleted.
-mySet.delete('foo'); // Returns true. Successfully removed.
+console.log(mySet.delete("bar")); // false; no "bar" element found to be deleted.
+console.log(mySet.delete("foo")); // true; successfully removed.
 
-mySet.has('foo');    // Returns false. The "foo" element is no longer present.
+console.log(mySet.has("foo")); // false; the "foo" element is no longer present.
 ```
 
-Let's checkout below how to delete an Object from a Set.
+### Deleting an object from a set
+
+Because objects are compared by reference, you have to delete them by checking individual properties if you don't have a reference to the original object.
 
 ```js
-const setObj = new Set();   // Create a new set.
+const setObj = new Set(); // Create a new set.
 
-setObj.add({x: 10, y: 20}); // Add object in the set.
+setObj.add({ x: 10, y: 20 }); // Add object in the set.
 
-setObj.add({x: 20, y: 30}); // Add object in the set.
+setObj.add({ x: 20, y: 30 }); // Add object in the set.
 
 // Delete any point with `x > 10`.
-setObj.forEach(function(point){
-  if (point.x > 10){
-    setObj.delete(point)
+setObj.forEach((point) => {
+  if (point.x > 10) {
+    setObj.delete(point);
   }
-})
+});
 ```
 
 ## Specifications
@@ -75,4 +85,6 @@ setObj.forEach(function(point){
 ## See also
 
 - {{jsxref("Set")}}
+- {{jsxref("Set.prototype.add()")}}
 - {{jsxref("Set.prototype.clear()")}}
+- {{jsxref("Set.prototype.has()")}}

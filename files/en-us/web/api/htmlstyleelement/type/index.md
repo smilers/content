@@ -1,42 +1,32 @@
 ---
-title: HTMLStyleElement.type
+title: "HTMLStyleElement: type property"
+short-title: type
 slug: Web/API/HTMLStyleElement/type
-tags:
-  - API
-  - HTML DOM
-  - HTMLStyleElement
-  - NeedsMarkupWork
-  - NeedsSpecTable
-  - Property
-  - Read-only
-  - Deprecated
+page-type: web-api-instance-property
+status:
+  - deprecated
 browser-compat: api.HTMLStyleElement.type
 ---
-{{APIRef("HTML DOM")}} {{Deprecated_Header}}
 
-The **`HTMLStyleElement.type`** read-only property returns the
-type of the current style.
+{{APIRef("HTML DOM")}}
 
-For Gecko, the type is most often given as "text/css." From the W3C spec on CSS: "The
-expectation is that binding-specific casting methods can be used to cast down from an
-instance of the CSSRule interface to the specific derived interface implied by the
-type."
+The **`HTMLStyleElement.type`** property returns the type of the current style.
+The value mirrors the [HTML `<style>` element's `type` attribute](/en-US/docs/Web/HTML/Reference/Elements/style#type).
 
-## Syntax
+Authors should not use this property or rely on the value.
 
-```js
-string = style.type;
-```
+## Value
 
-## Example
+The permitted values are an empty string or a case-insensitive match for "text/css".
 
-```js
-if (newStyle.type != "text/css"){
-   // not supported!
-   warnCSS();
-}
-```
+## Specifications
+
+{{Specifications}}
 
 ## Browser compatibility
 
 {{Compat}}
+
+## See also
+
+- {{domxref("SVGStyleElement.type")}}

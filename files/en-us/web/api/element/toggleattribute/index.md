@@ -1,34 +1,32 @@
 ---
-title: Element.toggleAttribute()
+title: "Element: toggleAttribute() method"
+short-title: toggleAttribute()
 slug: Web/API/Element/toggleAttribute
-tags:
-  - API
-  - Element
-  - Method
-  - Reference
+page-type: web-api-instance-method
 browser-compat: api.Element.toggleAttribute
 ---
+
 {{APIRef("DOM")}}
 
-The **`toggleAttribute()`** method of the
-{{domxref("Element")}} interface toggles a Boolean attribute (removing it if it is
-present and adding it if it is not present) on the given element.
+The **`toggleAttribute()`** method of the {{domxref("Element")}} interface toggles a Boolean attribute on the given element, removing it if present and adding it if not present.
 
 ## Syntax
 
-```js
-Element.toggleAttribute(name [, force]);
+```js-nolint
+toggleAttribute(name)
+toggleAttribute(name, force)
 ```
 
 ### Parameters
 
 - `name`
-  - : A {{domxref("DOMString")}} specifying the name of the attribute to be toggled. The
-    attribute name is automatically converted to all lower-case when
-    `toggleAttribute()` is called on an HTML element in an HTML document.
+  - : A string specifying the name of the attribute to be toggled.
+    The attribute name is automatically converted to all lower-case when `toggleAttribute()` is called on an HTML element in an HTML document.
 - `force` {{optional_inline}}
-  - : A boolean value to determine whether the attribute should be added or removed, no
-    matter whether the attribute is present or not at the moment.
+  - : A boolean value which has the following effects:
+    - if not specified at all, the `toggleAttribute` method "toggles" the attribute named `name` — removing it if it is present, or else adding it if it is not present
+    - if true, the `toggleAttribute` method adds an attribute named `name`
+    - if false, the `toggleAttribute` method removes the attribute named `name`
 
 ### Return value
 
@@ -38,58 +36,35 @@ present, and `false` otherwise.
 ### Exceptions
 
 - `InvalidCharacterError` {{domxref("DOMException")}}
-  - : The specified attribute `name` contains one or more characters which
-    are not valid in attribute names.
+  - : The specified attribute `name` contains one or more characters that are not valid in attribute names.
+    The `name` must have at least one character, and may not contain ASCII whitespace, `NULL`, `/`, `=` or `>` (U+0000, U+002F, U+003D, or U+003E, respectively).
 
-## Example
+## Examples
 
-In the following example, `toggleAttribute()` is used to toggle the
-`disabled` attribute of an {{HTMLElement("input")}}.
+### Basic usage
+
+In the following example, `toggleAttribute()` is used to toggle the `disabled` attribute of an {{HTMLElement("input")}}.
 
 ### HTML
 
 ```html
-<input value="text">
-<button>toggleAttribute("disabled")</button>
+<input value="text" /> <button>toggleAttribute("disabled")</button>
 ```
 
 ### JavaScript
 
 ```js
-var button = document.querySelector("button");
-var input = document.querySelector("input");
+const button = document.querySelector("button");
+const input = document.querySelector("input");
 
-button.addEventListener("click", function(){
+button.addEventListener("click", () => {
   input.toggleAttribute("disabled");
 });
 ```
 
 ### Result
 
-{{ EmbedLiveSample('Example', '300', '50') }}
-
-{{DOMAttributeMethods}}
-
-## Polyfill
-
-```js
-if (!Element.prototype.toggleAttribute) {
-  Element.prototype.toggleAttribute = function(name, force) {
-    if(force !== void 0) force = !!force
-
-    if (this.hasAttribute(name)) {
-      if (force) return true;
-
-      this.removeAttribute(name);
-      return false;
-    }
-    if (force === false) return false;
-
-    this.setAttribute(name, "");
-    return true;
-  };
-}
-```
+{{ EmbedLiveSample('Examples', '300', '50') }}
 
 ## Specifications
 
@@ -98,3 +73,10 @@ if (!Element.prototype.toggleAttribute) {
 ## Browser compatibility
 
 {{Compat}}
+
+## See also
+
+- {{domxref("Element.hasAttribute()")}}
+- {{domxref("Element.getAttribute()")}}
+- {{domxref("Element.removeAttribute()")}}
+- {{domxref("Element.setAttribute()")}}

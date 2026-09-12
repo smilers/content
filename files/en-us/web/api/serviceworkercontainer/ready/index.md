@@ -1,50 +1,36 @@
 ---
-title: ServiceWorkerContainer.ready
+title: "ServiceWorkerContainer: ready property"
+short-title: ready
 slug: Web/API/ServiceWorkerContainer/ready
-tags:
-  - API
-  - Property
-  - Reference
-  - Service worker API
-  - ServiceWorker
-  - ServiceWorkerContainer
+page-type: web-api-instance-property
 browser-compat: api.ServiceWorkerContainer.ready
 ---
-{{APIRef("Service Workers API")}}
 
-The **`ready`** read-only property of
-the {{domxref("ServiceWorkerContainer")}} interface provides a way of delaying code
-execution until a service worker is active. It returns a {{jsxref("Promise")}} that
-will never reject, and which waits indefinitely until
-the {{domxref("ServiceWorkerRegistration")}} associated with the current page has
-an {{domxref("ServiceWorkerRegistration.active","active")}} worker. Once that
-condition is met, it resolves with
-the {{domxref("ServiceWorkerRegistration")}}.
+{{APIRef("Service Workers API")}}{{SecureContext_Header}}{{AvailableInWorkers}}
 
-## Syntax
+The **`ready`** read-only property of the {{domxref("ServiceWorkerContainer")}} interface provides a way of delaying code execution until a service worker is active.
 
-```js
-navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) { ... });
-```
+The property returns a {{jsxref("Promise")}} that will never reject, and which waits indefinitely until the {{domxref("ServiceWorkerRegistration")}} associated with the current page has an {{domxref("ServiceWorkerRegistration.active","active")}} worker.
+Once that condition is met, it resolves with the {{domxref("ServiceWorkerRegistration")}}.
 
-### Value
+## Value
 
-A {{jsxref("Promise")}} that will never reject, and which may eventually resolve with a
-{{domxref("ServiceWorkerRegistration")}}.
+A {{jsxref("Promise")}} that will never reject, and which may eventually resolve with a {{domxref("ServiceWorkerRegistration")}} when there is an active service worker.
 
-## Example
+## Examples
+
+### Deferring code until there is an active service worker
 
 ```js
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.ready
-  .then(function(registration) {
-    console.log('A service worker is active:', registration.active);
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.ready.then((registration) => {
+    console.log(`A service worker is active: ${registration.active}`);
 
-    // At this point, you can call methods that require an active
-    // service worker, like registration.pushManager.subscribe()
-  });
+    // At this point, you can call methods that require an active
+    // service worker, like registration.pushManager.subscribe()
+  });
 } else {
-  console.log('Service workers are not supported.');
+  console.error("Service workers are not supported.");
 }
 ```
 

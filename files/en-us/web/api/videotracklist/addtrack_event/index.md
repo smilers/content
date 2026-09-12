@@ -1,51 +1,39 @@
 ---
-title: 'VideoTrackList: addtrack event'
+title: "VideoTrackList: addtrack event"
+short-title: addtrack
 slug: Web/API/VideoTrackList/addtrack_event
-tags:
-  - API
-  - Reference
-  - events
+page-type: web-api-event
 browser-compat: api.VideoTrackList.addtrack_event
 ---
-{{APIRef}}
 
-The `addtrack` event is fired when a track is added to a [`VideoTrackList`](/en-US/docs/Web/API/VideoTrackList).
+{{APIRef("HTML DOM")}}
 
-<table class="properties">
-  <tbody>
-    <tr>
-      <th scope="row">Bubbles</th>
-      <td>No</td>
-    </tr>
-    <tr>
-      <th scope="row">Cancelable</th>
-      <td>No</td>
-    </tr>
-    <tr>
-      <th scope="row">Interface</th>
-      <td>{{domxref("TrackEvent")}}</td>
-    </tr>
-    <tr>
-      <th scope="row">Event handler property</th>
-      <td>
-        <code
-          ><a href="/en-US/docs/Web/API/VideoTrackList/onaddtrack"
-            >onaddtrack</a
-          ></code
-        >
-      </td>
-    </tr>
-  </tbody>
-</table>
+The `addtrack` event is fired when a video track is added to a [`VideoTrackList`](/en-US/docs/Web/API/VideoTrackList).
+
+## Syntax
+
+Use the event name in methods like {{domxref("EventTarget.addEventListener", "addEventListener()")}}, or set an event handler property.
+
+```js-nolint
+addEventListener("addtrack", (event) => { })
+
+onaddtrack = (event) => { }
+```
+
+## Event type
+
+A {{domxref("TrackEvent")}}. Inherits from {{domxref("Event")}}.
+
+{{InheritanceDiagram("TrackEvent")}}
 
 ## Examples
 
 Using `addEventListener()`:
 
 ```js
-const videoElement = document.querySelector('video');
+const videoElement = document.querySelector("video");
 
-videoElement.videoTracks.addEventListener('addtrack', (event) => {
+videoElement.videoTracks.addEventListener("addtrack", (event) => {
   console.log(`Video track: ${event.track.label} added`);
 });
 ```
@@ -53,7 +41,7 @@ videoElement.videoTracks.addEventListener('addtrack', (event) => {
 Using the `onaddtrack` event handler property:
 
 ```js
-const videoElement = document.querySelector('video');
+const videoElement = document.querySelector("video");
 
 videoElement.videoTracks.onaddtrack = (event) => {
   console.log(`Video track: ${event.track.label} added`);
@@ -73,5 +61,5 @@ videoElement.videoTracks.onaddtrack = (event) => {
 - Related events: [`removetrack`](/en-US/docs/Web/API/VideoTrackList/removetrack_event), [`change`](/en-US/docs/Web/API/VideoTrackList/change_event)
 - This event on [`AudioTrackList`](/en-US/docs/Web/API/AudioTrackList) targets: [`addtrack`](/en-US/docs/Web/API/AudioTrackList/addtrack_event)
 - This event on [`MediaStream`](/en-US/docs/Web/API/MediaStream) targets: [`addtrack`](/en-US/docs/Web/API/MediaStream/addtrack_event)
-- [Media Streams API](/en-US/docs/Web/API/Media_Streams_API)
+- [Media Capture and Streams API](/en-US/docs/Web/API/Media_Capture_and_Streams_API)
 - [WebRTC](/en-US/docs/Web/API/WebRTC_API)

@@ -1,26 +1,31 @@
 ---
-title: Document.queryCommandState()
+title: "Document: queryCommandState() method"
+short-title: queryCommandState()
 slug: Web/API/Document/queryCommandState
-tags:
-  - API
-  - DOM
-  - Reference
-  - Deprecated
+page-type: web-api-instance-method
+status:
+  - deprecated
+  - non-standard
 browser-compat: api.Document.queryCommandState
 ---
-{{ApiRef("DOM")}}{{deprecated_header}}
+
+{{ApiRef("DOM")}}{{Non-standard_header}}
+
+> [!NOTE]
+> Although the {{domxref("Document/execCommand", "execCommand()")}} method is deprecated, there are still some valid use cases that do not yet have viable alternatives, as mentioned in the `execCommand()` article. In these cases, you may find this method useful to implement a complete user experience, but test to ensure cross-browser compatibility.
 
 The **`queryCommandState()`** method will tell you if the current selection has a certain {{domxref("Document.execCommand()")}} command applied.
 
 ## Syntax
 
-```js
-queryCommandState(String command)
+```js-nolint
+queryCommandState(command)
 ```
 
 ### Parameters
 
-`command` is a command from {{domxref("Document.execCommand()")}}
+- `command`
+  - : A command from {{domxref("Document.execCommand()")}}
 
 ### Return value
 
@@ -32,15 +37,14 @@ queryCommandState(String command)
 
 ```html
 <div contenteditable="true">Select a part of this text!</div>
-<button onclick="makeBold();">Test the state of the 'bold' command</button>
-
-<hr>
-
+<button>Test the state of the 'bold' command</button>
+<hr />
 <div id="output"></div>
 ```
 
 ```css hidden
-hr, button {
+hr,
+button {
   margin: 1rem 0;
 }
 ```
@@ -63,8 +67,10 @@ function makeBold() {
       break;
   }
   document.querySelector("#output").textContent = `Output: ${message}`;
-  document.execCommand('bold');
+  document.execCommand("bold");
 }
+
+document.querySelector("button").addEventListener("click", makeBold);
 ```
 
 ### Result
@@ -73,7 +79,7 @@ function makeBold() {
 
 ## Specifications
 
-This feature is not part of any current specification. It is no longer on track to become a standard.
+This feature is not part of any current specification. It is no longer on track to become a standard. There is an unofficial [W3C execCommand spec draft](https://w3c.github.io/editing/docs/execCommand/).
 
 ## Browser compatibility
 
@@ -83,5 +89,5 @@ This feature is not part of any current specification. It is no longer on track 
 
 - {{domxref("HTMLElement.contentEditable")}}
 - {{domxref("document.designMode")}}
-- [Rich-Text Editing in Mozilla](/en-US/docs/Web/Guide/HTML/Editable_content/Rich-Text_Editing_in_Mozilla)
+- {{domxref("document.execCommand()")}}
 - Browser bugs related to `queryCommandState()`: [Scribe's "Browser Inconsistencies" documentation](https://github.com/guardian/scribe/blob/master/BROWSERINCONSISTENCIES.md#documentquerycommandstate)

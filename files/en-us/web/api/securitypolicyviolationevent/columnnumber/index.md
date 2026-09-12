@@ -1,35 +1,22 @@
 ---
-title: SecurityPolicyViolationEvent.columnNumber
+title: "SecurityPolicyViolationEvent: columnNumber property"
+short-title: columnNumber
 slug: Web/API/SecurityPolicyViolationEvent/columnNumber
-tags:
-  - API
-  - CSP
-  - Experimental
-  - HTTP
-  - Property
-  - Reference
-  - Security
-  - SecurityPolicyViolationEvent
-  - columnNumber
+page-type: web-api-instance-property
 browser-compat: api.SecurityPolicyViolationEvent.columnNumber
 ---
-{{APIRef("{{HTTPSidebar}}")}}{{ SeeCompatTable() }}
 
-The **`columnNumber`** read-only property of the
-{{domxref("SecurityPolicyViolationEvent")}} interface is the column number in the
-document or worker at which the violation occurred.
+{{APIRef("Reporting API")}}{{AvailableInWorkers}}
 
-## Syntax
+The **`columnNumber`** read-only property of the {{domxref("SecurityPolicyViolationEvent")}} interface is the character position in the source file line of the document or worker script at which the [Content Security Policy (CSP)](/en-US/docs/Web/HTTP/Guides/CSP) violation occurred.
 
-```js
-let colNum = violationEventInstance.columnNumber;
-```
+This property is used with the {{domxref("SecurityPolicyViolationEvent.sourceFile")}} and {{domxref("SecurityPolicyViolationEvent.lineNumber")}} properties, which together provide the exact location in the source that caused the violation.
 
-### Value
+## Value
 
-A number representing the column number where the violation occurred.
+A number representing the character position number where the violation occurred.
 
-## Example
+## Examples
 
 ```js
 document.addEventListener("securitypolicyviolation", (e) => {
@@ -47,4 +34,4 @@ document.addEventListener("securitypolicyviolation", (e) => {
 
 ## See also
 
-- [Content Security Policy (CSP)](/en-US/docs/Web/HTTP/CSP)
+- {{domxref("CSPViolationReport.columnNumber")}}

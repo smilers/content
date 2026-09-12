@@ -1,30 +1,19 @@
 ---
-title: MediaQueryListEvent.matches
+title: "MediaQueryListEvent: matches property"
+short-title: matches
 slug: Web/API/MediaQueryListEvent/matches
-tags:
-  - API
-  - CSSOM View
-  - Media Queries
-  - MediaQueryListEvent
-  - Property
-  - Reference
-  - matches
+page-type: web-api-instance-property
 browser-compat: api.MediaQueryListEvent.matches
 ---
-{{APIRef("CSSOM")}}
+
+{{APIRef("CSSOM view API")}}
 
 The **`matches`** read-only property of the
 {{DOMxRef("MediaQueryListEvent")}} interface is a boolean value that is
 `true` if the {{DOMxRef("document")}} currently matches the media query list,
 or `false` if not.
 
-## Syntax
-
-```js
-var matches = MediaQueryListEvent.matches;
-```
-
-### Value
+## Value
 
 A boolean value; returns `true` if the {{DOMxRef("document")}}
 currently matches the media query list, `false` if not.
@@ -32,21 +21,20 @@ currently matches the media query list, `false` if not.
 ## Examples
 
 ```js
-var mql = window.matchMedia('(max-width: 600px)');
+const para = document.querySelector("p"); // This is the UI element where to display the text
+const mql = window.matchMedia("(width <= 600px)");
 
-function screenTest(e) {
-  if (e.matches) {
-    /* the viewport is 600 pixels wide or less */
-    para.textContent = 'This is a narrow screen — less than 600px wide.';
-    document.body.style.backgroundColor = 'red';
+mql.addEventListener("change", (event) => {
+  if (event.matches) {
+    // The viewport is 600 pixels wide or less
+    para.textContent = "This is a narrow screen — less than 600px wide.";
+    document.body.style.backgroundColor = "red";
   } else {
-    /* the viewport is more than than 600 pixels wide */
-    para.textContent = 'This is a wide screen — more than 600px wide.';
-    document.body.style.backgroundColor = 'blue';
+    // The viewport is more than 600 pixels wide
+    para.textContent = "This is a wide screen — more than 600px wide.";
+    document.body.style.backgroundColor = "blue";
   }
-}
-
-mql.addListener(screenTest);
+});
 ```
 
 ## Specifications
@@ -59,9 +47,8 @@ mql.addListener(screenTest);
 
 ## See also
 
-- [Media queries](/en-US/docs/Web/CSS/Media_Queries/Using_media_queries)
-- [Using media queries from
-  code](/en-US/docs/Web/CSS/Media_Queries/Testing_media_queries)
+- [Media queries](/en-US/docs/Web/CSS/Guides/Media_queries/Using)
+- [Using media queries from code](/en-US/docs/Web/CSS/Guides/Media_queries/Testing)
 - {{DOMxRef("window.matchMedia()")}}
 - {{DOMxRef("MediaQueryList")}}
 - {{DOMxRef("MediaQueryListEvent")}}

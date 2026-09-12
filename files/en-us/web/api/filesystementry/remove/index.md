@@ -1,21 +1,15 @@
 ---
-title: FileSystemEntry.remove()
+title: "FileSystemEntry: remove() method"
+short-title: remove()
 slug: Web/API/FileSystemEntry/remove
-tags:
-  - API
-  - File System API
-  - File and Directory Entries API
-  - FileSystemEntry
-  - Files
-  - Method
-  - Non-standard
-  - Reference
-  - delete
-  - remove
-  - Deprecated
+page-type: web-api-instance-method
+status:
+  - deprecated
+  - non-standard
 browser-compat: api.FileSystemEntry.remove
 ---
-{{APIRef("File System API")}}{{deprecated_header}}
+
+{{APIRef("File and Directory Entries API")}}{{Non-standard_Header}}
 
 The {{domxref("FileSystemEntry")}} interface's method
 **`remove()`** deletes the file
@@ -28,8 +22,9 @@ instead.
 
 ## Syntax
 
-```js
-FileSystemEntry.remove(successCallback[, errorCallback]);
+```js-nolint
+remove(successCallback)
+remove(successCallback, errorCallback)
 ```
 
 ### Parameters
@@ -41,34 +36,39 @@ FileSystemEntry.remove(successCallback[, errorCallback]);
 
 ### Return value
 
-{{jsxref("undefined")}}.
+None ({{jsxref("undefined")}}).
 
-### Errors
+### Exceptions
 
-- `FileError.INVALID_MODIFICATION_ERR`
+- `DOMException.INVALID_MODIFICATION_ERR`
   - : The specified entry was the file system's root directory, or the specified entry is
     a directory which isn't empty.
-- `FileError.INVALID_STATE_ERR`
+- `DOMException.INVALID_STATE_ERR`
   - : The file system's cached state is inconsistent with its state on disk, so the file
     could not be deleted for safety reasons.
-- `FileError.NO_MODIFICATION_ALLOWED_ERR`
+- `DOMException.NO_MODIFICATION_ALLOWED_ERR`
   - : The file system's state doesn't permit removing the file or directory.
-- `FileError.NOT_FOUND_ERR`
+- `DOMException.NOT_FOUND_ERR`
   - : The file or directory doesn't exist.
-- `FileError.SECURITY_ERR`
+- `DOMException.SECURITY_ERR`
   - : The entry couldn't be removed due to permissions or other access constraints, or
     because there are too many calls being made on file resources.
 
-## Example
+## Examples
 
 This example deletes a temporary work file.
 
 ```js
-workingDirectory.getFile("tmp/workfile.json", {}, function(fileEntry) {
-  fileEntry.remove(function() {
-    /* the file was removed successfully */
-  });
-}, handleError);
+workingDirectory.getFile(
+  "tmp/work-file.json",
+  {},
+  (fileEntry) => {
+    fileEntry.remove(() => {
+      /* the file was removed successfully */
+    });
+  },
+  handleError,
+);
 ```
 
 ## Browser compatibility
@@ -77,8 +77,5 @@ workingDirectory.getFile("tmp/workfile.json", {}, function(fileEntry) {
 
 ## See also
 
-- [File and Directory
-  Entries API](/en-US/docs/Web/API/File_and_Directory_Entries_API)
-- [Introduction
-  to the File System API](/en-US/docs/Web/API/File_and_Directory_Entries_API/Introduction)
+- [File and Directory Entries API](/en-US/docs/Web/API/File_and_Directory_Entries_API)
 - {{domxref("FileSystemDirectoryEntry.removeRecursively()")}}

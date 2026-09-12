@@ -1,20 +1,12 @@
 ---
-title: MediaQueryList.matches
+title: "MediaQueryList: matches property"
+short-title: matches
 slug: Web/API/MediaQueryList/matches
-tags:
-  - API
-  - Adaptive Design
-  - CSSOM
-  - CSSOM View
-  - DOM
-  - Media Queries
-  - MediaQueryList
-  - Property
-  - Reference
-  - matches
+page-type: web-api-instance-property
 browser-compat: api.MediaQueryList.matches
 ---
-{{APIRef("CSSOM")}}
+
+{{APIRef("CSSOM view API")}}
 
 The **`matches`** read-only property of the
 {{DOMxRef("MediaQueryList")}} interface is a boolean value that returns
@@ -25,13 +17,7 @@ You can be notified when the value of `matches` changes by watching for the
 {{domxref("MediaQueryList.change_event", "change")}} event to be fired at the
 `MediaQueryList`.
 
-## Syntax
-
-```js
-var matches = <varm>MediaQueryList.matches;
-```
-
-### Value
+## Value
 
 A boolean value that is `true` if the {{DOMxRef("document")}}
 currently matches the media query list; otherwise, it's `false`.
@@ -39,27 +25,18 @@ currently matches the media query list; otherwise, it's `false`.
 ## Examples
 
 This example detects viewport orientation changes by creating a media query using the
-[`orientation`](/en-US/docs/Web/CSS/@media/orientation) media
+{{cssxref("@media/orientation")}} media
 feature:
 
 ```js
-function addMQListener(mq, callback) {
-  if (mq.addEventListener) {
-    mq.addEventListener("change", callback);
+const mql = window.matchMedia("(orientation:landscape)");
+mql.addEventListener("change", (event) => {
+  if (event.matches) {
+    console.log("Now in landscape orientation");
   } else {
-    mq.addListener(callback);
+    console.log("Now in portrait orientation");
   }
-}
-
-addMQListener(window.matchMedia("(orientation:landscape)"),
-  event => {
-    if (event.matches) {
-      /* now in landscape orientation */
-    } else {
-      /* now in portrait orientation */
-    }
-  }
-);
+});
 ```
 
 ## Specifications
@@ -72,9 +49,8 @@ addMQListener(window.matchMedia("(orientation:landscape)"),
 
 ## See also
 
-- [Media queries](/en-US/docs/Web/CSS/Media_Queries/Using_media_queries)
-- [Using media queries from
-  code](/en-US/docs/Web/CSS/Media_Queries/Testing_media_queries)
+- [Media queries](/en-US/docs/Web/CSS/Guides/Media_queries/Using)
+- [Using media queries from code](/en-US/docs/Web/CSS/Guides/Media_queries/Testing)
 - {{DOMxRef("window.matchMedia()")}}
 - {{DOMxRef("MediaQueryList")}}
 - {{DOMxRef("MediaQueryListEvent")}}

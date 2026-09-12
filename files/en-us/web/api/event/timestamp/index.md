@@ -1,38 +1,19 @@
 ---
-title: Event.timeStamp
+title: "Event: timeStamp property"
+short-title: timeStamp
 slug: Web/API/Event/timeStamp
-tags:
-  - API
-  - DOM
-  - Event
-  - Property
-  - Reference
-  - timeStamp
+page-type: web-api-instance-property
 browser-compat: api.Event.timeStamp
 ---
-{{APIRef("DOM")}}
 
-The **`timeStamp`** read-only property of the
-{{domxref("Event")}} interface returns the time (in milliseconds) at which the event was
-created.
+{{APIRef("DOM")}}{{AvailableInWorkers}}
 
-> **Note:** This property only works if the event system supports it for
-> the particular event.
+The **`timeStamp`** read-only property of the {{domxref("Event")}} interface returns the time (in milliseconds) at which the event was created.
 
-## Syntax
+## Value
 
-```js
-time = event.timeStamp;
-```
-
-### Value
-
-This value is the number of milliseconds elapsed from the beginning of the current [document's lifetime](/en-US/docs/Web/API/Performance/timeOrigin) till the
-event was created.
-
-In newer implementations, the value is a {{domxref("DOMHighResTimeStamp")}} accurate to
-5 microseconds (0.005 ms). In older implementations, the value is a
-{{domxref("DOMTimeStamp")}}, accurate to a millisecond.
+The value is a {{domxref("DOMHighResTimeStamp")}} representing the number of milliseconds elapsed from the relevant global object's [time origin](/en-US/docs/Web/API/Performance/timeOrigin) until the event was created.
+Its [precision may be reduced](#reduced_time_precision) to mitigate timing attacks and [fingerprinting](/en-US/docs/Glossary/Fingerprinting).
 
 ## Example
 
@@ -40,8 +21,8 @@ In newer implementations, the value is a {{domxref("DOMHighResTimeStamp")}} accu
 
 ```html
 <p>
-  Focus this iframe and press any key to get the
-  current timestamp for the keypress event.
+  Focus this iframe and press any key to get the current timestamp for the
+  keypress event.
 </p>
 <p>timeStamp: <span id="time">-</span></p>
 ```
@@ -50,7 +31,7 @@ In newer implementations, the value is a {{domxref("DOMHighResTimeStamp")}} accu
 
 ```js
 function getTime(event) {
-  var time = document.getElementById("time");
+  const time = document.getElementById("time");
   time.firstChild.nodeValue = event.timeStamp;
 }
 document.body.addEventListener("keypress", getTime);
@@ -62,32 +43,33 @@ document.body.addEventListener("keypress", getTime);
 
 ## Reduced time precision
 
-To offer protection against timing attacks and fingerprinting, the precision of
-`Event.timeStamp` might get rounded depending on browser settings.
+To offer protection against timing attacks and [fingerprinting](/en-US/docs/Glossary/Fingerprinting), the precision of `event.timeStamp` may be reduced depending on browser settings.
 
-In Firefox, the `privacy.reduceTimerPrecision` preference is enabled by
-default and defaults to 20us in Firefox 59; in 60 it will be 2ms.
+Fractional milliseconds do not necessarily mean that time precision has not been reduced.
+
+In Chrome, the rounding interval is 0.1 ms, or 0.005 ms in cross-origin-isolated contexts. In Safari, it is 1 ms, or 0.02 ms in cross-origin-isolated contexts.
+
+In Firefox, the `privacy.reduceTimerPrecision` preference is enabled by default and uses a rounding interval of 1 ms, or 0.02 ms in cross-origin-isolated contexts. If `privacy.resistFingerprinting` is enabled, the rounding interval is 16.667 ms or the interval configured by `privacy.resistFingerprinting.reduceTimerPrecision.microseconds`, whichever is larger.
+
+For example, these are possible values in Firefox:
 
 ```js
-// reduced time precision (2ms) in Firefox 60
+// Reduced time precision (1 ms) in a non-isolated context
 event.timeStamp;
-// 1519211809934
-// 1519211810362
-// 1519211811670
-// ...
+// Might be:
+// 9934
+// 10363
+// 11671
+// …
 
-// reduced time precision with `privacy.resistFingerprinting` enabled
+// Reduced time precision with `privacy.resistFingerprinting` enabled
 event.timeStamp;
-// 1519129853500
-// 1519129858900
-// 1519129864400
-// ...
+// Might be:
+// 10000.2
+// 10016.867
+// 10033.534
+// …
 ```
-
-In Firefox, if you also enable `privacy.resistFingerprinting`, the precision
-will be 100ms or the value of
-`privacy.resistFingerprinting.reduceTimerPrecision.microseconds`, whichever
-is larger.
 
 ## Specifications
 

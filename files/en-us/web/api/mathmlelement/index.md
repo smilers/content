@@ -1,37 +1,48 @@
 ---
 title: MathMLElement
 slug: Web/API/MathMLElement
-tags:
-  - API
-  - Interface
-  - MathML
-  - MathMLElement
-  - Reference
+page-type: web-api-interface
 browser-compat: api.MathMLElement
 ---
+
 {{APIRef("MathML")}}
 
 The **`MathMLElement`** interface represents any [MathML](/en-US/docs/Web/MathML) element.
 
-## Properties
+{{InheritanceDiagram}}
 
-_Also inherits properties from: {{DOMxRef("DocumentAndElementEventHandlers")}}, {{DOMxRef("Element")}}, {{DOMxRef("GlobalEventHandlers")}}_
+## Instance properties
+
+_Also inherits properties from its parent, {{DOMxRef("Element")}}_.
 
 - {{DOMxRef("MathMLElement.attributeStyleMap")}} {{ReadOnlyInline}}
   - : A {{DOMxRef("StylePropertyMap")}} representing the declarations of the element's `style` attribute.
+- {{DOMxRef("MathMLElement.autofocus")}}
+  - : Whether the control should be focused when the page loads, or when a {{htmlelement("dialog")}} or [popover](/en-US/docs/Web/HTML/Reference/Global_attributes/popover) become shown.
+- {{DOMxRef("MathMLElement.dataset")}} {{ReadOnlyInline}}
+  - : A {{DOMxRef("DOMStringMap")}} object which provides a list of key/value pairs of named data attributes which correspond to [custom data attributes](/en-US/docs/Web/HTML/How_to/Use_data_attributes) attached to the element. These correspond to MathML's [`data-*`](/en-US/docs/Web/MathML/Reference/Global_attributes/data-*) global attributes.
+- {{DOMxRef("MathMLElement.nonce")}}
+  - : Returns the cryptographic number used once that is used by Content Security Policy to determine whether a given fetch will be allowed to proceed.
 - {{DOMxRef("MathMLElement.style")}}
   - : A {{DOMxRef("CSSStyleDeclaration")}} representing the declarations of the element's `style` attribute.
+- {{DOMxRef("MathMLElement.tabIndex")}}
+  - : The position of the element in the tabbing order.
 
-## Methods
+## Instance methods
 
-_This interface has no methods, but inherits methods from: {{DOMxRef("DocumentAndElementEventHandlers")}}, {{DOMxRef("Element")}}, {{DOMxRef("GlobalEventHandlers")}}_
+_This interface also inherits methods from its parent, {{DOMxRef("Element")}}_.
+
+- {{DOMxRef("MathMLElement.blur()")}}
+  - : Removes keyboard focus from the currently focused element.
+- {{DOMxRef("MathMLElement.focus()")}}
+  - : Makes the element the current keyboard focus.
 
 ## Examples
 
 ### MathML
 
 ```html
-<math xmlns="http://www.w3.org/1998/Math/MathML">
+<math>
   <msqrt>
     <mi>x</mi>
   </msqrt>
@@ -41,7 +52,7 @@ _This interface has no methods, but inherits methods from: {{DOMxRef("DocumentAn
 ### JavaScript
 
 ```js
-document.querySelector('msqrt').constructor.name; // MathMLElement
+document.querySelector("msqrt").constructor.name; // MathMLElement
 ```
 
 ## Specifications

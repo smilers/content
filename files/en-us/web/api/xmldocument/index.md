@@ -1,33 +1,23 @@
 ---
 title: XMLDocument
 slug: Web/API/XMLDocument
-tags:
-  - API
-  - DOM
-  - Interface
-  - Reference
-  - XMLDocument
+page-type: web-api-interface
 browser-compat: api.XMLDocument
 ---
+
 {{APIRef("DOM")}}
 
 The **XMLDocument** interface represents an XML document. It inherits from the generic {{DOMxRef("Document")}} and does not add any specific methods or properties to it: nevertheless, several algorithms behave differently with the two types of documents.
 
 {{InheritanceDiagram}}
 
-## Property
+## Instance properties
 
-_Also inherits properties from: {{DOMxRef("Document")}}_
+_Also inherits properties from: {{DOMxRef("Document")}}_.
 
-- {{DOMxRef("XMLDocument.async")}} {{Non-standard_Inline}} {{Deprecated_Inline}}
-  - : Used with {{DOMxRef("XMLDocument.load()")}} to indicate an asynchronous request.
+## Instance methods
 
-## Methods
-
-_Also inherits methods from: {{DOMxRef("Document")}}_
-
-- {{DOMxRef("XMLDocument.load()")}} {{Non-standard_Inline}} {{Deprecated_Inline}}
-  - : Loads an XML document.
+_Also inherits methods from: {{DOMxRef("Document")}}_.
 
 ## Specifications
 
@@ -39,4 +29,4 @@ _Also inherits methods from: {{DOMxRef("Document")}}_
 
 ## See also
 
-- [The DOM interfaces index.](/en-US/docs/DOM/DOM_Reference)
+- [The Document Object Model (DOM)](/en-US/docs/Web/API/Document_Object_Model)

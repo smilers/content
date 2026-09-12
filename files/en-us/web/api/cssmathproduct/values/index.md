@@ -1,34 +1,46 @@
 ---
-title: CSSMathProduct.values
+title: "CSSMathProduct: values property"
+short-title: values
 slug: Web/API/CSSMathProduct/values
-tags:
-  - API
-  - CSS Typed Object Model API
-  - CSSMathProduct
-  - CSSUnparsedValue
-  - Experimental
-  - Houdini
-  - Property
-  - Reference
-  - values
+page-type: web-api-instance-property
 browser-compat: api.CSSMathProduct.values
 ---
-{{draft}}{{APIRef("CSS Typed Object Model API")}}{{SeeCompatTable}}
 
-The **`CSSMathProduct.values`** read-only
-property of the {{domxref("CSSMathProduct")}} interface returns a
-{{domxref('CSSNumericArray')}} object which contains one or more
-{{domxref('CSSNumericValue')}} objects.
+{{APIRef("CSS Typed Object Model API")}}{{AvailableInWorkers}}
 
-## Syntax
+The **`values`** read-only property of the {{domxref("CSSMathProduct")}} interface returns a {{domxref("CSSNumericArray")}} containing the {{domxref("CSSNumericValue")}} objects being multiplied together.
 
-```js
-var cssNumericArray = CSSMathProduct.values;
-```
-
-### Value
+## Value
 
 A {{domxref('CSSNumericArray')}}.
+
+## Examples
+
+### Basic usage
+
+The following code creates a `CSSMathProduct` object and logs its `values` and length.
+
+```js
+const product = new CSSMathProduct(CSS.px(10), CSS.percent(50));
+
+console.log(product.values);
+// CSSNumericArray {0: CSSUnitValue, 1: CSSUnitValue, length: 2}
+console.log(product.values.length); // 2
+```
+
+We then iterate over the `values`, logging their type, value, unit, and stringified text.
+Each of these matches the {{domxref("CSSNumericValue")}} objects that were passed into the constructor (or the terms of the multiplication/division it represents), in the same order.
+
+```js
+for (const value of product.values) {
+  console.log(
+    `${value.constructor.name}: ${value.value} ${value.unit} (${value})`,
+  );
+}
+
+// CSSUnitValue: 10 px (10px)
+// CSSUnitValue: 50 percent (50%)
+```
 
 ## Specifications
 

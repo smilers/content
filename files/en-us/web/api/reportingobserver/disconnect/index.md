@@ -1,50 +1,51 @@
 ---
-title: ReportingObserver.disconnect()
+title: "ReportingObserver: disconnect() method"
+short-title: disconnect()
 slug: Web/API/ReportingObserver/disconnect
-tags:
-  - API
-  - Experimental
-  - Method
-  - Reference
-  - Reporting API
-  - ReportingObserver
+page-type: web-api-instance-method
 browser-compat: api.ReportingObserver.disconnect
 ---
-{{APIRef("Reporting API")}}{{SeeCompatTable}}
 
-The **`disconnect()`** method of the
-{{domxref("ReportingObserver")}} interface stops a reporting observer that had
-previously started observing from collecting reports.
+{{APIRef("Reporting API")}}{{AvailableInWorkers}}
 
-After calling `disconnect()`, neither
-{{domxref("ReportingObserver.takeRecords()")}} nor the `records` parameter of
-the
-[`ReportingObserver()`](/en-US/docs/Web/API/ReportingObserver/ReportingObserver)
-callback will return any reports. The associated observer will no longer be active.
+The **`disconnect()`** method of the {{domxref("ReportingObserver")}} interface stops a reporting observer that had previously started observing from collecting reports.
+
+After calling `disconnect()`, neither {{domxref("ReportingObserver.takeRecords()")}} nor the [`reports`](/en-US/docs/Web/API/ReportingObserver/ReportingObserver#reports) parameter of the `ReportingObserver()` callback will return any reports.
+The associated observer will no longer be active.
 
 ## Syntax
 
-```js
-reportingObserverInstance.disconnect()
+```js-nolint
+disconnect()
 ```
+
+### Parameters
+
+None.
+
+### Return value
+
+None ({{jsxref("undefined")}}).
 
 ## Examples
 
-```js
-let options = {
-  types: ['deprecation'],
-  buffered: true
-}
+### Basic usage
 
-let observer = new ReportingObserver(function(reports, observer) {
+```js
+const options = {
+  types: ["deprecation"],
+  buffered: true,
+};
+
+const observer = new ReportingObserver((reports, observer) => {
   reportBtn.onclick = () => displayReports(reports);
 }, options);
 
-observer.observe()
+observer.observe();
 
-...
+// …
 
-observer.disconnect()
+observer.disconnect();
 ```
 
 ## Specifications

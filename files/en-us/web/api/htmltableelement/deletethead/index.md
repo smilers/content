@@ -1,27 +1,30 @@
 ---
-title: HTMLTableElement.deleteTHead()
+title: "HTMLTableElement: deleteTHead() method"
+short-title: deleteTHead()
 slug: Web/API/HTMLTableElement/deleteTHead
-tags:
-  - API
-  - HTML DOM
-  - HTMLTableElement
-  - Method
-  - NeedsSpecTable
-  - Reference
+page-type: web-api-instance-method
 browser-compat: api.HTMLTableElement.deleteTHead
 ---
+
 {{APIRef("HTML DOM")}}
 
-The **`HTMLTableElement.deleteTHead()`** removes the
-{{HTMLElement("thead")}} element from a given {{HtmlElement("table")}}.
+The **`deleteTHead()`** method of the {{domxref("HTMLTableElement")}} interface removes the first {{HTMLElement("thead")}} element child from a given {{HTMLElement("table")}}, if any.
 
 ## Syntax
 
-```js
-HTMLTableElement.deleteTHead();
+```js-nolint
+deleteTHead()
 ```
 
-## Example
+### Parameters
+
+None.
+
+### Return value
+
+None ({{jsxref("undefined")}}).
+
+## Examples
 
 This example uses JavaScript to delete a table's header.
 
@@ -29,22 +32,35 @@ This example uses JavaScript to delete a table's header.
 
 ```html
 <table>
-  <thead><th>Name</th><th>Occupation</th></thead>
-  <tr><td>Bob</td><td>Plumber</td></tr>
-  <tr><td>Jim</td><td>Roofer</td></tr>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Occupation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Bob</td>
+      <td>Plumber</td>
+    </tr>
+    <tr>
+      <td>Jim</td>
+      <td>Roofer</td>
+    </tr>
+  </tbody>
 </table>
 ```
 
 ### JavaScript
 
 ```js
-let table = document.querySelector('table');
+const table = document.querySelector("table");
 table.deleteTHead();
 ```
 
 ### Result
 
-{{EmbedLiveSample("Example")}}
+{{EmbedLiveSample("Examples")}}
 
 ## Specifications
 
@@ -53,3 +69,9 @@ table.deleteTHead();
 ## Browser compatibility
 
 {{Compat}}
+
+## See also
+
+- {{domxref("HTMLTableElement.createTHead()")}}
+- {{domxref("HTMLTableElement.deleteCaption()")}}
+- {{domxref("HTMLTableElement.deleteTFoot()")}}

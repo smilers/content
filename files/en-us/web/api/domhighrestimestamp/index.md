@@ -1,104 +1,47 @@
 ---
 title: DOMHighResTimeStamp
 slug: Web/API/DOMHighResTimeStamp
-tags:
-  - API
-  - DOMHighResTimeStamp
-  - High Resolution Time
-  - Milliseconds
-  - Performance
-  - Reference
-  - Time
-  - Type
-  - speed
-  - timeStamp
-browser-compat: api.DOMHighResTimestamp
+page-type: web-api-interface
+spec-urls: https://w3c.github.io/hr-time/#dom-domhighrestimestamp
 ---
-{{APIRef("High Resolution Time")}}
+
+{{APIRef("Performance API")}}
 
 The **`DOMHighResTimeStamp`** type is a `double` and is used to store a time value in milliseconds.
 
-This type can be used to describe a discrete point in time or a time interval (the difference in time between two discrete points in time).
+This type can be used to describe a discrete point in time or a time interval (the difference in time between two discrete points in time). The starting time can be either a specific time determined by the script for a site or app, or the [time origin](/en-US/docs/Web/API/Performance/timeOrigin).
 
-The time, given in milliseconds, should be accurate to 5 µs (microseconds), with the fractional part of the number indicating fractions of a millisecond. However, if the browser is unable to provide a time value accurate to 5 µs (due, for example, to hardware or software constraints), the browser can represent the value as a time in milliseconds accurate to a millisecond. Also note the section below on reduced time precision controlled by browser preferences to avoid timing attacks and fingerprinting.
+The fractional part of the value represents fractions of a millisecond. The type itself does not guarantee a particular resolution or accuracy. The effective resolution depends on the API that produces the value, hardware and software constraints, and browser security and privacy protections.
 
-Further, if the device or operating system the user agent is running on doesn't have a clock accurate to the microsecond level, they may only be accurate to the millisecond.
+## Security requirements
 
-## Reduced time precision
+The `DOMHighResTimeStamp` type does not itself apply timer rounding to values supplied by script. Whether an API rounds these values depends on the API. Values calculated from clock readings also need not be multiples of the clock's rounding interval.
 
-To offer protection against timing attacks and fingerprinting, the precision of time stamps might get rounded depending on browser settings. In Firefox, the `privacy.reduceTimerPrecision` preference is enabled by default and defaults to 20 µs in Firefox 59; in 60 it will be 2ms.
+To offer protection against timing attacks and [fingerprinting](/en-US/docs/Glossary/Fingerprinting), browsers coarsen clock readings based on the cross-origin isolation status of the context. For APIs that use its [coarsen time algorithm](https://w3c.github.io/hr-time/#dfn-coarsen-time), the High Resolution Time specification specifies the following resolutions, or a coarser implementation-defined resolution:
 
-```js
-// reduced time precision (2ms) in Firefox 60
-event.timeStamp
-// 1519211809934
-// 1519211810362
-// 1519211811670
-// ...
+- Cross-origin-isolated contexts: 0.005 ms
+- Non-cross-origin-isolated contexts: 0.1 ms
 
-// reduced time precision with `privacy.resistFingerprinting` enabled
-event.timeStamp;
-// 1519129853500
-// 1519129858900
-// 1519129864400
-// ...
+Browsers may also add jitter, for example by randomizing when the reported time advances to the next rounding interval. These resolutions are not accuracy guarantees. See the documentation for the API that produces the value for its precision requirements.
+
+Cross-origin isolate your site using the {{HTTPHeader("Cross-Origin-Opener-Policy")}} and
+{{HTTPHeader("Cross-Origin-Embedder-Policy")}} headers:
+
+```http
+Cross-Origin-Opener-Policy: same-origin
+Cross-Origin-Embedder-Policy: require-corp
 ```
 
-In Firefox, you can also enable `privacy.resistFingerprinting`, the precision will be 100ms or the value of `privacy.resistFingerprinting.reduceTimerPrecision.microseconds`, whichever is larger.
-
-## Properties
-
-_This type has no properties. It is a double-precision floating-point value._
-
-### Value
-
-The value of a `DOMHighResTimeStamp` is a double-precision floating-point number which describes the number of milliseconds (accurate to within 5 microseconds if the device supports it) elapsed between two points in time. The starting time can be either a specific time determined by the script for a site or app, or the **time origin**.
-
-#### The time origin
-
-The **time origin** is a standard time which is considered to be the beginning of the current document's lifetime. It's calculated like this:
-
-- If the script's {{Glossary("global object")}} is a {{domxref("Window")}}, the time origin is determined as follows:
-
-  - If the current {{domxref("Document")}} is the first one loaded in the `Window`, the time origin is the time at which the browser context was created.
-  - If during the process of unloading the previous document which was loaded in the window, a confirmation dialog was displayed to let the user confirm whether or not to leave the previous page, the time origin is the time at which the user confirmed that navigating to the new page was acceptable.
-  - If neither of the above determines the time origin, then the time origin is the time at which the navigation responsible for creating the window's current `Document` took place.
-
-- If the script's global object is a {{domxref("WorkerGlobalScope")}} (that is, the script is running as a web worker), the time origin is the moment at which the worker was created.
-- In all other cases, the time origin is undefined.
-
-## Methods
-
-_This type has no methods._
-
-## Usage notes
-
-You can get the current timestamp value—the time that has elapsed since the context was created—by calling the {{domxref("performance")}} method {{domxref("performance.now", "now()")}}. This method is available in both {{domxref("Window")}} and {{domxref("Worker")}} contexts.
-
-## Example
-
-To determine how much time has elapsed since a particular point in your code, you can do something like this:
-
-```js
-let startTime = performance.now();
-
-/* ... do things for a while ... */
-
-let elapsedTime = performance.now() - startTime;
-```
-
-Upon completion, the value of `elapsedTime` is the number of milliseconds that have elapsed since you recorded the starting time in line 1.
+These headers ensure a top-level document does not share a browsing context group with
+cross-origin documents. COOP process-isolates your document and potential attackers
+can't access to your global object if they were opening it in a popup, preventing a set
+of cross-origin attacks dubbed [XS-Leaks](https://github.com/xsleaks/xsleaks).
 
 ## Specifications
 
 {{Specifications}}
 
-## Browser compatibility
-
-{{Compat}}
-
 ## See also
 
-- [Navigation Timing API](/en-US/docs/Web/API/Navigation_timing_API)
-- {{domxref("Performance")}}
 - [`performance.now()`](/en-US/docs/Web/API/Performance/now)
+- [`performance.timeOrigin`](/en-US/docs/Web/API/Performance/timeOrigin)

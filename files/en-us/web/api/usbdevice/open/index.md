@@ -1,27 +1,23 @@
 ---
-title: USBDevice.open()
+title: "USBDevice: open() method"
+short-title: open()
 slug: Web/API/USBDevice/open
-tags:
-  - API
-  - Method
-  - Reference
-  - USB
-  - USBDevice
-  - WebUSB
-  - WebUSB API
-  - open
+page-type: web-api-instance-method
+status:
+  - experimental
 browser-compat: api.USBDevice.open
 ---
-{{APIRef("WebUSB API")}}{{SeeCompatTable}}
+
+{{APIRef("WebUSB API")}}{{SeeCompatTable}}{{SecureContext_Header}}{{AvailableInWorkers}}
 
 The **`open()`** method of the {{domxref("USBDevice")}}
-interface returns a {{jsxref("promise")}} that resolves when a device session has
+interface returns a {{jsxref("Promise")}} that resolves when a device session has
 started.
 
 ## Syntax
 
-```js
-var promise = USBDevice.open()
+```js-nolint
+open()
 ```
 
 ### Parameters
@@ -30,7 +26,7 @@ None.
 
 ### Return value
 
-A {{jsxref("promise")}}.
+A {{jsxref("Promise")}}.
 
 ## Specifications
 

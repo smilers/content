@@ -1,26 +1,20 @@
 ---
-title: Element.prefix
+title: "Element: prefix property"
+short-title: prefix
 slug: Web/API/Element/prefix
-tags:
-  - API
-  - DOM
-  - NeedsBrowserCompatibility
-  - NeedsMobileBrowserCompatibility
-  - Property
-  - Reference
+page-type: web-api-instance-property
 browser-compat: api.Element.prefix
 ---
+
 {{APIRef("DOM")}}
 
 The **`Element.prefix`** read-only property returns the
 namespace prefix of the specified element, or `null` if no prefix is
 specified.
 
-## Syntax
+## Value
 
-```js
-string = element.prefix
-```
+A string or `null`.
 
 ## Examples
 
@@ -32,7 +26,7 @@ The following logs "x" to the console.
 
 ## Notes
 
-This will only work when a namespace-aware parser is used, i.e. when a document is
+This will only work when a namespace-aware parser is used, i.e., when a document is
 served with an XML MIME type. This will not work for HTML documents.
 
 ## Specifications

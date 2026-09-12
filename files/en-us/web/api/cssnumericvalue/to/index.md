@@ -1,46 +1,44 @@
 ---
-title: CSSNumericValue.to()
+title: "CSSNumericValue: to() method"
+short-title: to()
 slug: Web/API/CSSNumericValue/to
-tags:
-  - API
-  - CSS Typed Object Model API
-  - CSSNumericValue
-  - Experimental
-  - Houdini
-  - Method
-  - Reference
-  - to()
+page-type: web-api-instance-method
 browser-compat: api.CSSNumericValue.to
 ---
-{{draft}}{{APIRef("CSS Typed OM")}}{{SeeCompatTable}}
 
-The **`to()`** method of the
-{{domxref("CSSNumericValue")}} interface converts a numeric value from one unit to
-another.
+{{APIRef("CSS Typed Object Model API")}} {{AvailableInWorkers}}
+
+The **`to()`** method of the {{domxref("CSSNumericValue")}} interface converts a numeric value from one unit to another.
 
 ## Syntax
 
-```js
-var cssUnitValue = CSSNumericValue.to(unit);
+```js-nolint
+to(unit)
 ```
 
 ### Parameters
 
-- unit
+- `unit`
   - : The unit to which you want to convert.
 
 ### Return value
 
-A {{domxref('CSSMathSum')}}.
+A {{domxref('CSSUnitValue')}}.
 
 ### Exceptions
 
-- SyntaxError
-  - : Indicates that an invalid type was passed to the method.
-- TypeError
-  - : Indicates that the passed values cannot be summed.
+- `SyntaxError` {{domxref("DOMException")}}
+  - : Thrown if an invalid unit was passed to the method.
+- {{jsxref("TypeError")}}
+  - : Thrown if:
+    - The `CSSNumericValue` on which the method is being called can't be resolved to a single value and type.
+      This might occur if the value is calculated from a variable when the value of that variable can't be known in the context.
+    - The value can't be converted to the new unit because it's not of the same category.
+      For example, you can't convert meters to seconds.
 
 ## Examples
+
+### Basic usage
 
 ```js
 // Prints "0.608542cm"

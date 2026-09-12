@@ -1,44 +1,44 @@
 ---
-title: WEBGL_lose_context.loseContext()
+title: "WEBGL_lose_context: loseContext() method"
+short-title: loseContext()
 slug: Web/API/WEBGL_lose_context/loseContext
-tags:
-  - API
-  - Method
-  - Reference
-  - WebGL
-  - WebGL extension
+page-type: webgl-extension-method
 browser-compat: api.WEBGL_lose_context.loseContext
 ---
+
 {{APIRef("WebGL")}}
 
-The **WEBGL_lose_context.loseContext()** method is part of the [WebGL API](/en-US/docs/Web/API/WebGL_API) and allows you to simulate losing
-the context of a {{domxref("WebGLRenderingContext")}} context.
+The **`loseContext()`** method of the `WEBGL_lose_context` extension is part of the [WebGL API](/en-US/docs/Web/API/WebGL_API) and allows you to simulate losing the context of a {{domxref("WebGLRenderingContext")}}.
 
-It triggers the steps described in the WebGL specification for handling context lost.
-The context will remain lost until {{domxref("WEBGL_lose_context.restoreContext()")}} is
-called.
+It triggers the [steps described in the WebGL specification](https://registry.khronos.org/webgl/specs/latest/1.0/#5.15.2) for handling context lost. The context will remain lost until {{domxref("WEBGL_lose_context.restoreContext()")}} is called. It also destroys the underlying graphics context and all graphics resources. This is the recommended mechanism for applications to programmatically halt their use of the WebGL API.
 
 ## Syntax
 
-```js
-gl.getExtension('WEBGL_lose_context').loseContext();
+```js-nolint
+loseContext()
 ```
+
+### Parameters
+
+None.
+
+### Return value
+
+None ({{jsxref("undefined")}}).
 
 ## Examples
 
-With this method, you can simulate the
-[`webglcontextlost`](/en-US/docs/Web/API/HTMLCanvasElement/webglcontextlost_event)
-event:
+With this method, you can simulate the [`webglcontextlost`](/en-US/docs/Web/API/HTMLCanvasElement/webglcontextlost_event) event:
 
 ```js
-var canvas = document.getElementById('canvas');
-var gl = canvas.getContext('webgl');
+const canvas = document.getElementById("canvas");
+const gl = canvas.getContext("webgl");
 
-canvas.addEventListener('webglcontextlost', function(e) {
+canvas.addEventListener("webglcontextlost", (e) => {
   console.log(e);
-}, false);
+});
 
-gl.getExtension('WEBGL_lose_context').loseContext();
+gl.getExtension("WEBGL_lose_context").loseContext();
 
 // WebGLContextEvent event with type "webglcontextlost" is logged.
 ```
@@ -54,7 +54,4 @@ gl.getExtension('WEBGL_lose_context').loseContext();
 ## See also
 
 - {{domxref("WebGLRenderingContext.isContextLost()")}}
-- Events:
-  [`webglcontextlost`](/en-US/docs/Web/API/HTMLCanvasElement/webglcontextlost_event),
-  [`webglcontextrestored`](/en-US/docs/Web/API/HTMLCanvasElement/webglcontextrestored_event),
-  [`webglcontextcreationerror`](/en-US/docs/Web/API/HTMLCanvasElement/webglcontextcreationerror_event)
+- Events: [`webglcontextlost`](/en-US/docs/Web/API/HTMLCanvasElement/webglcontextlost_event), [`webglcontextrestored`](/en-US/docs/Web/API/HTMLCanvasElement/webglcontextrestored_event), [`webglcontextcreationerror`](/en-US/docs/Web/API/HTMLCanvasElement/webglcontextcreationerror_event)

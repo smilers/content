@@ -1,46 +1,32 @@
 ---
-title: 'Element: mouseover event'
+title: "Element: mouseover event"
+short-title: mouseover
 slug: Web/API/Element/mouseover_event
-tags:
-  - API
-  - Cursor
-  - DOM
-  - Event
-  - Interface
-  - MouseEvent
-  - Reference
-  - mouse
-  - mouseover
-  - move
-  - pointer
+page-type: web-api-event
 browser-compat: api.Element.mouseover_event
 ---
-{{APIRef}}
+
+{{APIRef("UI Events")}}
 
 The **`mouseover`** event is fired at an {{domxref("Element")}} when a pointing device (such as a mouse or trackpad) is used to move the cursor onto the element or one of its child elements.
 
-<table class="properties">
-  <tbody>
-    <tr>
-      <th scope="row">Bubbles</th>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <th scope="row">Cancelable</th>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <th scope="row">Interface</th>
-      <td>{{domxref("MouseEvent")}}</td>
-    </tr>
-    <tr>
-      <th scope="row">Event handler property</th>
-      <td>
-        {{domxref("GlobalEventHandlers.onmouseover", "onmouseover")}}
-      </td>
-    </tr>
-  </tbody>
-</table>
+If the target element has child elements, `mouseout` and `mouseover` events fire as the mouse moves over the boundaries of these elements too, not just the target element itself. Usually, `mouseenter` and `mouseleave` events' behavior is more sensible, because they are not affected by moving into child elements.
+
+## Syntax
+
+Use the event name in methods like {{domxref("EventTarget.addEventListener", "addEventListener()")}}, or set an event handler property.
+
+```js-nolint
+addEventListener("mouseover", (event) => { })
+
+onmouseover = (event) => { }
+```
+
+## Event type
+
+A {{domxref("MouseEvent")}}. Inherits from {{domxref("UIEvent")}} and {{domxref("Event")}}.
+
+{{InheritanceDiagram("MouseEvent")}}
 
 ## Examples
 
@@ -59,31 +45,31 @@ The following example illustrates the difference between `mouseover` and {{domxr
 ### JavaScript
 
 ```js
-let test = document.getElementById("test");
+const test = document.getElementById("test");
 
 // This handler will be executed only once when the cursor
 // moves over the unordered list
-test.addEventListener("mouseenter", function( event ) {
+test.addEventListener("mouseenter", (event) => {
   // highlight the mouseenter target
   event.target.style.color = "purple";
 
   // reset the color after a short delay
-  setTimeout(function() {
+  setTimeout(() => {
     event.target.style.color = "";
   }, 500);
-}, false);
+});
 
 // This handler will be executed every time the cursor
 // is moved over a different list item
-test.addEventListener("mouseover", function( event ) {
+test.addEventListener("mouseover", (event) => {
   // highlight the mouseover target
   event.target.style.color = "orange";
 
   // reset the color after a short delay
-  setTimeout(function() {
+  setTimeout(() => {
     event.target.style.color = "";
   }, 500);
-}, false);
+});
 ```
 
 ### Result
@@ -100,14 +86,14 @@ test.addEventListener("mouseover", function( event ) {
 
 ## See also
 
-- [Introduction to events](/en-US/docs/Learn/JavaScript/Building_blocks/Events)
+- [Learn: Introduction to events](/en-US/docs/Learn_web_development/Core/Scripting/Events)
 - {{domxref("Element/mousedown_event", "mousedown")}}
 - {{domxref("Element/mouseup_event", "mouseup")}}
 - {{domxref("Element/mousemove_event", "mousemove")}}
 - {{domxref("Element/click_event", "click")}}
 - {{domxref("Element/dblclick_event", "dblclick")}}
-- {{domxref("Element/mouseover_event", "mouseover")}}
 - {{domxref("Element/mouseout_event", "mouseout")}}
 - {{domxref("Element/mouseenter_event", "mouseenter")}}
 - {{domxref("Element/mouseleave_event", "mouseleave")}}
 - {{domxref("Element/contextmenu_event", "contextmenu")}}
+- {{domxref("Element/pointerover_event", "pointerover")}}

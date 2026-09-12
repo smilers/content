@@ -1,35 +1,26 @@
 ---
-title: CSSSkewX()
+title: "CSSSkewX: CSSSkewX() constructor"
+short-title: CSSSkewX()
 slug: Web/API/CSSSkewX/CSSSkewX
-tags:
-  - API
-  - CSS Typed Object Model API
-  - CSSSkewX
-  - CSSTransformComponent
-  - CSSTransformValue
-  - Constructor
-  - Experimental
-  - Houdini
+page-type: web-api-constructor
 browser-compat: api.CSSSkewX.CSSSkewX
 ---
-{{APIRef("CSS Typed OM")}}{{SeeCompatTable}}{{draft}}
 
-The **`CSSSkewX()`** constructor creates a new
-{{domxref("CSSSkewX")}} object which represents the
-[`skewX()`](</en-US/docs/Web/CSS/transform-function/skewX()>)
-value of the individual {{CSSXRef('transform')}} property in CSS.
+{{APIRef("CSS Typed Object Model API")}}{{AvailableInWorkers}}
+
+The **`CSSSkewX()`** constructor creates a new {{domxref("CSSSkewX")}} object that represents the {{cssxref("transform-function/skewX", "skewX()")}} value of the individual {{CSSXRef('transform')}} property in CSS.
 
 ## Syntax
 
-```js
-var CSSSkewX = new CSSSkewX(ax);
+```js-nolint
+new CSSSkewX(ax)
 ```
 
 ### Parameters
 
 - {{domxref('CSSSkewx.ax','ax')}}
-  - : A value for the `ax` angle of the {{domxref('CSSSkewX')}} object to be
-    constructed. This must be a {{domxref('CSSNumericValue')}}.
+  - : A value for the `ax` angle of the {{domxref('CSSSkewX')}} object to be constructed.
+    This must be a {{domxref('CSSNumericValue')}}.
 
 ## Examples
 

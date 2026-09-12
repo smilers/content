@@ -1,14 +1,11 @@
 ---
-title: CSSGroupingRule.insertRule()
+title: "CSSGroupingRule: insertRule() method"
+short-title: insertRule()
 slug: Web/API/CSSGroupingRule/insertRule
-tags:
-  - API
-  - CSSOM
-  - CSSGroupingRule
-  - Method
-  - Reference
+page-type: web-api-instance-method
 browser-compat: api.CSSGroupingRule.insertRule
 ---
+
 {{ APIRef("CSSOM") }}
 
 The **`insertRule()`** method of the
@@ -16,16 +13,16 @@ The **`insertRule()`** method of the
 
 ## Syntax
 
-```js
-cssGroupingRule.insertRule(rule);
-cssGroupingRule.insertRule(rule, index);
+```js-nolint
+insertRule(rule)
+insertRule(rule, index)
 ```
 
 ### Parameters
 
-- rule
-  - : A {{domxref("CSSOMString")}}
-- index{{optional_inline}}
+- `rule`
+  - : A string
+- `index` {{optional_inline}}
   - : An optional index at which to insert the rule; defaults to 0.
 
 ### Return value
@@ -37,16 +34,18 @@ The index of the new rule.
 - `IndexSizeError` {{domxref("DOMException")}}
   - : Thrown if _index_ is greater than the number of child CSS rules.
 - `HierarchyRequestError` {{domxref("DOMException")}}
-  - : Thrown if, due to constraints specified by CSS, the new rule cannot be inserted into
-    the list at the (zero-index) index position given.
-- `InvalidStateError` {{domxref("DOMException")}}
-  - : Thrown if the new rule is an `@namespace` at-rule, and the list of child CSS rules contains anything other than `@import` at-rules and `@namespace` at-rules.
+  - : Thrown if `rule` cannot be inserted at the specified index due to some CSS constraint.
+- `HierarchyRequestError` {{domxref("DOMException")}}
+  - : Thrown if the `rule` is a valid statement but not a [nested statement](/en-US/docs/Web/CSS/Guides/Syntax/Introduction#nested_statements).
 
 ## Examples
 
 ```js
 let myRules = document.styleSheets[0].cssRules;
-myRules[0].insertRule('html {background-color: blue;}',0); /* inserts a rule for the html element at position 0 */
+myRules[0].insertRule(
+  "html {background-color: blue;}",
+  0,
+); /* inserts a rule for the HTML element at position 0 */
 ```
 
 ## Specifications

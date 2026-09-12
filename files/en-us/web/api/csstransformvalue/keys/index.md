@@ -1,40 +1,45 @@
 ---
-title: CSSTransformValue.keys()
+title: "CSSTransformValue: keys() method"
+short-title: keys()
 slug: Web/API/CSSTransformValue/keys
-tags:
-  - API
-  - CSS Typed Object Model API
-  - CSSTransformValue
-  - Experimental
-  - Houdini
-  - Method
-  - Reference
-  - keys
+page-type: web-api-instance-method
 browser-compat: api.CSSTransformValue.keys
 ---
-{{APIRef("CSS Typed OM")}}{{SeeCompatTable}}{{Draft}}
 
-The **`CSSTransformValue.keys()`** method
-returns a new _array iterator_ object that contains the keys
-for each index in the array.
+{{APIRef("CSS Typed Object Model API")}} {{AvailableInWorkers}}
+
+The **`keys()`** method of the {{domxref("CSSTransformValue")}} interface returns a new _array iterator_ that yields the index of each item in the object.
 
 ## Syntax
 
-```js
-CSSTransformValue.keys();
+```js-nolint
+keys()
 ```
 
 ### Parameters
 
-None
+None.
 
 ### Return value
 
-A new {{jsxref("Array")}}.
+A new [iterable iterator object](/en-US/docs/Web/JavaScript/Reference/Global_Objects/Iterator).
 
 ## Examples
 
-To Do
+### Iterating over indexes
+
+```js
+const transform = new CSSTransformValue([
+  new CSSTranslate(CSS.px(10), CSS.px(20)),
+  new CSSScale(2, 3),
+]);
+
+for (const index of transform.keys()) {
+  console.log(index);
+}
+// 0
+// 1
+```
 
 ## Specifications
 
@@ -43,3 +48,13 @@ To Do
 ## Browser compatibility
 
 {{Compat}}
+
+## See also
+
+- {{domxref("CSSTransformValue.CSSTransformValue", "CSSTransformValue()")}}
+- {{domxref("CSSTransformValue.entries()")}}
+- {{domxref("CSSTransformValue.forEach()")}}
+- {{domxref("CSSTransformValue.length")}}
+- {{domxref("CSSTransformValue.values()")}}
+- [Using the CSS Typed OM](/en-US/docs/Web/API/CSS_Typed_OM_API/Guide)
+- [CSS Typed Object Model API](/en-US/docs/Web/API/CSS_Typed_OM_API)

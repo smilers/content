@@ -1,33 +1,29 @@
 ---
-title: CSSNumericValue.min()
+title: "CSSNumericValue: min() method"
+short-title: min()
 slug: Web/API/CSSNumericValue/min
-tags:
-  - API
-  - CSS Typed Object Model API
-  - CSSNumericValue
-  - Experimental
-  - Houdini
-  - Method
-  - Reference
-  - min()
+page-type: web-api-instance-method
 browser-compat: api.CSSNumericValue.min
 ---
-{{draft}}{{APIRef("CSS Typed OM")}}{{SeeCompatTable}}
 
-The **`min()`** method of the
-{{domxref("CSSNumericValue")}} interface returns the lowest value from among those
-values passed. The passed values must be of the same type.
+{{APIRef("CSS Typed Object Model API")}} {{AvailableInWorkers}}
+
+The **`min()`** method of the {{domxref("CSSNumericValue")}} interface returns the lowest value from among those values passed.
+The passed values must be of the same type.
 
 ## Syntax
 
-```js
-var cssUnitValue = CSSNumericValue.min(number1 ... numbern);
+```js-nolint
+min()
+min(number1)
+min(number1, number2)
+min(number1, number2, /* …, */ numberN)
 ```
 
 ### Parameters
 
-- number
-  - : Either a {{jsxref('Number')}} or a {{domxref('CSSNumericValue')}}.
+- `number1`, …, `numberN` {{optional_inline}}
+  - : Either a number or a {{domxref('CSSNumericValue')}}.
 
 ### Return value
 
@@ -35,13 +31,15 @@ A {{domxref('CSSUnitValue')}}.
 
 ### Exceptions
 
-- TypeError
-  - : Indicates that an invalid type was passed to the method.
+- {{jsxref("TypeError")}}
+  - : Thrown if an invalid type was passed to the method.
 
 ## Examples
 
-As stated earlier, all passed values must be of the same type and value. Some of the
-following examples illustrate what happens when they are not.
+### Basic usage
+
+As stated earlier, all passed values must be of the same type and value.
+Some of the following examples illustrate what happens when they are not.
 
 ```js
 // Prints "1cm"

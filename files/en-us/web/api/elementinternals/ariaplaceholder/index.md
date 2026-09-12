@@ -1,39 +1,35 @@
 ---
-title: ElementInternals.ariaPlaceholder
+title: "ElementInternals: ariaPlaceholder property"
+short-title: ariaPlaceholder
 slug: Web/API/ElementInternals/ariaPlaceholder
-tags:
-  - API
-  - Property
-  - Reference
-  - ariaPlaceholder
-  - AriaAttributes
-  - AriaMixin
-  - ElementInternals
+page-type: web-api-instance-property
 browser-compat: api.ElementInternals.ariaPlaceholder
 ---
-{{DefaultAPISidebar("DOM")}}
 
-The **`ariaPlaceholder`** property of the {{domxref("ElementInternals")}} interface reflects the value of the `aria-placeholder` attribute, which defines a short hint intended to aid the user with data entry when the control has no value.
+{{APIRef("Web Components")}}
 
-> **Note:** Setting aria attributes on `ElementInternals` allows default semantics to be defined on a custom element. These may be overwritten by author-defined attributes, but ensure that default semantics are retained should the author delete those attributes, or fail to add them at all. For more information see the [Accessibility Object Model explainer](https://wicg.github.io/aom/explainer.html#default-semantics-for-custom-elements-via-the-elementinternals-object).
+The **`ariaPlaceholder`** property of the {{domxref("ElementInternals")}} interface reflects the value of the [`aria-placeholder`](/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-placeholder) attribute, which defines a short hint intended to aid the user with data entry when the control has no value.
 
-## Syntax
+> [!NOTE]
+> Setting aria attributes on `ElementInternals` allows default semantics to be defined on a custom element. These may be overwritten by author-defined attributes, but ensure that default semantics are retained should the author delete those attributes, or fail to add them at all. For more information see the [Accessibility Object Model explainer](https://wicg.github.io/aom/explainer.html#default-semantics-for-custom-elements-via-the-elementinternals-object).
 
-```js
-let ariaPlaceholder = ElementInternals.ariaPlaceholder;
-ElementInternals.ariaPlaceholder = ariaPlaceholder;
-```
+## Value
 
-### Value
-
-A {{domxref("DOMString")}}.
+A string.
 
 ## Examples
 
 In this example the value of `ariaPlaceholder` is set to "12345".
 
 ```js
-this.internals_.ariaPlaceholder = "12345";
+class CustomControl extends HTMLElement {
+  constructor() {
+    super();
+    this.internals_ = this.attachInternals();
+    this.internals_.ariaPlaceholder = "12345";
+  }
+  // …
+}
 ```
 
 ## Specifications
@@ -46,4 +42,4 @@ this.internals_.ariaPlaceholder = "12345";
 
 ## See also
 
-- [ARIA: textbox role](/en-US/docs/Web/Accessibility/ARIA/Roles/textbox_role)
+- [ARIA: textbox role](/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/textbox_role)

@@ -1,15 +1,11 @@
 ---
-title: Document.createTextNode()
+title: "Document: createTextNode() method"
+short-title: createTextNode()
 slug: Web/API/Document/createTextNode
-tags:
-  - API
-  - DOM
-  - Document
-  - Method
-  - Reference
-  - createTextNode
+page-type: web-api-instance-method
 browser-compat: api.Document.createTextNode
 ---
+
 {{APIRef("DOM")}}
 
 Creates a new {{domxref("Text")}} node. This method can be used to escape HTML
@@ -17,44 +13,47 @@ characters.
 
 ## Syntax
 
-```js
-var text = document.createTextNode(data);
+```js-nolint
+createTextNode(data)
 ```
 
-- _text_ is a {{domxref("Text")}} node.
-- _data_ is a [string](/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
-  containing the data to be put in the text node.
+### Parameters
 
-## Example
+- `data`
+  - : A string containing the data to be put in the text node.
+
+### Return value
+
+A {{domxref("Text")}} node.
+
+## Examples
 
 ```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>createTextNode example</title>
-<script>
-function addTextNode(text) {
-  var newtext = document.createTextNode(text),
-      p1 = document.getElementById("p1");
+<button>YES!</button>
+<button>NO!</button>
+<button>WE CAN!</button>
 
-  p1.appendChild(newtext);
-}
-</script>
-</head>
+<hr />
 
-<body>
-  <button onclick="addTextNode('YES! ');">YES!</button>
-  <button onclick="addTextNode('NO! ');">NO!</button>
-  <button onclick="addTextNode('WE CAN! ');">WE CAN!</button>
-
-  <hr />
-
-  <p id="p1">First line of paragraph.</p>
-</body>
-</html>
+<p id="p1">First line of paragraph.</p>
 ```
 
-{{EmbedLiveSample('Example')}}
+```js
+function addTextNode(text) {
+  const newText = document.createTextNode(text);
+  const p1 = document.getElementById("p1");
+
+  p1.appendChild(newText);
+}
+
+document.querySelectorAll("button").forEach((button) => {
+  button.addEventListener("click", (event) => {
+    addTextNode(`${event.target.textContent} `);
+  });
+});
+```
+
+{{EmbedLiveSample('Examples')}}
 
 ## Specifications
 

@@ -1,35 +1,20 @@
 ---
-title: CSSMatrixComponent.matrix
+title: "CSSMatrixComponent: matrix property"
+short-title: matrix
 slug: Web/API/CSSMatrixComponent/matrix
-tags:
-  - API
-  - CSS Typed Object Model API
-  - CSSMatrixComponent
-  - CSSTransformComponent
-  - CSSTransformValue
-  - Experimental
-  - Houdini
-  - Property
-  - matrix
+page-type: web-api-instance-property
 browser-compat: api.CSSMatrixComponent.matrix
 ---
-{{draft}}{{SeeCompatTable}}{{APIRef("CSS Typed Object Model API")}}
 
-The **`matrix`** property of the
-{{domxref("CSSMatrixComponent")}} interface gets and sets a 2d or 3d matrix.
+{{APIRef("CSS Typed Object Model API")}} {{AvailableInWorkers}}
 
-See the [matrix()](</en-US/docs/Web/CSS/transform-function/matrix()>) and [matrix3d()](</en-US/docs/Web/CSS/transform-function/matrix3d()>) pages for
-examples.
+The **`matrix`** property of the {{domxref("CSSMatrixComponent")}} interface represents a {{domxref("DOMMatrix")}} object containing a 2D or 3D matrix.
 
-## Syntax
+See the {{cssxref("transform-function/matrix", "matrix()")}} and {{cssxref("transform-function/matrix3d", "matrix3d()")}} pages for examples.
 
-```js
-var matrix = CSSMatrixComponent.matrix;
-```
+## Value
 
-### Value
-
-a matrix.
+A {{domxref("DOMMatrix")}}.
 
 ## Examples
 

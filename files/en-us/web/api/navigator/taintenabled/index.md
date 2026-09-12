@@ -1,16 +1,12 @@
 ---
-title: Navigator.taintEnabled()
+title: "Navigator: taintEnabled() method"
+short-title: taintEnabled()
 slug: Web/API/Navigator/taintEnabled
-tags:
-  - API
-  - Deprecated
-  - HTML DOM
-  - Method
-  - Navigator
-  - Reference
+page-type: web-api-instance-method
 browser-compat: api.Navigator.taintEnabled
 ---
-{{APIRef("HTML DOM")}} {{deprecated_header}}
+
+{{APIRef("HTML DOM")}}
 
 The **`Navigator.taintEnabled()`** method always returns
 `false`.
@@ -20,9 +16,17 @@ method only stays for maintaining compatibility with very old scripts.
 
 ## Syntax
 
-```js
-result = window.navigator.taintEnabled()
+```js-nolint
+taintEnabled()
 ```
+
+### Parameters
+
+None.
+
+### Return value
+
+Always returns `false`.
 
 ## Specifications
 

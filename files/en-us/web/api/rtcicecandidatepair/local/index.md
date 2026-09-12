@@ -1,56 +1,38 @@
 ---
-title: RTCIceCandidatePair.local
+title: "RTCIceCandidatePair: local property"
+short-title: local
 slug: Web/API/RTCIceCandidatePair/local
-tags:
-  - API
-  - Candidate
-  - Connectivity
-  - ICE
-  - Negotiation
-  - Property
-  - RTCIceCandidatePair
-  - Reference
-  - WebRTC
-  - WebRTC API
-  - local
-  - rtc
+page-type: web-api-instance-property
+status:
+  - experimental
 browser-compat: api.RTCIceCandidatePair.local
 ---
-{{APIRef("WebRTC")}}
 
-The **`local`** property of the
-**{{domxref("RTCIceCandidatePair")}}** dictionary specifies the
-{{domxref("RTCIceCandidate")}} which describes the configuration of the local end of a
-viable WebRTC connection.
+{{APIRef("WebRTC")}}{{SeeCompatTable}}
 
-## Syntax
+The **`local`** property of the {{domxref("RTCIceCandidatePair")}} interface specifies the {{domxref("RTCIceCandidate")}} that describes the configuration of the local end of a viable WebRTC connection.
 
-```js
-localCandidate = RTCIceCandidatePair.local;
-```
+The `RTCIceCandidatePair` is returned by the {{domxref("RTCIceTransport.getSelectedCandidatePair", "getSelectedCandidatePair()")}} method of {{domxref("RTCIceTransport")}}.
 
-### Value
+## Value
 
-An {{domxref("RTCIceCandidate")}} which describes the configuration of the local end of
-a viable pair of ICE candidates. The `RTCIceCandidatePair` is returned by the
-{{domxref("RTCIceTransport")}} method
-{{domxref("RTCIceTransport.getSelectedCandidatePair", "getSelectedCandidatePair()")}}.
+An {{domxref("RTCIceCandidate")}}.
 
-## Example
+## Examples
 
-This one-line example obtains the current candidate pair and then from that gets the
-local candidate.
+### Basic usage
+
+This one-line example obtains the current candidate pair and then from that gets the local candidate.
 
 ```js
-var candidatePair = pc.getSenders()[0].transport.transport.getSelectedCandidatePair();
-var localCandidate = candidatePair.local;
+const candidatePair = pc
+  .getSenders()[0]
+  .transport.iceTransport.getSelectedCandidatePair();
+const localCandidate = candidatePair.local;
 ```
 
-The {{domxref("RTCIceTransport")}} is found by getting the list of
-{{domxref("RTCRtpSender")}} objects for the {{domxref("RTCPeerConnection")}}
-`pc`. In the first `RTCRtpSender`, we get the
-{{domxref("RTCDtlsTransport")}} over which the media data is being transmitted and
-finally, from that, the `RTCIceTransport`.
+The {{domxref("RTCIceTransport")}} is found by getting the list of {{domxref("RTCRtpSender")}} objects for the {{domxref("RTCPeerConnection")}} `pc`.
+In the first `RTCRtpSender`, we get the {{domxref("RTCDtlsTransport")}} over which the media data is being transmitted and finally, from that, the `RTCIceTransport`.
 
 ## Specifications
 

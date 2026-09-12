@@ -1,22 +1,33 @@
 ---
-title: CanvasRenderingContext2D.save()
+title: "CanvasRenderingContext2D: save() method"
+short-title: save()
 slug: Web/API/CanvasRenderingContext2D/save
-tags:
-  - API
-  - Canvas
-  - CanvasRenderingContext2D
-  - Method
-  - Reference
+page-type: web-api-instance-method
 browser-compat: api.CanvasRenderingContext2D.save
 ---
-{{APIRef}}
+
+{{APIRef("Canvas API")}}
 
 The
 **`CanvasRenderingContext2D.save()`**
 method of the Canvas 2D API saves the entire state of the canvas by pushing the current
 state onto a stack.
 
-### The drawing state
+## Syntax
+
+```js-nolint
+save()
+```
+
+### Parameters
+
+None.
+
+### Return value
+
+None ({{jsxref("undefined")}}).
+
+## Description
 
 The drawing state that gets saved onto a stack consists of:
 
@@ -24,39 +35,40 @@ The drawing state that gets saved onto a stack consists of:
 - The current clipping region.
 - The current dash list.
 - The current values of the following attributes:
-  {{domxref("CanvasRenderingContext2D.strokeStyle", "strokeStyle")}},
-  {{domxref("CanvasRenderingContext2D.fillStyle", "fillStyle")}},
-  {{domxref("CanvasRenderingContext2D.globalAlpha", "globalAlpha")}},
-  {{domxref("CanvasRenderingContext2D.lineWidth", "lineWidth")}},
-  {{domxref("CanvasRenderingContext2D.lineCap", "lineCap")}},
-  {{domxref("CanvasRenderingContext2D.lineJoin", "lineJoin")}},
-  {{domxref("CanvasRenderingContext2D.miterLimit", "miterLimit")}},
-  {{domxref("CanvasRenderingContext2D.lineDashOffset", "lineDashOffset")}},
-  {{domxref("CanvasRenderingContext2D.shadowOffsetX", "shadowOffsetX")}},
-  {{domxref("CanvasRenderingContext2D.shadowOffsetY", "shadowOffsetY")}},
-  {{domxref("CanvasRenderingContext2D.shadowBlur", "shadowBlur")}},
-  {{domxref("CanvasRenderingContext2D.shadowColor", "shadowColor")}},
-  {{domxref("CanvasRenderingContext2D.globalCompositeOperation",
-    "globalCompositeOperation")}}, {{domxref("CanvasRenderingContext2D.font", "font")}},
-  {{domxref("CanvasRenderingContext2D.textAlign", "textAlign")}},
-  {{domxref("CanvasRenderingContext2D.textBaseline", "textBaseline")}},
-  {{domxref("CanvasRenderingContext2D.direction", "direction")}},
-  {{domxref("CanvasRenderingContext2D.imageSmoothingEnabled",
-    "imageSmoothingEnabled")}}.
-
-## Syntax
-
-```js
-void ctx.save();
-```
+  - {{domxref("CanvasRenderingContext2D.direction", "direction")}}
+  - {{domxref("CanvasRenderingContext2D.fillStyle", "fillStyle")}}
+  - {{domxref("CanvasRenderingContext2D.filter", "filter")}}
+  - {{domxref("CanvasRenderingContext2D.font", "font")}}
+  - {{domxref("CanvasRenderingContext2D.fontKerning", "fontKerning")}}
+  - {{domxref("CanvasRenderingContext2D.fontStretch", "fontStretch")}}
+  - {{domxref("CanvasRenderingContext2D.fontVariantCaps", "fontVariantCaps")}}
+  - {{domxref("CanvasRenderingContext2D.globalAlpha", "globalAlpha")}}
+  - {{domxref("CanvasRenderingContext2D.globalCompositeOperation", "globalCompositeOperation")}}
+  - {{domxref("CanvasRenderingContext2D.imageSmoothingEnabled", "imageSmoothingEnabled")}}
+  - {{domxref("CanvasRenderingContext2D.imageSmoothingQuality", "imageSmoothingQuality")}}
+  - {{domxref("CanvasRenderingContext2D.letterSpacing", "letterSpacing")}}
+  - {{domxref("CanvasRenderingContext2D.lineCap", "lineCap")}}
+  - {{domxref("CanvasRenderingContext2D.lineDashOffset", "lineDashOffset")}}
+  - {{domxref("CanvasRenderingContext2D.lineJoin", "lineJoin")}}
+  - {{domxref("CanvasRenderingContext2D.lineWidth", "lineWidth")}}
+  - {{domxref("CanvasRenderingContext2D.miterLimit", "miterLimit")}}
+  - {{domxref("CanvasRenderingContext2D.shadowBlur", "shadowBlur")}}
+  - {{domxref("CanvasRenderingContext2D.shadowColor", "shadowColor")}}
+  - {{domxref("CanvasRenderingContext2D.shadowOffsetX", "shadowOffsetX")}}
+  - {{domxref("CanvasRenderingContext2D.shadowOffsetY", "shadowOffsetY")}}
+  - {{domxref("CanvasRenderingContext2D.strokeStyle", "strokeStyle")}}
+  - {{domxref("CanvasRenderingContext2D.textAlign", "textAlign")}}
+  - {{domxref("CanvasRenderingContext2D.textBaseline", "textBaseline")}}
+  - {{domxref("CanvasRenderingContext2D.textRendering", "textRendering")}}
+  - {{domxref("CanvasRenderingContext2D.wordSpacing", "wordSpacing")}}
 
 ## Examples
 
 ### Saving the drawing state
 
-This example uses the `save()` method to save the default state and
+This example uses the `save()` method to save the current state and
 `restore()` to restore it later, so that you are able to draw a rect with the
-default state later.
+current state later.
 
 #### HTML
 
@@ -67,16 +79,16 @@ default state later.
 #### JavaScript
 
 ```js
-const canvas = document.getElementById('canvas');
-const ctx = canvas.getContext('2d');
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
 
-// Save the default state
+// Save the current state
 ctx.save();
 
-ctx.fillStyle = 'green';
+ctx.fillStyle = "green";
 ctx.fillRect(10, 10, 100, 100);
 
-// Restore the default state
+// Restore to the state saved by the most recent call to save()
 ctx.restore();
 
 ctx.fillRect(150, 40, 100, 100);

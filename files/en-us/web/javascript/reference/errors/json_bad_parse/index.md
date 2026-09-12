@@ -1,21 +1,16 @@
 ---
-title: 'SyntaxError: JSON.parse: bad parsing'
+title: "SyntaxError: JSON.parse: bad parsing"
 slug: Web/JavaScript/Reference/Errors/JSON_bad_parse
-tags:
-  - Error
-  - Errors
-  - JSON
-  - JavaScript
-  - SyntaxError
+page-type: javascript-error
+sidebar: jssidebar
 ---
-{{jsSidebar("Errors")}}
 
 The JavaScript exceptions thrown by {{jsxref("JSON.parse()")}} occur when string failed
 to be parsed as JSON.
 
 ## Message
 
-```js
+```plain
 SyntaxError: JSON.parse: unterminated string literal
 SyntaxError: JSON.parse: bad control character in string literal
 SyntaxError: JSON.parse: bad character in string literal
@@ -47,7 +42,6 @@ SyntaxError: JSON.parse: property names must be double-quoted strings
 SyntaxError: JSON.parse: expected property name or '}'
 SyntaxError: JSON.parse: unexpected character
 SyntaxError: JSON.parse: unexpected non-whitespace character after JSON data
-SyntaxError: JSON.parse Error: Invalid character at position {0} (Edge)
 ```
 
 ## Error type
@@ -61,12 +55,12 @@ and will throw this error if incorrect syntax was encountered.
 
 ## Examples
 
-### `JSON.parse()` does not allow trailing commas
+### JSON.parse() does not allow trailing commas
 
 Both lines will throw a SyntaxError:
 
 ```js example-bad
-JSON.parse('[1, 2, 3, 4,]');
+JSON.parse("[1, 2, 3, 4,]");
 JSON.parse('{"foo": 1,}');
 // SyntaxError JSON.parse: unexpected character
 // at line 1 column 14 of the JSON data
@@ -75,7 +69,7 @@ JSON.parse('{"foo": 1,}');
 Omit the trailing commas to parse the JSON correctly:
 
 ```js example-good
-JSON.parse('[1, 2, 3, 4]');
+JSON.parse("[1, 2, 3, 4]");
 JSON.parse('{"foo": 1}');
 ```
 

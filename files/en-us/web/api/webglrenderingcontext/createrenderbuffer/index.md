@@ -1,15 +1,12 @@
 ---
-title: WebGLRenderingContext.createRenderbuffer()
+title: "WebGLRenderingContext: createRenderbuffer() method"
+short-title: createRenderbuffer()
 slug: Web/API/WebGLRenderingContext/createRenderbuffer
-tags:
-  - API
-  - Method
-  - Reference
-  - WebGL
-  - WebGLRenderingContext
+page-type: web-api-instance-method
 browser-compat: api.WebGLRenderingContext.createRenderbuffer
 ---
-{{APIRef("WebGL")}}
+
+{{APIRef("WebGL")}}{{AvailableInWorkers}}
 
 The **`WebGLRenderingContext.createRenderbuffer()`** method of
 the [WebGL API](/en-US/docs/Web/API/WebGL_API) creates and initializes a
@@ -17,8 +14,8 @@ the [WebGL API](/en-US/docs/Web/API/WebGL_API) creates and initializes a
 
 ## Syntax
 
-```js
-WebGLRenderbuffer gl.createRenderbuffer();
+```js-nolint
+createRenderbuffer()
 ```
 
 ### Parameters
@@ -28,16 +25,16 @@ None.
 ### Return value
 
 A {{domxref("WebGLRenderbuffer")}} object that stores data such an image, or can be
-source or target of an rendering operation.
+source or target of a rendering operation.
 
 ## Examples
 
 ### Creating a render buffer
 
 ```js
-var canvas = document.getElementById('canvas');
-var gl = canvas.getContext('webgl');
-var renderBuffer = gl.createRenderbuffer();
+const canvas = document.getElementById("canvas");
+const gl = canvas.getContext("webgl");
+const renderBuffer = gl.createRenderbuffer();
 ```
 
 ## Specifications

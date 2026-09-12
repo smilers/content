@@ -1,85 +1,17 @@
 ---
 title: SVGFETurbulenceElement
 slug: Web/API/SVGFETurbulenceElement
-tags:
-  - API
-  - NeedsExample
-  - Reference
-  - SVG
-  - SVG DOM
+page-type: web-api-interface
 browser-compat: api.SVGFETurbulenceElement
 ---
+
 {{APIRef("SVG")}}
 
 The **`SVGFETurbulenceElement`** interface corresponds to the {{SVGElement("feTurbulence")}} element.
 
-{{InheritanceDiagram(600, 140)}}
+{{InheritanceDiagram}}
 
-## Constants
-
-### Turbulence types
-
-<table class="no-markdown">
-  <tbody>
-    <tr>
-      <th>Name</th>
-      <th>Value</th>
-      <th>Description</th>
-    </tr>
-    <tr>
-      <td><code>SVG_TURBULENCE_TYPE_UNKNOWN</code></td>
-      <td>0</td>
-      <td>
-        The type is not one of predefined types. It is invalid to attempt to
-        define a new value of this type or to attempt to switch an existing
-        value to this type.
-      </td>
-    </tr>
-    <tr>
-      <td><code>SVG_TURBULENCE_TYPE_FRACTALNOISE</code></td>
-      <td>1</td>
-      <td>Corresponds to the <code>fractalNoise</code> value.</td>
-    </tr>
-    <tr>
-      <td><code>SVG_TURBULENCE_TYPE_TURBULENCE</code></td>
-      <td>2</td>
-      <td>Corresponds to <code>turbulence</code> value.</td>
-    </tr>
-  </tbody>
-</table>
-
-### Stitch options
-
-<table class="no-markdown">
-  <tbody>
-    <tr>
-      <th>Name</th>
-      <th>Value</th>
-      <th>Description</th>
-    </tr>
-    <tr>
-      <td><code>SVG_STITCHTYPE_UNKNOWN</code></td>
-      <td>0</td>
-      <td>
-        The type is not one of predefined types. It is invalid to attempt to
-        define a new value of this type or to attempt to switch an existing
-        value to this type.
-      </td>
-    </tr>
-    <tr>
-      <td><code>SVG_STITCHTYPE_STITCH</code></td>
-      <td>1</td>
-      <td>Corresponds to the <code>stitch</code> value.</td>
-    </tr>
-    <tr>
-      <td><code>SVG_STITCHTYPE_NOSTITCH</code></td>
-      <td>2</td>
-      <td>Corresponds to <code>noStitch</code> value.</td>
-    </tr>
-  </tbody>
-</table>
-
-## Properties
+## Instance properties
 
 _This interface also inherits properties from its parent interface, {{domxref("SVGElement")}}._
 
@@ -106,9 +38,24 @@ _This interface also inherits properties from its parent interface, {{domxref("S
 - {{domxref("SVGFETurbulenceElement.y")}} {{ReadOnlyInline}}
   - : An {{domxref("SVGAnimatedLength")}} corresponding to the {{SVGAttr("y")}} attribute of the given element.
 
-## Methods
+## Instance methods
 
 _This interface does not provide any specific methods, but implements those of its parent, {{domxref("SVGElement")}}._
+
+## Static properties
+
+- `SVG_TURBULENCE_TYPE_UNKNOWN` (0)
+  - : The type is not one of predefined types. It is invalid to attempt to define a new value of this type or to attempt to switch an existing value to this type.
+- `SVG_TURBULENCE_TYPE_FRACTALNOISE` (1)
+  - : Corresponds to the value `fractalNoise`.
+- `SVG_TURBULENCE_TYPE_TURBULENCE` (2)
+  - : Corresponds to the value `turbulence`.
+- `SVG_STITCHTYPE_UNKNOWN` (0)
+  - : The type is not one of predefined types. It is invalid to attempt to define a new value of this type or to attempt to switch an existing value to this type.
+- `SVG_STITCHTYPE_STITCH` (1)
+  - : Corresponds to the value `stitch`.
+- `SVG_STITCHTYPE_NOSTITCH` (2)
+  - : Corresponds to the value `noStitch`.
 
 ## Specifications
 

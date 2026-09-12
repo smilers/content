@@ -1,32 +1,21 @@
 ---
-title: ElementInternals.ariaAutoComplete
+title: "ElementInternals: ariaAutoComplete property"
+short-title: ariaAutoComplete
 slug: Web/API/ElementInternals/ariaAutoComplete
-tags:
-  - API
-  - Property
-  - Reference
-  - ariaAutoComplete
-  - AriaAttributes
-  - AriaMixin
-  - ElementInternals
+page-type: web-api-instance-property
 browser-compat: api.ElementInternals.ariaAutoComplete
 ---
-{{DefaultAPISidebar("DOM")}}
 
-The **`ariaAutoComplete`** property of the {{domxref("ElementInternals")}} interface reflects the value of the `aria-autocomplete` attribute, which indicates whether inputting text could trigger display of one or more predictions of the user's intended value for a combobox, searchbox, or textbox and specifies how predictions would be presented if they were made.
+{{APIRef("Web Components")}}
 
-> **Note:** Setting aria attributes on `ElementInternals` allows default semantics to be defined on a custom element. These may be overwritten by author-defined attributes, but ensure that default semantics are retained should the author delete those attributes, or fail to add them at all. For more information see the [Accessibility Object Model explainer](https://wicg.github.io/aom/explainer.html#default-semantics-for-custom-elements-via-the-elementinternals-object).
+The **`ariaAutoComplete`** property of the {{domxref("ElementInternals")}} interface reflects the value of the [`aria-autocomplete`](/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-autocomplete) attribute, which indicates whether inputting text could trigger display of one or more predictions of the user's intended value for a combobox, searchbox, or textbox and specifies how predictions would be presented if they were made.
 
-## Syntax
+> [!NOTE]
+> Setting aria attributes on `ElementInternals` allows default semantics to be defined on a custom element. These may be overwritten by author-defined attributes, but ensure that default semantics are retained should the author delete those attributes, or fail to add them at all. For more information see the [Accessibility Object Model explainer](https://wicg.github.io/aom/explainer.html#default-semantics-for-custom-elements-via-the-elementinternals-object).
 
-```js
-let ariaAutoComplete = ElementInternals.ariaAutoComplete;
-ElementInternals.ariaAutoComplete = ariaAutoComplete;
-```
+## Value
 
-### Value
-
-A {{domxref("DOMString")}} with one of the following values:
+A string with one of the following values:
 
 - `"inline"`
   - : When a user is providing input, text suggesting one way to complete the provided input may be dynamically inserted after the caret.
@@ -42,7 +31,14 @@ A {{domxref("DOMString")}} with one of the following values:
 In this example the value of `ariaAutoComplete` is set to "inline".
 
 ```js
-this.internals_.ariaAutoComplete = "inline";
+class CustomControl extends HTMLElement {
+  constructor() {
+    super();
+    this.internals_ = this.attachInternals();
+    this.internals_.ariaAutoComplete = "inline";
+  }
+  // …
+}
 ```
 
 ## Specifications

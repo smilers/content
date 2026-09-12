@@ -1,48 +1,50 @@
 ---
-title: ReportingObserver.takeRecords()
+title: "ReportingObserver: takeRecords() method"
+short-title: takeRecords()
 slug: Web/API/ReportingObserver/takeRecords
-tags:
-  - API
-  - Experimental
-  - Method
-  - Reference
-  - Reporting API
-  - ReportingObserver
+page-type: web-api-instance-method
 browser-compat: api.ReportingObserver.takeRecords
 ---
-{{APIRef("Reporting API")}}{{SeeCompatTable}}
 
-The **`takeRecords()`** method of the
-{{domxref("ReportingObserver")}} interface returns the current list of reports contained
-in the observer's report queue, and empties the queue.
+{{APIRef("Reporting API")}}{{AvailableInWorkers}}
+
+The **`takeRecords()`** method of the {{domxref("ReportingObserver")}} interface returns the current list of reports contained in the observer's report queue, and empties the queue.
 
 ## Syntax
 
-```js
-reportingObserverInstance.takeRecords()
+```js-nolint
+takeRecords()
 ```
+
+### Parameters
+
+None.
 
 ### Return value
 
-An array of {{domxref("Report")}} objects.
+An array of report objects, such as {{domxref("COEPViolationReport")}} and {{domxref("IntegrityViolationReport")}}.
+
+The object dictionaries are listed in [Reporting API](/en-US/docs/Web/API/Reporting_API#dictionaries).
 
 ## Examples
 
-```js
-let options = {
-  types: ['deprecation'],
-  buffered: true
-}
+### Basic usage
 
-let observer = new ReportingObserver(function(reports, observer) {
+```js
+const options = {
+  types: ["deprecation"],
+  buffered: true,
+};
+
+const observer = new ReportingObserver((reports, observer) => {
   reportBtn.onclick = () => displayReports(reports);
 }, options);
 
-observer.observe()
+observer.observe();
 
-// ...
+// …
 
-let records = observer.takeRecords();
+const records = observer.takeRecords();
 console.log(records);
 ```
 

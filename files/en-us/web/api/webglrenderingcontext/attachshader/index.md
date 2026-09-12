@@ -1,20 +1,20 @@
 ---
-title: WebGLRenderingContext.attachShader()
+title: "WebGLRenderingContext: attachShader() method"
+short-title: attachShader()
 slug: Web/API/WebGLRenderingContext/attachShader
-tags:
-  - Method
-  - WebGL
+page-type: web-api-instance-method
 browser-compat: api.WebGLRenderingContext.attachShader
 ---
-{{APIRef("WebGL")}}
+
+{{APIRef("WebGL")}}{{AvailableInWorkers}}
 
 The **WebGLRenderingContext.attachShader()** method of the [WebGL API](/en-US/docs/Web/API/WebGL_API) attaches either a fragment or
 vertex {{domxref("WebGLShader")}} to a {{domxref("WebGLProgram")}}.
 
 ## Syntax
 
-```js
-void gl.attachShader(program, shader);
+```js-nolint
+attachShader(program, shader)
 ```
 
 ### Parameters
@@ -22,14 +22,18 @@ void gl.attachShader(program, shader);
 - `program`
   - : A {{domxref("WebGLProgram")}}.
 - `shader`
-  - : A fragment or vertex {{domxref("WebGLShader")}}.
+  - : A fragment or vertex {{domxref("WebGLShader")}}.
+
+### Return value
+
+None ({{jsxref("undefined")}}).
 
 ## Examples
 
 The following code attaches pre-existing shaders to a {{domxref("WebGLProgram")}}.
 
 ```js
-var program = gl.createProgram();
+const program = gl.createProgram();
 
 // Attach pre-existing shaders
 gl.attachShader(program, vertexShader);
@@ -37,9 +41,9 @@ gl.attachShader(program, fragmentShader);
 
 gl.linkProgram(program);
 
-if ( !gl.getProgramParameter( program, gl.LINK_STATUS) ) {
-  var info = gl.getProgramInfoLog(program);
-  throw 'Could not compile WebGL program. \n\n' + info;
+if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+  const info = gl.getProgramInfoLog(program);
+  throw new Error(`Could not compile WebGL program. \n\n${info}`);
 }
 ```
 
@@ -55,7 +59,6 @@ if ( !gl.getProgramParameter( program, gl.LINK_STATUS) ) {
 
 - {{domxref("WebGLProgram")}}
 - {{domxref("WebGLShader")}}
-- {{domxref("WebGLRenderingContext.attachShader()")}}
 - {{domxref("WebGLRenderingContext.compileShader()")}}
 - {{domxref("WebGLRenderingContext.createProgram()")}}
 - {{domxref("WebGLRenderingContext.createShader()")}}

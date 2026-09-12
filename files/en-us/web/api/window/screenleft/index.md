@@ -1,48 +1,31 @@
 ---
-title: Window.screenLeft
+title: "Window: screenLeft property"
+short-title: screenLeft
 slug: Web/API/Window/screenLeft
-tags:
-  - API
-  - CSSOM View
-  - Property
-  - Read-only
-  - Reference
-  - Window
-  - screenLeft
+page-type: web-api-instance-property
 browser-compat: api.Window.screenLeft
 ---
-{{APIRef}}
 
-The **`Window.screenLeft`** read-only property returns the
-horizontal distance, in CSS pixels, from the left border of the user's browser viewport
-to the left side of the screen.
+{{APIRef("CSSOM view API")}}
 
-> **Note:** `screenLeft` is an alias of the older
-> {{domxref("Window.screenX")}} property. `screenLeft` was originally
-> supported only in IE but was introduced everywhere due to popularity.
+The **`screenLeft`** read-only property of the {{domxref("Window")}} interface returns the horizontal distance, in CSS pixels, from the left border of the user's browser window to the left side of the screen.
 
-## Syntax
+> [!NOTE]
+> `screenLeft` is an alias of the older {{domxref("Window.screenX")}} property. `screenLeft` was originally supported only in IE but was introduced everywhere due to popularity.
 
-```js
-leftWindowPos = window.screenLeft
-```
+## Value
 
-### Returns
-
-A number equal to the number of CSS pixels from the left edge of the browser viewport
-to the  left edge of the screen.
+A number equal to the number of CSS pixels from the left edge of the browser window to the left edge of the screen.
 
 ## Examples
 
-In our [screenleft-screentop](https://mdn.github.io/dom-examples/screenleft-screentop/)
-example, you'll see a canvas onto which has been drawn a circle. In this example we are
-using `screenLeft`/`screenTop` plus
-{{domxref("Window.requestAnimationFrame()")}} to constantly redraw the circle in the
-same physical position on the screen, even if the window position is moved.
+In our [screenleft-screentop](https://mdn.github.io/dom-examples/screenleft-screentop/) example, you'll see a canvas onto which has been drawn a circle. In this example we are using `screenLeft`/`screenTop` plus {{domxref("Window.requestAnimationFrame()")}} to constantly redraw the circle in the same physical position on the screen, even if the window position is moved.
+
+This example compensates for changes in the browser window's position, but not for changes in the viewport's position within the window. Showing or hiding a toolbar or sidebar can therefore shift the circle on the screen.
 
 ```js
-initialLeft = window.screenLeft + canvasElem.offsetLeft;
-initialTop = window.screenTop + canvasElem.offsetTop;
+let initialLeft = window.screenLeft + canvasElem.offsetLeft;
+let initialTop = window.screenTop + canvasElem.offsetTop;
 
 function positionElem() {
   let newLeft = window.screenLeft + canvasElem.offsetLeft;
@@ -51,30 +34,26 @@ function positionElem() {
   let leftUpdate = initialLeft - newLeft;
   let topUpdate = initialTop - newTop;
 
-  ctx.fillStyle = 'rgb(0, 0, 0)';
+  ctx.fillStyle = "rgb(0 0 0)";
   ctx.fillRect(0, 0, width, height);
-  ctx.fillStyle = 'rgb(0, 0, 255)';
+  ctx.fillStyle = "rgb(0 0 255)";
   ctx.beginPath();
-  ctx.arc(leftUpdate + (width/2), topUpdate + (height/2) + 35, 50, degToRad(0), degToRad(360), false);
+  ctx.arc(
+    leftUpdate + width / 2,
+    topUpdate + height / 2 + 35,
+    50,
+    degToRad(0),
+    degToRad(360),
+    false,
+  );
   ctx.fill();
 
-  pElem.textContent = 'Window.screenLeft: ' + window.screenLeft + ', Window.screenTop: ' + window.screenTop;
+  pElem.textContent = `Window.screenLeft: ${window.screenLeft}, Window.screenTop: ${window.screenTop}`;
 
   window.requestAnimationFrame(positionElem);
 }
 
 window.requestAnimationFrame(positionElem);
-```
-
-Also in the code we include a snippet that detects whether `screenLeft` is
-supported, and if not, polyfills in `screenLeft`/`screenTop` using
-{{domxref("Window.screenX")}}/{{domxref("Window.screenY")}}.
-
-```js
-if(!window.screenLeft) {
-  window.screenLeft = window.screenX;
-  window.screenTop = window.screenY;
-}
 ```
 
 ## Specifications
@@ -88,4 +67,4 @@ if(!window.screenLeft) {
 ## See also
 
 - {{domxref("window.screenTop")}}
-- {{domxref("Window.screenX")}}
+- {{domxref("window.screenX")}}

@@ -1,16 +1,23 @@
 ---
-title: Error.prototype.fileName
+title: "Error: fileName"
+short-title: fileName
 slug: Web/JavaScript/Reference/Global_Objects/Error/fileName
-tags:
-  - JavaScript
-  - Non-standard
-  - Property
-  - Prototype
+page-type: javascript-instance-data-property
+status:
+  - non-standard
 browser-compat: javascript.builtins.Error.fileName
+sidebar: jsref
 ---
-{{JSRef}} {{non-standard_header}}
 
-The **`fileName`** property contains the path to the file that raised this error.
+{{Non-standard_Header}}
+
+The **`fileName`** data property of an {{jsxref("Error")}} instance contains the path to the file that raised this error.
+
+## Value
+
+A string.
+
+{{js_property_attributes(1, 0, 1)}}
 
 ## Description
 
@@ -21,7 +28,7 @@ This non-standard property contains the path to the file that raised this error.
 ### Using fileName
 
 ```js
-var e = new Error('Could not parse input');
+const e = new Error("Could not parse input");
 throw e;
 // e.fileName could look like "file:///C:/example.html"
 ```

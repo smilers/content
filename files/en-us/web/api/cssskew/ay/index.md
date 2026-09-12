@@ -1,30 +1,16 @@
 ---
-title: CSSSkew.ay
+title: "CSSSkew: ay property"
+short-title: ay
 slug: Web/API/CSSSkew/ay
-tags:
-  - API
-  - CSS Typed Object Model API
-  - CSSSkew
-  - CSSTransformComponent
-  - CSSTransformValue
-  - Experimental
-  - Houdini
-  - Property
+page-type: web-api-instance-property
 browser-compat: api.CSSSkew.ay
 ---
-{{APIRef("CSS Typed OM")}}{{SeeCompatTable}}{{draft}}
 
-The **`ay`** property of the
-{{domxref("CSSSkew")}} interface gets and sets the angle used to distort the element
-along the y-axis (or ordinate).
+{{APIRef("CSS Typed Object Model API")}} {{AvailableInWorkers}}
 
-## Syntax
+The **`ay`** property of the {{domxref("CSSSkew")}} interface gets and sets the angle used to distort the element along the y-axis (or ordinate).
 
-```js
-var skeway = CSSSkew.ay;
-```
-
-### Value
+## Value
 
 A {{domxref("CSSNumericValue")}}.
 

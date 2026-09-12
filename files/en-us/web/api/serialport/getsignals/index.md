@@ -1,21 +1,20 @@
 ---
-title: SerialPort.getSignals()
+title: "SerialPort: getSignals() method"
+short-title: getSignals()
 slug: Web/API/SerialPort/getSignals
-tags:
-  - API
-  - Method
-  - Reference
-  - getSignals()
-  - SerialPort
+page-type: web-api-instance-method
 browser-compat: api.SerialPort.getSignals
 ---
-{{securecontext_header}}{{DefaultAPISidebar("Serial API")}}
 
-The **`SerialPort.getSignals()`** method of the {{domxref("SerialPort")}} interface returns a {{jsxref("Promise")}} that resolves with an object containing the current state of the port's control signals.
+{{APIRef("Web Serial API")}}{{SecureContext_Header}}{{AvailableInWorkers("window_and_dedicated")}}
+
+The **`getSignals()`** method of the {{domxref("SerialPort")}} interface returns a {{jsxref("Promise")}} that resolves with an object containing the current state of the port's control signals.
 
 ## Syntax
 
-    var promise = SerialPort.getSignals();
+```js-nolint
+getSignals()
+```
 
 ### Parameters
 
@@ -26,7 +25,7 @@ None.
 Returns a {{jsxref("Promise")}} that resolves with an object containing the following members:
 
 - `clearToSend`
-  - : A boolean indicating to the other end of a serial connection that is is clear to send data.
+  - : A boolean indicating to the other end of a serial connection that is clear to send data.
 - `dataCarrierDetect`
   - : A boolean that toggles the control signal needed to communicate over a serial connection.
 - `dataSetReady`
@@ -36,10 +35,23 @@ Returns a {{jsxref("Promise")}} that resolves with an object containing the foll
 
 ### Exceptions
 
-- {{domxref("DOMException")}} `"InvalidStateError"`
-  - : Indicates that the port is not open. Call {{domxref("SerialPort.open()")}} to avoid this error.
-- {{domxref("DOMException")}} `NetworkError`
-  - : Indicates that one of the signals on the device could not be set.
+The returned `Promise` rejects with one of the following exceptions:
+
+- `InvalidStateError` {{domxref("DOMException")}}
+  - : If `getSignals()` is called when the port is not open. Call {{domxref("SerialPort.open()")}} to open the port first.
+- `NetworkError` {{domxref("DOMException")}}
+  - : If the signals on the device could not be read.
+
+## Examples
+
+### Check whether the device is ready to send and receive data
+
+The following example reads the control signals from an open port and checks the `dataSetReady` property to determine whether the connected device is ready to communicate.
+
+```js
+const signals = await port.getSignals();
+console.log(`Device ready: ${signals.dataSetReady}`);
+```
 
 ## Specifications
 

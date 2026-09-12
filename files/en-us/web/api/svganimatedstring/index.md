@@ -1,26 +1,23 @@
 ---
 title: SVGAnimatedString
 slug: Web/API/SVGAnimatedString
-tags:
-  - API
-  - NeedsExample
-  - Reference
-  - SVG
-  - SVG DOM
+page-type: web-api-interface
 browser-compat: api.SVGAnimatedString
 ---
+
 {{APIRef("SVG")}}
 
-The **`SVGAnimatedString`** interface represents string attributes which can be animated from each SVG declaration. You need to create SVG attribute before doing anything else, everything should be declared inside this.
+The **`SVGAnimatedString`** interface represents string attributes which can be animated from each SVG declaration. You need to create SVG attribute before doing anything else, everything should be declared inside this.
 
-## Properties
+## Instance properties
 
-- {{domxref("SVGAnimatedString.animVal")}} {{readonlyInline}}
-  - : This is a {{domxref("DOMString")}} representing the animation value. If the given attribute or property is being animated it contains the current animated value of the attribute or property. If the given attribute or property is not currently being animated, it contains the same value as baseVal.
+- {{domxref("SVGAnimatedString.animVal")}} {{ReadOnlyInline}}
+  - : A string representing the animated value of the reflected attribute value.
+    If the given attribute is not currently being animated, it contains the same value as `baseVal`.
 - {{domxref("SVGAnimatedString.baseVal")}}
-  - : This is a {{domxref("DOMString")}} representing the base value. The base value of the given attribute before applying any animations. Setter throws DOMException.
+  - : A string representing the base value of the reflected attribute before applying any animations.
 
-## Methods
+## Instance methods
 
 _The `SVGAnimatedString` interface do not provide any specific methods._
 
@@ -31,3 +28,7 @@ _The `SVGAnimatedString` interface do not provide any specific methods._
 ## Browser compatibility
 
 {{Compat}}
+
+## See also
+
+- {{domxref("SVGScriptElement.href")}}, an object of this type.

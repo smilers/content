@@ -1,30 +1,36 @@
 ---
-title: Element.getAttributeNodeNS()
+title: "Element: getAttributeNodeNS() method"
+short-title: getAttributeNodeNS()
 slug: Web/API/Element/getAttributeNodeNS
-tags:
-  - API
-  - DOM
-  - Method
-  - Reference
+page-type: web-api-instance-method
 browser-compat: api.Element.getAttributeNodeNS
 ---
-{{ APIRef("DOM") }}
 
-Returns the `Attr` node for the attribute with the given namespace and name.
+{{APIRef("DOM")}}
+
+The **`getAttributeNodeNS()`** method of the {{domxref("Element")}} interface returns the specified namespaced attribute of the specified element, as an {{domxref("Attr")}} node. It returns `null` if the element doesn't have an attribute with the given name in the namespace.
+
+This method is useful if you need the namespaced attribute's [instance properties](/en-US/docs/Web/API/Attr#instance_properties).
+If you only need the namespaced attribute's value, you can use the {{domxref("Element.getAttributeNS()", "getAttributeNS()")}} method instead.
+
+If you are working with HTML documents and you don't need to specify the requested attribute as being part of a specific namespace, use the {{domxref("Element.getAttributeNode()", "getAttributeNode()")}} method instead.
 
 ## Syntax
 
-    attributeNode = element.getAttributeNodeNS(namespace, nodeName)
+```js-nolint
+getAttributeNodeNS(namespace, localName)
+```
 
-- `attributeNode` is the node for specified attribute.
-- `namespace` is a string specifying the namespace of the attribute.
-- `nodeName` is a string specifying the name of the attribute.
+### Parameters
 
-## Notes
+- `namespace`
+  - : A string specifying the namespace of the attribute, or `null` for no explicit namespace.
+- `localName`
+  - : A string specifying the name of the attribute.
 
-`getAttributeNodeNS` is more specific than [getAttributeNode](getAttributeNode) in that it allows you to specify attributes that are part of a particular namespace. The corresponding setter method is [setAttributeNodeNS](/en-US/docs/Web/API/Element/setAttributeNodeNS).
+### Return value
 
-{{ DOMAttributeMethods() }}
+An `Attr` node for the attribute, or `null` if the element doesn't have an attribute with the given name in the namespace.
 
 ## Specifications
 
@@ -33,3 +39,9 @@ Returns the `Attr` node for the attribute with the given namespace and name.
 ## Browser compatibility
 
 {{Compat}}
+
+## See also
+
+- {{domxref("Document.createAttribute()")}}
+- {{domxref("Document.createAttributeNS()")}}
+- {{domxref("Element.setAttributeNodeNS()")}}

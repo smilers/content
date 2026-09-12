@@ -1,64 +1,54 @@
 ---
-title: WritableStreamDefaultWriter.desiredSize
+title: "WritableStreamDefaultWriter: desiredSize property"
+short-title: desiredSize
 slug: Web/API/WritableStreamDefaultWriter/desiredSize
-tags:
-  - API
-  - Experimental
-  - Property
-  - Reference
-  - Streams
-  - WritableStreamDefaultWriter
-  - desiredSize
+page-type: web-api-instance-property
 browser-compat: api.WritableStreamDefaultWriter.desiredSize
 ---
-{{SeeCompatTable}}{{APIRef("Streams")}}
+
+{{APIRef("Streams")}}{{AvailableInWorkers}}
 
 The **`desiredSize`** read-only property of the
 {{domxref("WritableStreamDefaultWriter")}} interface returns the desired size required
 to fill the stream's internal queue.
 
-## Syntax
+## Value
 
-```js
-var desiredSize = writableStreamDefaultWriter.desiredSize;
-```
+A number, or `null`.
 
-### Value
-
-An integer. Note that this can be negative if the queue is over-full.
-
-The value will be `null` if the stream cannot be successfully written to
-(due to either being errored, or having an abort queued up), and zero if the stream is
-closed.
+The number can be negative if the queue is over-full. When a custom queuing strategy is used, its chunk sizes can cause the number to have a fractional component. The value is `null` if the stream is erroring or errored, and `0` if it is closed.
 
 ### Exceptions
 
-- TypeError
-  - : The writer’s lock is released.
+- {{jsxref("TypeError")}}
+  - : The writer's lock is released.
 
 ## Examples
 
 ```js
-const writableStream = new WritableStream({
-  write(chunk) {
-    ...
+const writableStream = new WritableStream(
+  {
+    write(chunk) {
+      // …
+    },
+    close() {
+      // …
+    },
+    abort(err) {
+      // …
+    },
   },
-  close() {
-    ...
-  },
-  abort(err) {
-    ...
-  }
-}, queuingStrategy);
+  queuingStrategy,
+);
 
-...
+// …
 
 const writer = writableStream.getWriter();
 
-...
+// …
 
 // return stream's desired size
-let size = writer.desiredSize;
+const size = writer.desiredSize;
 ```
 
 ## Specifications

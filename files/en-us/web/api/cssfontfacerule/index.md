@@ -1,49 +1,86 @@
 ---
 title: CSSFontFaceRule
 slug: Web/API/CSSFontFaceRule
-tags:
-  - API
-  - CSSOM
-  - CSSFontFaceRule
-  - Interface
-  - Reference
+page-type: web-api-interface
 browser-compat: api.CSSFontFaceRule
 ---
+
 {{APIRef("CSSOM")}}
 
-The **`CSSFontFaceRule`** interface represents an {{cssxref("@font-face")}} {{cssxref("at-rule")}}.
+The **`CSSFontFaceRule`** interface represents an {{cssxref("@font-face")}} [at-rule](/en-US/docs/Web/CSS/Guides/Syntax/At-rules).
 
 {{InheritanceDiagram}}
 
-## Properties
+## Instance properties
 
 _Inherits properties from its ancestor {{domxref("CSSRule")}}._
 
-- {{domxref("CSSFontFaceRule.style")}}{{readonlyinline}}
-  - : Returns a {{domxref("CSSStyleDeclaration")}}.
+- {{domxref("CSSFontFaceRule.style")}} {{ReadOnlyInline}}
+  - : Returns a {{domxref("CSSFontFaceDescriptors")}} object that allows reading and setting the descriptors of the associated {{cssxref("@font-face")}} at-rule.
 
-## Methods
+## Instance methods
 
 _Inherits methods from its ancestor {{domxref("CSSRule")}}._
 
 ## Examples
 
-This example uses the CSS found as an example on the {{cssxref("@font-face")}} page. The first {{domxref("CSSRule")}} returned will be a `CSSFontFaceRule`.
+### Accessing @font-face properties
+
+This example defines a {{cssxref("@font-face")}} rule and then iterates over the rules on the page until the associated `CSSFontFaceRule` is found.
+It then logs some of the properties.
+
+#### CSS
 
 ```css
 @font-face {
-  font-family: MyHelvetica;
-  src: local("Helvetica Neue Bold"),
-  local("HelveticaNeue-Bold"),
-  url(MgOpenModernaBold.ttf);
+  font-family: "MyHelvetica";
+  src:
+    local("Helvetica Neue Bold"), local("HelveticaNeue-Bold"),
+    url("MgOpenModernaBold.woff2");
   font-weight: bold;
 }
 ```
 
-```js
-let myRules = document.styleSheets[0].cssRules;
-console.log(myRules[0]); //a CSSFontFaceRule
+```css hidden
+#log {
+  height: 200px;
+  overflow: scroll;
+  padding: 0.5rem;
+  border: 1px solid black;
+}
 ```
+
+```html hidden
+<pre id="log"></pre>
+```
+
+#### JavaScript
+
+```js hidden
+const logElement = document.querySelector("#log");
+function log(text) {
+  logElement.innerText = `${logElement.innerText}${text}\n`;
+  logElement.scrollTop = logElement.scrollHeight;
+}
+```
+
+```js
+const myRules = document.getElementById("css-output").sheet.cssRules;
+for (const rule of myRules) {
+  if (rule instanceof CSSFontFaceRule) {
+    log(`this: ${rule}`);
+    log(` cssText: ${rule.cssText}`);
+    log(` parentRule: ${rule.parentRule}`);
+    log(` parentStyleSheet: ${rule.parentStyleSheet}`);
+    log(` type: ${rule.type}`);
+    log(` style: ${rule.style}`);
+  }
+}
+```
+
+#### Result
+
+{{EmbedLiveSample("Accessing @font-face properties", "100%", "250px")}}
 
 ## Specifications
 

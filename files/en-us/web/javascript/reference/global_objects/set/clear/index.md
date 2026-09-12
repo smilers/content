@@ -1,48 +1,60 @@
 ---
 title: Set.prototype.clear()
+short-title: clear()
 slug: Web/JavaScript/Reference/Global_Objects/Set/clear
-tags:
-  - ECMAScript 2015
-  - JavaScript
-  - Method
-  - Prototype
-  - Reference
-  - set
+page-type: javascript-instance-method
 browser-compat: javascript.builtins.Set.clear
+sidebar: jsref
 ---
-{{JSRef}}
 
-The **`clear()`** method removes all elements from a
-`Set` object.
+The **`clear()`** method of {{jsxref("Set")}} instances removes all elements from this set.
 
-{{EmbedInteractiveExample("pages/js/set-prototype-clear.html")}}
+{{InteractiveExample("JavaScript Demo: Set.prototype.clear()")}}
+
+```js interactive-example
+const set = new Set();
+set.add(1);
+set.add("foo");
+
+console.log(set.size);
+// Expected output: 2
+
+set.clear();
+
+console.log(set.size);
+// Expected output: 0
+```
 
 ## Syntax
 
-```js
+```js-nolint
 clear()
 ```
 
+### Parameters
+
+None.
+
 ### Return value
 
-{{jsxref("undefined")}}.
+None ({{jsxref("undefined")}}).
 
 ## Examples
 
 ### Using the clear() method
 
 ```js
-var mySet = new Set();
+const mySet = new Set();
 mySet.add(1);
-mySet.add('foo');
+mySet.add("foo");
 
-mySet.size;       // 2
-mySet.has('foo'); // true
+console.log(mySet.size); // 2
+console.log(mySet.has("foo")); // true
 
 mySet.clear();
 
-mySet.size;       // 0
-mySet.has('bar')  // false
+console.log(mySet.size); // 0
+console.log(mySet.has("foo")); // false
 ```
 
 ## Specifications

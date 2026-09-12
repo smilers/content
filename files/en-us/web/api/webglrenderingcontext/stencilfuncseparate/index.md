@@ -1,58 +1,45 @@
 ---
-title: WebGLRenderingContext.stencilFuncSeparate()
+title: "WebGLRenderingContext: stencilFuncSeparate() method"
+short-title: stencilFuncSeparate()
 slug: Web/API/WebGLRenderingContext/stencilFuncSeparate
-tags:
-  - API
-  - Method
-  - Reference
-  - WebGL
-  - WebGLRenderingContext
+page-type: web-api-instance-method
 browser-compat: api.WebGLRenderingContext.stencilFuncSeparate
 ---
-{{APIRef("WebGL")}}
+
+{{APIRef("WebGL")}}{{AvailableInWorkers}}
 
 The **`WebGLRenderingContext.stencilFuncSeparate()`** method of
 the [WebGL API](/en-US/docs/Web/API/WebGL_API) sets the front and/or back
 function and reference value for stencil testing.
 
-Stencilling enables and disables drawing on a per-pixel basis. It is typically used in
+Stenciling enables and disables drawing on a per-pixel basis. It is typically used in
 multipass rendering to achieve special effects.
 
 ## Syntax
 
-```js
-void gl.stencilFuncSeparate(face, func, ref, mask);
+```js-nolint
+stencilFuncSeparate(face, func, ref, mask)
 ```
 
 ### Parameters
 
-- face
-
+- `face`
   - : A {{domxref("WebGL_API/Types", "GLenum")}} specifying whether the front and/or back stencil state is
     updated. The possible values are:
-
     - `gl.FRONT`
     - `gl.BACK`
     - `gl.FRONT_AND_BACK`
 
 - `func`
-
   - : A {{domxref("WebGL_API/Types", "GLenum")}} specifying the test function. The default function is
     `gl.ALWAYS`. The possible values are:
-
     - `gl.NEVER`: Never pass.
-    - `gl.LESS`: Pass if
-      `(ref & mask) < (stencil & mask)`.
-    - `gl.EQUAL`: Pass if
-      `(ref & mask) = (stencil & mask)`.
-    - `gl.LEQUAL`: Pass if
-      `(ref & mask) <= (stencil & mask)`.
-    - `gl.GREATER`: Pass if
-      `(ref & mask) > (stencil & mask)`.
-    - `gl.NOTEQUAL`: Pass if
-      `(ref & mask) != (stencil & mask)`.
-    - `gl.GEQUAL`: Pass if
-      `(ref & mask) >= (stencil & mask)`.
+    - `gl.LESS`: Pass if `(ref & mask) < (stencil & mask)`.
+    - `gl.EQUAL`: Pass if `(ref & mask) = (stencil & mask)`.
+    - `gl.LEQUAL`: Pass if `(ref & mask) <= (stencil & mask)`.
+    - `gl.GREATER`: Pass if `(ref & mask) > (stencil & mask)`.
+    - `gl.NOTEQUAL`: Pass if `(ref & mask) !== (stencil & mask)`.
+    - `gl.GEQUAL`: Pass if `(ref & mask) >= (stencil & mask)`.
     - `gl.ALWAYS`: Always pass.
 
 - `ref`
@@ -65,7 +52,7 @@ void gl.stencilFuncSeparate(face, func, ref, mask);
 
 ### Return value
 
-None.
+None ({{jsxref("undefined")}}).
 
 ## Examples
 
@@ -80,8 +67,7 @@ gl.stencilFuncSeparate(gl.FRONT, gl.LESS, 0.2, 1110011);
 ```
 
 To get the current stencil function, reference value, or other stencil information,
-query the following constants with {{domxref("WebGLRenderingContext.getParameter",
-  "getParameter()")}}.
+query the following constants with {{domxref("WebGLRenderingContext.getParameter", "getParameter()")}}.
 
 ```js
 gl.getParameter(gl.STENCIL_FUNC);

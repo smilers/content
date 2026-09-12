@@ -1,85 +1,110 @@
 ---
-title: CookieStore.get()
+title: "CookieStore: get() method"
+short-title: get()
 slug: Web/API/CookieStore/get
-tags:
-  - API
-  - Method
-  - Reference
-  - get()
-  - CookieStore
+page-type: web-api-instance-method
 browser-compat: api.CookieStore.get
 ---
-{{securecontext_header}}{{DefaultAPISidebar("Cookie Store API")}}
 
-The **`get()`** method of the {{domxref("CookieStore")}} interface returns a single cookie with the given name or options object. (See below.) The method will return the first matching cookie for the passed parameters.
+{{securecontext_header}}{{APIRef("Cookie Store API")}}{{AvailableInWorkers("window_and_service")}}
+
+The **`get()`** method of the {{domxref("CookieStore")}} interface returns a {{jsxref("Promise")}} that resolves to a single cookie matching the given `name` or `options` object. The method will return the first cookie that matches.
 
 ## Syntax
 
-    var cookie = CookieStore.get(name);
-    var cookie = CookieStore.get(options);
+```js-nolint
+get(name)
+get(options)
+```
 
 ### Parameters
 
 This method requires one of the following:
 
-- `name`
-  - : A {{domxref("USVString")}} with the name of a cookie.
-- options
+- `name` {{optional_inline}}
+  - : A string with the name of a cookie.
 
+Or
+
+- `options` {{optional_inline}}
   - : An object containing:
-
     - `name`
-      - : A {{domxref("USVString")}} with the name of a cookie.
+      - : A string with the name of a cookie.
     - `url`
-      - : A {{domxref("USVString")}} with the url of a cookie.
+      - : A string with the URL of a cookie.
 
-> **Note:** The `url` option enables the modification of a cookie scoped under a particular URL. Service workers can obtain cookies that would be sent to any URL under their scope. From a document you may only obtain the cookies at the current URL, so the only valid URL in a document context is the document's URL.
+> [!NOTE]
+> The `url` option enables the modification of a cookie scoped under a particular URL. Service workers can obtain cookies that would be sent to any URL under their scope. From a document you may only obtain the cookies at the current URL, so the only valid URL in a document context is the document's URL.
 
 ### Return value
 
-A {{jsxref("Promise")}} that resolves with an object containing the first cookie matching the submitted name or options. This object contains the following properties:
+A {{jsxref("Promise")}} that resolves with an object representing the first cookie matching the submitted `name` or `options`, or `null` if there is no matching cookie.
+
+The object returned for a match contains the following properties:
 
 - `name`
-  - : A {{domxref("USVString")}} containing the name of the cookie.
+  - : A string containing the name of the cookie.
 - `value`
-  - : A {{domxref("USVString")}} containing the value of the cookie.
-- `domain`
-  - : A {{domxref("USVString")}} containing the domain of the cookie.
-- `path`
-  - : A {{domxref("USVString")}} containing the path of the cookie.
-- `expires`
-  - : A {{domxref("DOMTimeStamp")}} containing the expiration date of the cookie.
-- `secure`
-  - : A {{jsxref("boolean")}} indicating whether the cookie is to be used in secure contexts only.
-- `sameSite`
+  - : A string containing the value of the cookie.
 
-  - : One of the following [SameSite](/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite) values:
+The following properties are non-standard and should not be relied on:
 
-    - `"strict"`
-      - : Cookies will only be sent in a first-party context and not be sent with requests initiated by third party websites.
-    - `"lax"`
-      - : Cookies are not sent on normal cross-site subrequests (for example to load images or frames into a third party site), but are sent when a user is navigating within the origin site (i.e. when following a link).
-    - `"none"`
-      - : Cookies will be sent in all contexts.
-
-    > **Note:** For more information on SameSite cookies see [SameSite cookies explained](https://web.dev/samesite-cookies-explained/).
+- `domain` {{experimental_inline}} {{non-standard_inline}}
+  - : A string containing the domain of the cookie.
+- `expires` {{experimental_inline}} {{non-standard_inline}}
+  - : A timestamp, given as {{glossary("Unix time")}} in milliseconds, containing the expiration date of the cookie.
+- `partitioned` {{experimental_inline}} {{non-standard_inline}}
+  - : A boolean indicating whether the cookie is a partitioned cookie (`true`) or not (`false`). See [Cookies Having Independent Partitioned State (CHIPS)](/en-US/docs/Web/Privacy/Guides/Third-party_cookies/Partitioned_cookies) for more information.
+- `path` {{experimental_inline}} {{non-standard_inline}}
+  - : A string containing the path of the cookie.
+- `sameSite` {{experimental_inline}} {{non-standard_inline}}
+  - : One of the following [`SameSite`](/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie#samesitesamesite-value) values: [`"strict"`](/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie#strict), [`"lax"`](/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie#lax), or [`"none"`](/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie#none).
+- `secure` {{experimental_inline}} {{non-standard_inline}}
+  - : A boolean value indicating whether the cookie is to be used in secure contexts only (`true`) or not (`false`).
 
 ### Exceptions
 
+- `SecurityError` {{domxref("DOMException")}}
+  - : Thrown if the origin does not {{glossary("Serialization", "serialize")}} to a URL.
 - {{jsxref("TypeError")}}
-  - : Thrown if getting the cookie represented by the given `name` or `options` fails.
+  - : Thrown if:
+    - The `options` parameter is an empty object.
+    - The method is called in the main thread, and the `url` option is specified but does not match the URL of the current window.
+    - The method is called in a worker and the `url` option is specified, but does not match the origin of the worker.
+    - Querying cookies represented by the given `name` or `options` fails.
 
 ## Examples
 
-In this example we return a cookie named "cookie1". If the cookie is found the result of the Promise is an object containing the details of a single cookie.
+<!-- The examples don't work as live examples in MDN environment (due to unknown errors) -->
+
+### Getting a cookie by name
+
+This example shows how to get a particular cookie by name.
+
+The code first creates a cookie named "cookie1" using {{domxref("CookieStore.set()")}}, logging any errors to the console.
+It then waits on `get()` to retrieve information about that same cookie.
+If the returned promise resolves with an object we log the cookie: otherwise we log that no matching cookie was found.
 
 ```js
-let cookie = cookieStore.get('cookie1');
-if (cookie) {
+async function cookieTest() {
+  // Set test cookie
+  try {
+    await cookieStore.set("cookie1", "cookie1-value");
+  } catch (error) {
+    console.log(`Error setting cookie1: ${error}`);
+  }
+
+  // Get cookie, specifying name
+  const cookie = await cookieStore.get("cookie1");
+
+  if (cookie) {
     console.log(cookie);
-} else {
-    console.log('Cookie not found');
+  } else {
+    console.log("cookie1: Cookie not found");
+  }
 }
+
+cookieTest();
 ```
 
 ## Specifications

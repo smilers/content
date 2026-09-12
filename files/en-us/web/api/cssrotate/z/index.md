@@ -1,38 +1,31 @@
 ---
-title: CSSRotate.z
+title: "CSSRotate: z property"
+short-title: z
 slug: Web/API/CSSRotate/z
-tags:
-  - API
-  - CSS
-  - CSS Typed Object Model API
-  - CSSRotate
-  - CSSTransformComponent
-  - CSSTransformValue
-  - Experimental
-  - Houdini
-  - Property
+page-type: web-api-instance-property
 browser-compat: api.CSSRotate.z
 ---
-{{APIRef("CSS Typed OM")}}{{SeeCompatTable}}{{draft}}
 
-The **`z`** property of the
-{{domxref("CSSRotate")}} interface representing the z-component of the translating
-vector. A positive value moves the element towards the viewer, and a negative value
-farther away.
+{{APIRef("CSS Typed Object Model API")}} {{AvailableInWorkers}}
 
-## Syntax
+The **`z`** property of the {{domxref("CSSRotate")}} interface represents the z-coordinate of the vector denoting the axis of rotation.
 
-```js
-var rotateZ = CSSRotate.z;
-```
+## Value
 
-### Value
-
-A double integer or a {{domxref("CSSNumericValue")}}
+A {{domxref("CSSNumericValue")}}. If set to a number, this is wrapped in a {{domxref("CSSUnitValue")}} of `unit: "number"`.
 
 ## Examples
 
-To Do
+### Reading and setting the rotation axis
+
+```js
+const rotate = new CSSRotate(1, 1, 0, CSS.deg(45));
+
+console.log(rotate.z.value); // 0
+
+rotate.z = 1;
+console.log(rotate.z); // CSSUnitValue {value: 1, unit: "number"}
+```
 
 ## Specifications
 
@@ -41,3 +34,12 @@ To Do
 ## Browser compatibility
 
 {{Compat}}
+
+## See also
+
+- {{domxref("CSSRotate.CSSRotate", "CSSRotate()")}}
+- {{domxref("CSSRotate.x")}}
+- {{domxref("CSSRotate.y")}}
+- {{domxref("CSSRotate.angle")}}
+- [Using the CSS Typed OM](/en-US/docs/Web/API/CSS_Typed_OM_API/Guide)
+- [CSS Typed Object Model API](/en-US/docs/Web/API/CSS_Typed_OM_API)

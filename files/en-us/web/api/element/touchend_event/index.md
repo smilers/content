@@ -1,45 +1,30 @@
 ---
-title: 'Element: touchend event'
+title: "Element: touchend event"
+short-title: touchend
 slug: Web/API/Element/touchend_event
-tags:
-  - API
-  - Element
-  - Event
-  - Touch Events
-  - TouchEvent
-  - UI
-  - UI Events
-  - UX
-  - touch
-  - touchstart
+page-type: web-api-event
 browser-compat: api.Element.touchend_event
 ---
-{{APIRef}}
 
-The `touchend` event fires when one or more touch points are removed from the touch surface.
+{{APIRef("Touch Events")}}
 
-<table class="properties">
-  <tbody>
-    <tr>
-      <th scope="row">Bubbles</th>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <th scope="row">Cancelable</th>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <th scope="row">Interface</th>
-      <td>{{domxref("TouchEvent")}}</td>
-    </tr>
-    <tr>
-      <th scope="row">Event handler property</th>
-      <td>
-        {{ domxref("GlobalEventHandlers.ontouchend","ontouchend")}}
-      </td>
-    </tr>
-  </tbody>
-</table>
+The `touchend` event fires when one or more touch points are removed from the touch surface. Remember that it is possible to get a [`touchcancel`](/en-US/docs/Web/API/Element/touchcancel_event) event instead.
+
+## Syntax
+
+Use the event name in methods like {{domxref("EventTarget.addEventListener", "addEventListener()")}}, or set an event handler property.
+
+```js-nolint
+addEventListener("touchend", (event) => { })
+
+ontouchend = (event) => { }
+```
+
+## Event type
+
+A {{domxref("TouchEvent")}}. Inherits from {{domxref("Event")}}.
+
+{{InheritanceDiagram("TouchEvent")}}
 
 ## Examples
 
@@ -56,5 +41,3 @@ Code samples for those events are available on the dedicated page: [Touch events
 ## See also
 
 - [Touch events](/en-US/docs/Web/API/Touch_events)
-- {{ domxref("GlobalEventHandlers.ontouchend","ontouchend")}}
-- This event on {{domxref("Document")}} targets: {{domxref("Document/touchend_event", "touchend")}}

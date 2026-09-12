@@ -1,52 +1,47 @@
 ---
-title: CSSNumericValue.sub()
+title: "CSSNumericValue: sub() method"
+short-title: sub()
 slug: Web/API/CSSNumericValue/sub
-tags:
-  - API
-  - CSS Typed Object Model API
-  - CSSNumericValue
-  - Experimental
-  - Houdini
-  - Method
-  - Reference
-  - sub()
+page-type: web-api-instance-method
 browser-compat: api.CSSNumericValue.sub
 ---
-{{draft}}{{APIRef("CSS Typed OM")}}{{SeeCompatTable}}
 
-The **`sub()`** method of the
-{{domxref("CSSNumericValue")}} interface subtracts a supplied number from the
-`CSSNumericValue`.
+{{APIRef("CSS Typed Object Model API")}} {{AvailableInWorkers}}
+
+The **`sub()`** method of the {{domxref("CSSNumericValue")}} interface subtracts a supplied number from the `CSSNumericValue`.
 
 ## Syntax
 
-```js
-var cssMathSum = CSSNumericValue.sub(number);
+```js-nolint
+sub()
+sub(number1)
+sub(number1, number2)
+sub(number1, number2, /* …, */ numberN)
 ```
 
 ### Parameters
 
-- number
-  - : Either a {{jsxref('Number')}} or a {{domxref('CSSMathSum')}}.
+- `number1`, …, `numberN` {{optional_inline}}
+  - : Either a number or a {{domxref('CSSNumericValue')}}.
 
 ### Return value
 
-A {{domxref('CSSMathSum')}}
+A {{domxref('CSSMathSum')}}, or a {{domxref('CSSUnitValue')}} if `this` and every argument share the same unit.
 
 ### Exceptions
 
-- TypeError
-  - : Indicates that an invalid type was passed to the method.
+- {{jsxref("TypeError")}}
+  - : Thrown if an invalid type was passed to the method.
 
 ## Examples
 
+### Basic usage
+
 ```js
-let mathSum = CSS.px("23").sum(CSS.percent("4")).sum(CSS.cm("3")).sum(CSS.in("9"));
+let mathSum = CSS.px(23).sub(CSS.percent(4)).sub(CSS.cm(3)).sub(CSS.in(9));
 // Prints "calc(23px - 4% - 3cm - 9in)"
 console.log(mathSum.toString());
 ```
-
-And/or include a list of links to useful code samples that live elsewhere:
 
 ## Specifications
 

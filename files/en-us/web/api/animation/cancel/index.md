@@ -1,27 +1,22 @@
 ---
-title: Animation.cancel()
+title: "Animation: cancel() method"
+short-title: cancel()
 slug: Web/API/Animation/cancel
-tags:
-  - API
-  - Animation
-  - Method
-  - Reference
-  - Web Animations
-  - cancel
-  - waapi
-  - web animations api
+page-type: web-api-instance-method
 browser-compat: api.Animation.cancel
 ---
-{{ SeeCompatTable() }}{{ APIRef("Web Animations") }}
 
-The Web Animations API's **`cancel()`** method of the {{domxref("Animation")}} interface clears all {{domxref("KeyframeEffect")}}s caused by this animation and aborts its playback.
+{{ APIRef("Web Animations") }}
 
-> **Note:** When an animation is cancelled, its {{domxref("Animation.startTime", "startTime")}} and {{domxref("Animation.currentTime", "currentTime")}} are set to `null`.
+The [Web Animations API](/en-US/docs/Web/API/Web_Animations_API)'s **`cancel()`** method of the {{domxref("Animation")}} interface clears all {{domxref("KeyframeEffect")}}s caused by this animation and aborts its playback.
+
+> [!NOTE]
+> When an animation is canceled, its {{domxref("Animation.startTime", "startTime")}} and {{domxref("Animation.currentTime", "currentTime")}} are set to `null`.
 
 ## Syntax
 
-```js
-Animation.cancel();
+```js-nolint
+cancel()
 ```
 
 ### Parameters
@@ -30,11 +25,11 @@ None.
 
 ### Return value
 
-None.
+None ({{jsxref("undefined")}}).
 
 ### Exceptions
 
-This method doesn't directly throw exceptions; however, if the animation's {{domxref("Animation.playState", "playState")}} is anything but `"idle"` when cancelled, the {{domxref("Animation.finished", "current finished promise", "", 1)}} is rejected with a {{domxref("DOMException")}} named `AbortError`.
+This method doesn't directly throw exceptions; however, if the animation's {{domxref("Animation.playState", "playState")}} is anything but `"idle"` when canceled, the {{domxref("Animation.finished", "current finished promise", "", 1)}} is rejected with a {{domxref("DOMException")}} named `AbortError`.
 
 ## Specifications
 
